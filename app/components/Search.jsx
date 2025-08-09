@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CourseData from '../store/CourseData';
+import CourseData from '../../store/CourseData';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { BlurView } from 'expo-blur';
@@ -71,12 +71,12 @@ const SearchableList = ({ fullData, renderItem, style }) => {
           
           {searchQuery ? <View>
            <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()}>
-            <LottieView style={{ width: 300, height: 250 }} source={require('../aBvnkrMp1I.json')} autoPlay loop />
+            <LottieView style={{ width: 300, height: 250 }} source={require('../../aBvnkrMp1I.json')} autoPlay loop />
           </Animated.View>
 
         </View> : <View>
           <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()}>
-            <LottieView style={{ width: 300, height: 250 }} source={require('../AJhyCw6I0K.json')} autoPlay loop />
+            <LottieView style={{ width: 300, height: 250 }} source={require('../../AJhyCw6I0K.json')} autoPlay loop />
           </Animated.View>
         </View>}</View>}
         initialNumToRender={10}

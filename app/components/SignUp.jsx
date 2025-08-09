@@ -1,10 +1,9 @@
 import { View, Text, Pressable, SafeAreaView, StatusBar, ScrollView, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { router, useRouter } from 'expo-router'
 import LottieView from 'lottie-react-native';
-import icon from '../assets/images/logo-icon.png'
 import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeInRight, FadeInUp, FadeOut, FadeOutUp } from 'react-native-reanimated';
 import { Formik } from 'formik';
-import ValidationSchema from '../utils/authVelidation';
+import ValidationSchema from '../../utils/authVelidation';
 
 const styles = StyleSheet.create({
     text: {
@@ -35,7 +34,7 @@ export default function LandingPage() {
                     <View className='px-2'>
                         <Animated.Text entering={FadeInUp.delay(200).duration(1500).springify()} style={styles.text} className='text-center w-96 mx-auto  animate-pulse'> UNISOL</Animated.Text>
                         <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()} className="flex justify-center items-center mt-5" >
-                            <LottieView style={{ width: 200, height: 150 }} source={require('../nu7q12Cxs7.json')} autoPlay loop />
+                            <LottieView style={{ width: 200, height: 150 }} source={require('../../nu7q12Cxs7.json')} autoPlay loop />
                         </Animated.View>
                         <View >
                             <Formik initialValues={{ name: '', email: '', password: '' }} validationSchema={ValidationSchema} onSubmit={handaleSignUp}>
@@ -74,7 +73,7 @@ export default function LandingPage() {
                             </Formik>
                             <Animated.View entering={FadeInLeft.delay(900).duration(1000).springify()} className='flex-row justify-center mt-10 gap-2 '>
                                 <Text style={styles.Btn_text} className='text-lg animate-bounce text-white '>Already a User?</Text>
-                                <Text style={styles.Btn_text} className='text-lg animate-bounce border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("Login")}>Login</Text>
+                                <Text style={styles.Btn_text} className='text-lg animate-bounce border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/Login")}>Login</Text>
                             </Animated.View>
 
                         </View>
@@ -82,7 +81,7 @@ export default function LandingPage() {
                     <View className=' felx  relative  '>
 
                         <Animated.View entering={FadeIn.delay(1100).duration(1000).springify()} className="  bottom-28 right-48 " >
-                            <LottieView style={{ width: 400, height: 300 }} source={require('../lAxlh737dl.json')} autoPlay loop />
+                            <LottieView style={{ width: 400, height: 300 }} source={require('../../lAxlh737dl.json')} autoPlay loop />
                         </Animated.View>
                     </View>
                 </View>

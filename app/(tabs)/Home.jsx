@@ -58,7 +58,7 @@ const Home = () => {
         <View className='felx flex-row justify-between items-center mt-3'>
           <Text style={styles.Home_text} className=''>UNISOL</Text>
           <View className='felx flex-row justify-center items-center gap-3 '>
-            <TouchableOpacity onPress={() => router.push("Search")}>
+            <TouchableOpacity onPress={() => router.push("../components/Search")}>
               <Feather name="search" size={24} color="#ff8353" />
             </TouchableOpacity>
             <TouchableOpacity>

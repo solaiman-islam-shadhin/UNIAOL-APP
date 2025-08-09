@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function LandingPage() {
+export default function index() {
 
   const router = useRouter()
   return (
@@ -31,7 +31,7 @@ export default function LandingPage() {
             </Animated.View>
             <View className='mt-5'>
               <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
-                <TouchableOpacity className=' w-72 py-4 rounded-full bg-[#ff8353] text-center mx-auto mt-5' onPress={() => router.push("Login")}>
+                <TouchableOpacity className=' w-72 py-4 rounded-full bg-[#ff8353] text-center mx-auto mt-5' onPress={() => router.push('../components/Login')}>
                   <Text style={styles.Btn_text} className='text-center text-2xl text-white  '>Login</Text>
                 </TouchableOpacity>
               </Animated.View>
@@ -42,7 +42,7 @@ export default function LandingPage() {
               </Animated.View>
               <Animated.View entering={FadeInLeft.delay(800).duration(1000).springify()} className='flex-row justify-center mt-10 gap-2 '>
                 <Text style={styles.Btn_text} className='text-lg animate-bounce text-white '>Don't have an account?</Text>
-                <Text style={styles.Btn_text} className='text-lg animate-bounce border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("SignUp")}>SignUp</Text>
+                <Text style={styles.Btn_text} className='text-lg animate-bounce border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp</Text>
               </Animated.View>
             </View>
           </View>

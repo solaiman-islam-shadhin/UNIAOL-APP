@@ -12,7 +12,7 @@ const [loaded, error] = useFonts({
   'Roboto-SemiBold': require('../assets/fonts/Roboto-SemiBold.ttf'),
  });
   return <Stack screenOptions={{headerShown:false}}>
-  <Stack.Screen name="LandingPage" />;
+  <Stack.Screen name="index" />;
   <Stack.Screen name="Login" />;
   <Stack.Screen name="SignUp" />;
   <Stack.Screen name="(tabs)" />;
