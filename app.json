@@ -14,9 +14,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo-icon.png"
-        
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.solaiman_islam.UniSol"
     },
     "web": {
       "bundler": "metro",
@@ -31,16 +31,18 @@
           "image": "./assets/images/logo-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain"
-         
         }
       ],
       "expo-font"
-      
-
-
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "607df3eb-a266-4ff5-8955-986ee0efa6cc"
+      }
     }
   }
 }
