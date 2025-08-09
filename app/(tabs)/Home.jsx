@@ -12,14 +12,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const Home = () => {
   const router = useRouter()
-
-  const [isExpanded, setIsExpanded] = useState(false);
-  const maxLines = 2;
-  const toggleText = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-
   const filterData = CourseData.filter((item) => item.sold_course > 2500).sort((a, b) => b.sold_course - a.sold_course);
   CourseData.sort((a, b) => a.price - b.price);
 

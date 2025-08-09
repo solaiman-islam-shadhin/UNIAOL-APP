@@ -1,7 +1,6 @@
 import { View, Text, Pressable, SafeAreaView, StatusBar, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { router, useRouter } from 'expo-router'
 import LottieView from 'lottie-react-native';
-import icon from '../assets/images/logo-icon.png'
 import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeInRight, FadeInUp, FadeOut, FadeOutUp } from 'react-native-reanimated';
 const styles = StyleSheet.create({
   text: {
@@ -41,7 +40,9 @@ export default function index() {
                 </TouchableOpacity>
               </Animated.View>
               <Animated.View entering={FadeInLeft.delay(800).duration(1000).springify()} className='flex-row justify-center mt-10 gap-2 '>
-                <Text style={styles.Btn_text} className='text-lg animate-pulse text-white'>OR</Text>
+              <View>
+                 <Text style={styles.Btn_text} className='text-lg animate-pulse text-white'>Don't have an account?</Text>
+              </View>
                 <Text style={styles.Btn_text} className='text-lg animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp?</Text>
               </Animated.View>
             </View>
