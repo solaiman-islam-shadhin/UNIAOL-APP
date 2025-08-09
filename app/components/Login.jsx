@@ -68,8 +68,8 @@ export default function LandingPage() {
 
               </Formik>
               <Animated.View entering={FadeInLeft.delay(900).duration(1000).springify()} className='flex-row justify-center mt-10 gap-2 '>
-                <Text style={styles.Btn_text} className='text-lg animate-bounce text-white '>Don't have an account?</Text>
-                <Text style={styles.Btn_text} className='text-lg animate-bounce border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp</Text>
+                <Text style={styles.Btn_text} className='text-lg animate-pulse text-white '>Don't have an account?</Text>
+                <Text style={styles.Btn_text} className='text-lg animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp</Text>
               </Animated.View>
 
             </View>
