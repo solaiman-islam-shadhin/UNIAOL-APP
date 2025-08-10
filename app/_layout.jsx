@@ -9,7 +9,14 @@ const [loaded, error] = useFonts({
   'Cinzel-SemiBold': require('../assets/fonts/Cinzel-SemiBold.ttf'),
   'Cinzel-ExtraBold': require('../assets/fonts/Cinzel-ExtraBold.ttf'),
   'Cinzel-Bold': require('../assets/fonts/Cinzel-Bold.ttf'),
-  'Roboto-SemiBold': require('../assets/fonts/Roboto-SemiBold.ttf'),
+  'JosefinSans-Bold': require('../assets/fonts/JosefinSans-Bold.ttf'),
+  'JosefinSans-SemiBold': require('../assets/fonts/JosefinSans-SemiBold.ttf'),
+  'JosefinSans-Regular': require('../assets/fonts/JosefinSans-Regular.ttf'),
+  'JosefinSans-Thin': require('../assets/fonts/JosefinSans-Thin.ttf'),
+  'JosefinSans-Light': require('../assets/fonts/JosefinSans-Light.ttf'),
+  
+ 
+  
  });
   return <Stack screenOptions={{headerShown:false}}>
   <Stack.Screen name="index" />;

@@ -20,7 +20,7 @@ const _layout = () => {
                     <FontAwesome5 name="home" size={20} color={color} />)
             }} />
             <Tabs.Screen name="Class" options={{
-                title: "My-Class", tabBarIcon: ({ color }) => (
+                title: "My-Classes", tabBarIcon: ({ color }) => (
                    <Entypo name="folder-video" size={24} color={color} />)
             }} />
             <Tabs.Screen name="Cart" options={{

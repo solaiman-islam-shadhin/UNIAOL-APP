@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "UniSol",
-    "slug": "UniSol",
+    "name": "UNISOL",
+    "slug": "UNISOL",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -29,7 +29,8 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash.png",
-          "imageWidth": 200,
+          "imageWidth": "100%",
+          "imageHeight":"100%",
           "resizeMode": "contain"
         }
       ],

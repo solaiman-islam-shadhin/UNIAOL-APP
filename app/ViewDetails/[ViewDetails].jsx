@@ -20,7 +20,7 @@ export default function ViewDetails() {
   };
   const styles = StyleSheet.create({
     Btn_text: {
-      fontFamily: 'Cinzel-SemiBold',
+      fontFamily: 'JosefinSans-SemiBold',
     }
   });
   return (

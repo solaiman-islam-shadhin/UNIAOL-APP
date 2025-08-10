@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
   Iinput_text: {
     fontFamily: 'Roboto-SemiBold',
   },
+  Act_text: {
+    fontFamily: 'JosefinSans-Regular',
+  }
 })
 
 export default function LandingPage() {
@@ -33,8 +36,8 @@ export default function LandingPage() {
         <View className='mt-10'>
           <View className='px-2'>
             <Animated.Text entering={FadeInUp.delay(200).duration(1500).springify()} style={styles.text} className='text-center w-96 mx-auto  animate-pulse'> UNISOL</Animated.Text>
-            <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()} className="flex justify-center items-center mt-5" >
-              <LottieView style={{ width: 200, height: 150 }} source={require('../../S4xABGRXHM (1).json')} autoPlay loop />
+            <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()} className="flex justify-center items-center " >
+              <LottieView style={{ width: 200, height: 150 }} source={require('../../Lottie_Animations/S4xABGRXHM (1).json')} autoPlay loop />
             </Animated.View>
             <View >
               <Formik initialValues={{ email: '', password: '' }} validationSchema={ValidationSchema} onSubmit={handaleSignUp}>
@@ -59,7 +62,7 @@ export default function LandingPage() {
                       {errors.password && touched.password && <Text className='text-red-500 text-xs mt-2'>{errors.password}</Text>}
                     </Animated.View>
                     <Animated.View entering={FadeInDown.delay(800).duration(1000).springify()}>
-                      <TouchableOpacity className=' w-72 py-4 rounded-full bg-[#ff8353] text-center mx-auto mt-10' onPress={handleSubmit}>
+                      <TouchableOpacity className=' w-72 py-4 rounded-full bg-[#ff8353] text-center mx-auto mt-5' onPress={handleSubmit}>
                         <Text style={styles.Btn_text} className='text-center text-2xl text-white  '>Login</Text>
                       </TouchableOpacity>
                     </Animated.View>
@@ -67,20 +70,20 @@ export default function LandingPage() {
                 )}
 
               </Formik>
-              <Animated.View entering={FadeInLeft.delay(900).duration(1000).springify()} className='flex-row justify-center mt-10 gap-2 '>
-                <Text style={styles.Btn_text} className='text-lg animate-pulse text-white '>Don't have an account?</Text>
-                <Text style={styles.Btn_text} className='text-lg animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp?</Text>
+              <Animated.View entering={FadeInLeft.delay(900).duration(1000).springify()} className='flex-row justify-center mt-5 gap-2 '>
+                <Text  className='text-xl animate-pulse text-white '>Don't have an account?</Text>
+                <Text  className='text-xl animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp</Text>
               </Animated.View>
 
             </View>
           </View>
           <View className=' felx  relative  '>
 
-            <Animated.View entering={FadeIn.delay(1000).duration(1000).springify()} className="  bottom-16 right-48 " >
-              <LottieView style={{ width: 400, height: 300 }} source={require('../../lAxlh737dl.json')} autoPlay loop />
+            <Animated.View entering={FadeInLeft.delay(1000).duration(1000).springify()} className="  right-28" >
+              <LottieView style={{ width: 280, height: 250 }} source={require('../../Lottie_Animations/rhh2tfidxj.json')} autoPlay loop />
             </Animated.View>
-            <Animated.View entering={FadeIn.delay(1100).duration(1000).springify()} className=" bottom-72 -right-56  " >
-              <LottieView style={{ width: 300, height: 300 }} source={require('../../Ripple loading animation.json')} autoPlay loop />
+            <Animated.View entering={FadeInRight.delay(1100).duration(1000).springify()} className=" bottom-56 -right-64  " >
+              <LottieView style={{ width: 260, height: 240 }} source={require('../../Lottie_Animations/Back to school!.json')} autoPlay loop />
             </Animated.View>
           </View>
         </View>

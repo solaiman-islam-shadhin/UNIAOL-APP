@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   },
   Btn_text: {
     fontFamily: 'Cinzel-SemiBold',
+  },
+Act_text: {
+    fontFamily: 'JosefinSans-Regular',
   }
 })
 
@@ -26,7 +29,7 @@ export default function index() {
           <View className='px-2'>
             <Animated.Text entering={FadeInUp.delay(200).duration(1500).springify()} style={styles.text} className='text-center w-96 mx-auto mt-16 animate-pulse'> UNISOL</Animated.Text>
             <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()} className="flex justify-center items-center mt-5" >
-              <LottieView style={{ width: 300, height: 150 }} source={require('../wfL0OjIrdJ.json')} autoPlay loop />
+              <LottieView style={{ width: 300, height: 170 }} source={require('../Lottie_Animations/wfL0OjIrdJ.json')} autoPlay loop />
             </Animated.View>
             <View className='mt-5'>
               <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
@@ -41,20 +44,20 @@ export default function index() {
               </Animated.View>
               <Animated.View entering={FadeInLeft.delay(800).duration(1000).springify()} className='flex-row justify-center mt-10 gap-2 '>
               <View>
-                 <Text style={styles.Btn_text} className='text-lg animate-pulse text-white'>Don't have an account?</Text>
+                 <Text  className='text-xl animate-pulse text-white'>Don't have an account?</Text>
               </View>
-                <Text style={styles.Btn_text} className='text-lg animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp?</Text>
+                <Text   className='text-xl animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp</Text>
               </Animated.View>
             </View>
           </View>
 
           <View className=' felx  relative  '>
 
-            <Animated.View entering={FadeIn.delay(1000).duration(1000).springify()}  className="  -right-48 " >
-              <LottieView style={{ width: 400, height: 300 }} source={require('../lAxlh737dl.json')} autoPlay loop />
+            <Animated.View entering={FadeInLeft.delay(1000).duration(1000).springify()}  className="  -right-44  " >
+              <LottieView style={{ width: 350, height: 280 }} source={require('../Lottie_Animations/rhh2tfidxj.json')} autoPlay loop />
             </Animated.View>
-            <Animated.View entering={FadeIn.delay(1000).duration(1000).springify()}  className=" bottom-48 right-36  " >
-              <LottieView style={{ width: 300, height: 300 }} source={require('../Ripple loading animation.json')} autoPlay loop />
+            <Animated.View entering={FadeInRight.delay(1000).duration(1000).springify()}  className=" bottom-56 right-20  " >
+              <LottieView style={{ width: 250, height: 280 }} source={require('../Lottie_Animations/Back to school!.json')} autoPlay loop />
             </Animated.View>
           </View>
 
