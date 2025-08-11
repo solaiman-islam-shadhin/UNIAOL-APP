@@ -2,6 +2,8 @@ import { Stack } from "expo-router";
 import { useFonts } from 'expo-font';
 import "../global.css"
 import { CartProvider } from './context/CartContext'
+import Toast from 'react-native-toast-message';
+import {toastConfig }from '../components/toastConfig'
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     'Michroma-Regular': require('../assets/fonts/Michroma-Regular.ttf'),
@@ -28,6 +30,7 @@ export default function RootLayout() {
         <Stack.Screen name="SignUp" />;
         <Stack.Screen name="(tabs)" />;
       </Stack>
+       <Toast config={toastConfig} /> 
     </CartProvider>
 
   )

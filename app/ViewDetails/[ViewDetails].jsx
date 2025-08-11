@@ -7,10 +7,10 @@ import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeInRight, FadeInUp, FadeOu
 import { BlurView } from 'expo-blur'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useState } from 'react'
-import LottieView from 'lottie-react-native';
 import { ScrollView } from 'react-native'
 import { useCart } from '../context/CartContext'
-import Toast from 'react-native-toast-message'
+import Toast from 'react-native-toast-message';
+
 
 const router = useRouter()
 export default function ViewDetails() {
@@ -34,9 +34,13 @@ export default function ViewDetails() {
   const handlePress = () => {
     if (!isInCart) {
       addToCart(data);
-      alert("Added......")
+        Toast.show({
+      type: 'success',
+      text1: 'Item added Successfully!'
+    });
+    return;
     }
-  
+
   }
 
 
@@ -77,31 +81,30 @@ export default function ViewDetails() {
                 </Text>
               </View>
               <View className='flex-row justify-between items-center gap-4 mt-4' >
-               {isInCart?
-                <TouchableOpacity disabled={isInCart} onPress={handlePress} className="opacity-20 border-2  py-2 px-4 mt-3 rounded-xl">
-                  <Text className=' text-center  font-semibold text-gray-700' >
-                    Added to Cart
+              
+                {isInCart ?
+                  <TouchableOpacity onPress={() => router.push('Cart')} className="border-2 border-[#ff8353]  py-3 px-5 mt-3 rounded-xl">
+                    <Text className=' text-center  font-semibold text-[#ff8353]' >
+                      View Cart
+                    </Text>
+                  </TouchableOpacity> :
+                  <TouchableOpacity onPress={handlePress} className=" border-2 border-[#ff8353] py-3 px-5 mt-3 rounded-xl">
+                    <Text className='text-center font-semibold text-[#ff8353]' >
+                      Add to Cart
+                    </Text>
+                  </TouchableOpacity>}
+                <TouchableOpacity className=" border-2 border-white py-3 px-5 mt-3 rounded-xl">
+                  <Text className='text-center text-white font-semibold'>
+                    Buy Now
                   </Text>
-                </TouchableOpacity> :
-                <TouchableOpacity disabled={isInCart} onPress={handlePress} className=" border-2 border-[#ff8353] py-2 px-4 mt-3 rounded-xl">
-                <Text className='text-center font-semibold text-[#ff8353]' >
-                  Add to Cart
-                </Text>
-              </TouchableOpacity>}
+                </TouchableOpacity>
 
-
-              <TouchableOpacity className=" border-2 border-white py-2 px-4 mt-3 rounded-xl">
-                <Text className='text-center text-white font-semibold'>
-                  Buy Now
-                </Text>
-              </TouchableOpacity>
-
+              </View>
             </View>
-          </View>
 
-        </Animated.View>
-      </ScrollView>
-    </LinearGradient>
+          </Animated.View>
+        </ScrollView>
+      </LinearGradient>
     </SafeAreaView >
   )
 

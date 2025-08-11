@@ -82,7 +82,7 @@ const Home = () => {
         </View>
         <ScrollView>
           <View>
-            <Text style={styles.Btn_text} className=' text-3xl  my-5 text-center  text-white  '>Top Selling courses.....</Text>
+            <Text style={styles.Btn_text} className='bg-[#ff8353] w-80 py-3 px-2 rounded-lg text-3xl  my-5   text-[#151527]  '>Top Selling courses.....</Text>
           </View>
           <FlatList className='mb-5'
             horizontal={true}
@@ -92,7 +92,7 @@ const Home = () => {
             contentContainerStyle={styles.list}
           />
           <View>
-            <Text style={styles.Btn_text} className=' text-3xl  mb-5 text-center  text-white  '>Discount Ongoing....</Text>
+            <Text style={styles.Btn_text} className='bg-[#ff8353] w-80 py-3 px-2 rounded-lg text-3xl  mb-5   text-[#151527]  '>Discount Ongoing..%..</Text>
           </View>
           <FlatList className='mb-5'
             horizontal={true}
@@ -101,7 +101,7 @@ const Home = () => {
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.list}
           />
-          <Text style={styles.Btn_text} className=' text-3xl  mb-5 text-center  text-white '>
+          <Text style={styles.Btn_text} className='bg-[#ff8353] w-80 py-3 px-2 rounded-lg text-3xl  mb-5   text-[#151527] '>
             Browse our courses....
           </Text>
           <FlatList className='mb-20'

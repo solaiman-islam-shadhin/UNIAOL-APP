@@ -48,7 +48,7 @@ const icons ={
 
                 return (
                     <Pressable
-
+key={route.name}
                         accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarButtonTestID}
