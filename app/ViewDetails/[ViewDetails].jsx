@@ -1,6 +1,6 @@
-import { View, Text, Image, StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, StatusBar, TouchableOpacity, StyleSheet, Alert } from 'react-native'
 import React from 'react'
-import { useLocalSearchParams } from 'expo-router'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import CourseData from '../../store/CourseData'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeInRight, FadeInUp, FadeOut, FadeOutUp } from 'react-native-reanimated';
@@ -9,8 +9,13 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { useState } from 'react'
 import LottieView from 'lottie-react-native';
 import { ScrollView } from 'react-native'
+import { useCart } from '../context/CartContext'
+import Toast from 'react-native-toast-message'
 
+const router = useRouter()
 export default function ViewDetails() {
+  const { items, addToCart } = useCart();
+
   const { ViewDetails } = useLocalSearchParams()
   const data = CourseData.find((item) => item.id.toString() == ViewDetails)
   const [isExpanded, setIsExpanded] = useState(false);
@@ -18,6 +23,24 @@ export default function ViewDetails() {
   const toggleText = () => {
     setIsExpanded(!isExpanded);
   };
+  const showSuccessToast = () => {
+    Toast.show({
+      type: 'success',
+      text1: 'Hello 👋',
+      text2: 'This is a success toast message!'
+    });
+  }
+  const isInCart = items.some(item => item.id === data.id);
+  const handlePress = () => {
+    if (!isInCart) {
+      addToCart(data);
+      alert("Added......")
+    }
+  
+  }
+
+
+
   const styles = StyleSheet.create({
     Btn_text: {
       fontFamily: 'JosefinSans-SemiBold',
@@ -31,8 +54,8 @@ export default function ViewDetails() {
           <Text style={styles.Btn_text} className='text-3xl text-center mt-5 text-[#ff8353]'>
             {data.course_name}
           </Text>
-          <Text style={styles.Btn_text} className='text-4xl w-56 mx-auto text-center rounded-xl mt-3 border-2 border-[#ff8353] p-3 text-[#ff8353]'>
-            Price : {data.price}
+          <Text style={styles.Btn_text} className='text-4xl w-auto mx-auto text-center rounded-xl mt-3 border-2 border-[#ff8353] p-3 text-[#ff8353]'>
+            Price : {data.price} tk
           </Text>
         </Animated.View>
         <ScrollView>
@@ -46,7 +69,7 @@ export default function ViewDetails() {
                 <Text className='text-white font-semibold  text-lg'><Text style={styles.Btn_text} className='text-[#ff8353] mt-2' >Course Code : </Text>{data.course_code}</Text>
                 <Text className='text-white font-semibold  text-lg'><Text style={styles.Btn_text} className='text-[#ff8353] mt-2' >Faculty : </Text>{data.faculty}</Text>
                 <Text className='text-white font-semibold  text-lg'><Text style={styles.Btn_text} className='text-[#ff8353] mt-2' >Department : </Text>{data.department}</Text>
-                <Text className='text-white font-semibold  text-lg'><Text style={styles.Btn_text} className='text-[#ff8353] mt-2' >Class Duration : </Text>{data.class_time}</Text>
+                <Text className='text-white font-semibold  text-lg'><Text style={styles.Btn_text} className='text-[#ff8353] mt-2' >Class Duration : </Text>{data.class_time} hr</Text>
                 <Text className='text-white font-semibold  text-lg'><Text style={styles.Btn_text} className='text-[#ff8353] mt-2' >Sold Course : </Text>{data.sold_course}</Text>
                 <Text numberOfLines={isExpanded ? undefined : maxLines} className='text-white font-semibold text-justify text-lg'><Text style={styles.Btn_text} className='text-[#ff8353] mt-2'>Description : </Text>{data.description}</Text>
                 <Text className='text-[#ff8353] mt-2' onPress={toggleText}>
@@ -54,24 +77,32 @@ export default function ViewDetails() {
                 </Text>
               </View>
               <View className='flex-row justify-between items-center gap-4 mt-4' >
-                <TouchableOpacity className=" border-2 border-[#ff8353] py-2 px-4 mt-3 rounded-xl">
-                  <Text className='text-center font-semibold text-[#ff8353]'>
-                    Add to Cart
+               {isInCart?
+                <TouchableOpacity disabled={isInCart} onPress={handlePress} className="opacity-20 border-2  py-2 px-4 mt-3 rounded-xl">
+                  <Text className=' text-center  font-semibold text-gray-700' >
+                    Added to Cart
                   </Text>
-                </TouchableOpacity>
-                <TouchableOpacity className=" border-2 border-white py-2 px-4 mt-3 rounded-xl">
-                  <Text className='text-center text-white font-semibold'>
-                    Buy Now
-                  </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> :
+                <TouchableOpacity disabled={isInCart} onPress={handlePress} className=" border-2 border-[#ff8353] py-2 px-4 mt-3 rounded-xl">
+                <Text className='text-center font-semibold text-[#ff8353]' >
+                  Add to Cart
+                </Text>
+              </TouchableOpacity>}
 
-              </View>
+
+              <TouchableOpacity className=" border-2 border-white py-2 px-4 mt-3 rounded-xl">
+                <Text className='text-center text-white font-semibold'>
+                  Buy Now
+                </Text>
+              </TouchableOpacity>
+
             </View>
+          </View>
 
-          </Animated.View>
-        </ScrollView>
-      </LinearGradient>
-    </SafeAreaView>
+        </Animated.View>
+      </ScrollView>
+    </LinearGradient>
+    </SafeAreaView >
   )
 
 }

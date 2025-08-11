@@ -33,30 +33,30 @@ export default function index() {
             </Animated.View>
             <View className='mt-5'>
               <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
-                <TouchableOpacity className=' w-72 py-4 rounded-full bg-[#ff8353] text-center mx-auto mt-5' onPress={() => router.push('../components/Login')}>
+                <TouchableOpacity className=' w-72 py-4 rounded-full bg-[#ff8353] text-center mx-auto mt-5' onPress={() => router.push('Login')}>
                   <Text style={styles.Btn_text} className='text-center text-2xl text-white  '>Login</Text>
                 </TouchableOpacity>
               </Animated.View>
-              <Animated.View entering={FadeInDown.delay(600).duration(1000).springify()}>
+              <Animated.View entering={FadeInDown.delay(500).duration(1000).springify()}>
                 <TouchableOpacity className=' border-2 border-[#ff8353] w-72 py-4 rounded-full  text-center mx-auto mt-5' onPress={() => router.push("Home")}>
                   <Text style={styles.Btn_text} className='text-center text-2xl text-[#ff8353] '>Guest User</Text>
                 </TouchableOpacity>
               </Animated.View>
-              <Animated.View entering={FadeInLeft.delay(800).duration(1000).springify()} className='flex-row justify-center mt-10 gap-2 '>
+              <Animated.View entering={FadeInLeft.delay(600).duration(1000).springify()} className='flex-row justify-center mt-5 gap-2 '>
               <View>
                  <Text  className='text-xl animate-pulse text-white'>Don't have an account?</Text>
               </View>
-                <Text   className='text-xl animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("../components/SignUp")}>SignUp</Text>
+                <Text   className='text-xl animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("SignUp")}>SignUp</Text>
               </Animated.View>
             </View>
           </View>
 
           <View className=' felx  relative  '>
 
-            <Animated.View entering={FadeInLeft.delay(1000).duration(1000).springify()}  className="  -right-44  " >
+            <Animated.View entering={FadeInLeft.delay(700).duration(1000).springify()}  className="  -right-44  " >
               <LottieView style={{ width: 350, height: 280 }} source={require('../Lottie_Animations/rhh2tfidxj.json')} autoPlay loop />
             </Animated.View>
-            <Animated.View entering={FadeInRight.delay(1000).duration(1000).springify()}  className=" bottom-56 right-20  " >
+            <Animated.View entering={FadeInRight.delay(800).duration(1000).springify()}  className=" bottom-56 right-20  " >
               <LottieView style={{ width: 250, height: 280 }} source={require('../Lottie_Animations/Back to school!.json')} autoPlay loop />
             </Animated.View>
           </View>

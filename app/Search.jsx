@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CourseData from '../../store/CourseData';
+import CourseData from '../store/CourseData';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
@@ -55,11 +55,11 @@ const SearchableList = ({ fullData, renderItem, style }) => {
         ListEmptyComponent={<View className='felx justify-center items-center mt-20'>
           {searchQuery ? <View>
             <View entering={FadeInUp.delay(300).duration(1500).springify()}>
-              <LottieView style={{ width: 300, height: 250 }} source={require('../../Lottie_Animations/aBvnkrMp1I.json')} autoPlay loop />
+              <LottieView style={{ width: 300, height: 250 }} source={require('../Lottie_Animations/aBvnkrMp1I.json')} autoPlay loop />
             </View>
           </View> : <View>
             <View entering={FadeInUp.delay(300).duration(1500).springify()}>
-              <LottieView style={{ width: 300, height: 250 }} source={require('../../Lottie_Animations/AJhyCw6I0K.json')} autoPlay loop />
+              <LottieView style={{ width: 300, height: 250 }} source={require('../Lottie_Animations/AJhyCw6I0K.json')} autoPlay loop />
             </View>
           </View>}</View>}
         initialNumToRender={10}
