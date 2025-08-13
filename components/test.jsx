@@ -1,46 +1,28 @@
-import { View, Text, FlatList, StyleSheet, Pressable, TouchableOpacity, Modal, Alert } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, FlatList, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
+
 import { useCart } from '../context/CartContext';
+
 import Fontisto from '@expo/vector-icons/Fontisto';
+
 import { LinearGradient } from 'expo-linear-gradient';
+
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
 import { useRouter } from 'expo-router';
 
-
-// --- Import the reusable payment component ---
-import FakePaymentComponent from '../../components/FakePayment'; // Adjust path if needed
-
 export default function CartPage() {
-  const router = useRouter();
-  // Get the purchase function from the context
-  const { items, totalPrice, removeFromCart, purchaseCourse } = useCart();
-  const [isPaymentModalVisible, setPaymentModalVisible] = useState(false);
 
-  // --- Function to handle successful payment for the entire cart ---
-  const handlePaymentSuccess = (paidAmount) => {
-    if (parseFloat(paidAmount) !== totalPrice) {
-      Alert.alert('Payment Error', `The amount paid (${paidAmount} tk) does not match the total price (${totalPrice} tk).`);
-      return;
-    }
+    const router = useRouter();
 
-    // Add all items in the cart to the purchased list
-    items.forEach(item => {
-      purchaseCourse(item);
-      removeFromCart(item.id); // Clear the item from the cart after purchase
-    });
+    const { items, totalPrice, removeFromCart } = useCart();
 
-    setPaymentModalVisible(false);
-    Alert.alert(
-      'Purchase Successful!',
-      'All courses in your cart have been purchased and added to "My Classes".'
-    );
-    router.push('/(tabs)/Class'); // Navigate to the purchased courses screen
-  };
 
-  return (
-  <View>
 
-            <LinearGradient className='bg-[#151527] px-3 h-full'  colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} >
+    return (
+
+        <View>
+
+            <LinearGradient className='bg-[#151527] px-3 h-full' colors={['#151527', '#0e1636', '#ff8353', '#000000', 'transparent']} start={{ x: 0.8, y: 0.2 }} end={{ x: 1.9, y: 0.6 }} >
 
                 <View style={styles.container} className="text-white">
 
@@ -110,9 +92,11 @@ export default function CartPage() {
 
                             </View>
 
-                          <TouchableOpacity onPress={() => setPaymentModalVisible(true)} className="w-36 border-2 border-[#ff8353] rounded-xl py-2 px-2">
-                <Text style={styles.totalText} className='text-white text-center'>Buy Now</Text>
-              </TouchableOpacity>
+                            <TouchableOpacity className=" w-36 border-2 border-[#ff8353] rounded-xl py-2 px-2">
+
+                                <Text style={styles.totalText} className='text-white text-center'>Buy Now</Text>
+
+                            </TouchableOpacity>
 
                         </View>
 
@@ -122,26 +106,19 @@ export default function CartPage() {
 
             </LinearGradient>
 
+        </View>
 
 
-      {/* --- Modal for the payment component --- */}
-      <Modal
-        visible={isPaymentModalVisible}
-        animationType="slide"
-        onRequestClose={() => setPaymentModalVisible(false)}
-      >
-        <FakePaymentComponent
-          onClose={() => setPaymentModalVisible(false)}
-          onPaymentSuccess={handlePaymentSuccess}
-          amount={totalPrice}
-        />
-      </Modal>
-    </View>
-  );
+
+    );
+
 }
 
+
+
 const styles = StyleSheet.create({
- container: { flexDirection: 'column', padding: 5, marginTop: 5, fontFamily: 'JosefinSans-Regular' },
+
+    container: { flexDirection: 'column', padding: 5, marginTop: 5, fontFamily: 'JosefinSans-Regular' },
 
     title: { fontSize: 28, fontFamily: 'JosefinSans-Bold' },
 

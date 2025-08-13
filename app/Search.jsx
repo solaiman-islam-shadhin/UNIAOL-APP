@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
-import { FlatList, Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
+import { FlatList, Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import Animated, { FadeInLeft, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CourseData from '../store/CourseData';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { BlurView } from 'expo-blur';
 import LottieView from 'lottie-react-native';
+
+import { collection, getDocs, query } from 'firebase/firestore';
+import { db } from '../config/FireBAseConfig'; 
 
 const router = useRouter();
 
@@ -41,8 +42,10 @@ const SearchableList = ({ fullData, renderItem, style }) => {
 
   return (
     <View className='flex-1 w-full'>
-      <TextInput className=" border-2 border-[#ff8353] rounded-xl mb-5 px-3 py-4 text-white "
-        placeholder="Search courses..."
+      <TextInput
+        className="border-2 border-[#ff8353] rounded-xl mb-5 px-3 py-4 text-white"
+        style={styles.font}
+        placeholder="Search courses, faculty, and more..."
         value={searchQuery}
         onChangeText={setSearchQuery}
         placeholderTextColor="#ff8353"
@@ -52,16 +55,19 @@ const SearchableList = ({ fullData, renderItem, style }) => {
         data={filteredData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
-        ListEmptyComponent={<View className='felx justify-center items-center mt-20'>
-          {searchQuery ? <View>
-            <View entering={FadeInUp.delay(300).duration(1500).springify()}>
+        ListEmptyComponent={<View className='flex justify-center items-center mt-20'>
+          {searchQuery ? (
+            <View>
               <LottieView style={{ width: 300, height: 250 }} source={require('../Lottie_Animations/aBvnkrMp1I.json')} autoPlay loop />
+              <Text className='text-[#ff8353] text-lg -mt-5 text-center' style={styles.font}>No courses found...</Text>
             </View>
-          </View> : <View>
-            <View entering={FadeInUp.delay(300).duration(1500).springify()}>
+          ) : (
+            <View>
               <LottieView style={{ width: 300, height: 250 }} source={require('../Lottie_Animations/AJhyCw6I0K.json')} autoPlay loop />
+              <Text className='text-[#ff8353] text-lg -mt-5 text-center' style={styles.font}>Start typing to search</Text>
             </View>
-          </View>}</View>}
+          )}
+        </View>}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
         windowSize={10}
@@ -71,62 +77,75 @@ const SearchableList = ({ fullData, renderItem, style }) => {
 };
 
 const Search = () => {
+  // --- State for Firestore data and loading ---
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // --- Fetch data from Firestore on component mount ---
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const coursesCollectionRef = collection(db, "CourseData");
+        const q = query(coursesCollectionRef);
+        const querySnapshot = await getDocs(q);
+        const coursesList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setCourses(coursesList);
+      } catch (error) {
+        console.error("Error fetching courses for search: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourses();
+  }, []);
+
   const renderProductItem = ({ item }) => (
     <Pressable onPress={() => router.push(`/ViewDetails/${item.id}`)}>
-      <View entering={FadeInLeft.delay(200).duration(1000).springify()} className='border-b-2 border-[#ff8353] w-full h-80 p-4 rounded-xl  overflow-hidden bg-transparent mb-4  '>
+      <Animated.View entering={FadeInLeft.delay(200).duration(1000).springify()} className='border-b-2 border-[#ff8353] w-full h-80 p-4 rounded-xl overflow-hidden mb-4'>
         <BlurView intensity={10} tint="light" className='absolute right-0 top-0 left-0 bottom-0' />
-        <Image source={{ uri: item.image }} className="rounded-md  border-t-2 border-[#ff8353] mb-2 w-full h-44" />
-        <View className='mt-2' >
-          <Text className='text-white font-semibold overflow-y-scroll overflow-x-scroll text-lg pt-2 border-t-2 border-spacing-y-3 border-dotted border-[#ff8353] '>{item.course_name}</Text>
-          <Text className='text-white font-semibold overflow-y-scroll overflow-x-scroll text-lg'>{item.course_code}</Text>
-          <Text className='text-white font-semibold overflow-y-scroll overflow-x-scroll text-lg'>{item.faculty}</Text>
-
+        <Image source={{ uri: item.image }} className="rounded-md mb-2 w-full h-44" />
+        <View className='mt-2 pt-2 border-t-2 border-dotted border-[#ff8353]'>
+          <Text className='text-white text-lg' style={styles.font}>{item.course_name}</Text>
+          <Text className='text-white text-base opacity-80' style={styles.font}>{item.course_code}</Text>
+          <Text className='text-white text-base opacity-80' style={styles.font}>{item.faculty}</Text>
         </View>
-      </View>
+      </Animated.View>
     </Pressable>
   );
 
-
   return (
-   <SafeAreaView style={styles.container} className='px-3 flex-1 overflow-hidden bg-[#151527]'>
-        <View className='flex flex-row items-center mb-3 gap-3 '>
-          <TouchableOpacity className='relative top-1 ' onPress={() => router.back()} >
-            <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
-          </TouchableOpacity>
-          <Text style={styles.header}>Course Catalog</Text>
+    <SafeAreaView className='flex-1 px-3 bg-[#151527]'>
+      <View className='flex-row items-center mb-3 gap-3'>
+        <TouchableOpacity className='pt-5' onPress={() => router.back()}>
+          <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
+        </TouchableOpacity>
+        <Text className='text-3xl text-[#ff8353] pt-5 pb-2' style={styles.headerFont}>Course Catalog</Text>
+      </View>
+      {loading ? (
+        <View className='flex-1 justify-center items-center'>
+            <ActivityIndicator size="large" color="#ff8353" />
         </View>
-      <SearchableList
-        fullData={CourseData}
-        searchKey="name"
-        renderItem={renderProductItem}
-      />
+      ) : (
+        <SearchableList
+          fullData={courses} // Use data from Firestore
+          renderItem={renderProductItem}
+        />
+      )}
     </SafeAreaView>
   );
 };
 
-
+// You still need StyleSheet for custom fonts
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 28,
+  headerFont: {
     fontFamily: 'Cinzel-Medium',
-    color: '#ff8353',
-    paddingHorizontal: 0,
-    paddingTop: 20,
-    paddingBottom: 10,
   },
-  searchInput: {
-    borderColor: '#ff8353',
-    fontSize: 16,
-    color: '#ff8353',
-    fontFamily: 'Roboto-Regular',
+  font: {
+    fontFamily: 'JosefinSans-SemiBold',
   },
-  text: {
-    fontSize: 16,
-    marginVertical: 2,
-    textAlign: 'justify',
-    fontFamily: 'Roboto-SemiBold',
-  },
-
 });
 
 export default Search;

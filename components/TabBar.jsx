@@ -4,18 +4,19 @@ import { PlatformPressable } from '@react-navigation/elements';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Entypo from '@expo/vector-icons/Entypo';
-
+import { BlurView } from 'expo-blur';
 
 export default function TabBar({ state, descriptors, navigation }) {
-const icons ={
-    Home : (props)=><FontAwesome5 name="home" size={20} color="#a6a7aa" {...props} />,
-    Class : (props)=><Entypo name="folder-video" size={20} color="#a6a7aa" {...props}/>,
-    Cart : (props)=><Ionicons name="cart" size={20} color="#a6a7aa" {...props} />,
-    Profile: (props)=><Ionicons name="person-sharp" size={20}color="#a6a7aa" {...props} />
-}
+    const icons = {
+        Home: (props) => <FontAwesome5 name="home" size={20} color="#a6a7aa" {...props} />,
+        Class: (props) => <Entypo name="folder-video" size={20} color="#a6a7aa" {...props} />,
+        Cart: (props) => <Ionicons name="cart" size={20} color="#a6a7aa" {...props} />,
+        Profile: (props) => <Ionicons name="person-sharp" size={20} color="#a6a7aa" {...props} />
+    }
 
     return (
-        <View  className="bg-[#151527] flex-row mb-2 absolute -bottom-0  justify-center items-center px-1 py-3  mx-5 rounded-full  ">
+        <View className="bg-[#ffffff] flex-row mb-3 absolute -bottom-0  justify-center items-center px-1 py-3  mx-5 rounded-full ">
+         
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label =
@@ -48,7 +49,7 @@ const icons ={
 
                 return (
                     <Pressable
-key={route.name}
+                        key={route.name}
                         accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarButtonTestID}
@@ -61,7 +62,7 @@ key={route.name}
                                 color: isFocused ? "#ff8353" : "#a6a7aa"
                             })
                         }
-                        <Text style={{ color: isFocused ? "#ff8353" : "#a6a7aa",fontSize:12,fontFamily:'JosefinSans-SemiBold'}}>
+                        <Text style={{ color: isFocused ? "#ff8353" : "#a6a7aa", fontSize: 12, fontFamily: 'JosefinSans-SemiBold' }}>
                             {label}
                         </Text>
                     </Pressable>
