@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -54,6 +54,7 @@ export default function Profile() {
 
     return (
         <SafeAreaView className="flex-1">
+             <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient className='flex-1 px-4' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 {/* --- This container now uses padding instead of margin --- */}
                 <View className="flex-1 pt-10">

@@ -11,6 +11,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs, doc, writeBatch, deleteDoc } from 'firebase/firestore';
 import { db } from '../../config/FireBAseConfig';
 import FakePayment from '../../components/FakePayment';
+import { StatusBar } from 'react-native';
 
 
 export default function Cart() {
@@ -115,6 +116,7 @@ export default function Cart() {
 
     return (
         <SafeAreaView className="flex-1">
+             <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <View style={styles.container}>
                     <View className="flex-row items-center gap-3 mt-5 mb-6">

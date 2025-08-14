@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Alert, TouchableOpacity, Image, ActivityIndicator, Pressable } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Alert, TouchableOpacity, Image, ActivityIndicator, Pressable, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -74,6 +74,7 @@ export default function MyClass() {
 
     return (
         <SafeAreaView className="flex-1 ">
+             <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <View className="flex-row items-center gap-3 mt-5 mb-6">
                     <TouchableOpacity className='relative top-1' onPress={() => router.back()}>

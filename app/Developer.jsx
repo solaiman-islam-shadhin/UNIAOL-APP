@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -38,30 +38,33 @@ export default function Developer() {
 
     return (
         <SafeAreaView className="flex-1">
+             <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient className='flex-1 px-4' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                <View className="flex-row items-center gap-3 mt-5 mb-6">
-                    <TouchableOpacity className='relative top-1' onPress={() => router.back()}>
-                        <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
-                    </TouchableOpacity>
-                    <Text style={styles.header} className="text-[#ff8353]">Our Team</Text>
-                </View>
+                <View className='mt-10 '>
+                    <View className="flex-row items-center gap-3 mb-5 ">
+                        <TouchableOpacity className='relative top-1' onPress={() => router.back()}>
+                            <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
+                        </TouchableOpacity>
+                        <Text style={styles.header} className="text-[#ff8353]">Our Team</Text>
+                    </View>
 
-                <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
-                    {developers.map((dev, index) => (
-                        <Animated.View key={dev.id} entering={FadeInUp.delay(index * 150).duration(600).springify()}>
-                            <View className="w-full bg-white/10 rounded-xl border border-white/20 p-4 mb-6 flex-row items-center">
-                                <Image
-                                    source={{ uri: dev.image }}
-                                    className="w-24 h-24 rounded-full border-2 border-[#ff8353]"
-                                />
-                                <View className="flex-1 ml-4">
-                                    <Text style={styles.name} className="text-white">{dev.name}</Text>
-                                    <Text style={styles.description} className="text-white/80 mt-1">{dev.description}</Text>
+                    <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
+                        {developers.map((dev, index) => (
+                            <Animated.View key={dev.id} entering={FadeInUp.delay(index * 150).duration(600).springify()}>
+                                <View className="w-full bg-white/10 rounded-xl border border-white/20 p-4 mb-6 flex-row items-center">
+                                    <Image
+                                        source={{ uri: dev.image }}
+                                        className="w-24 h-24 rounded-full border-2 border-[#ff8353]"
+                                    />
+                                    <View className="flex-1 ml-4">
+                                        <Text style={styles.name} className="text-white">{dev.name}</Text>
+                                        <Text style={styles.description} className="text-white/80 mt-1">{dev.description}</Text>
+                                    </View>
                                 </View>
-                            </View>
-                        </Animated.View>
-                    ))}
-                </ScrollView>
+                            </Animated.View>
+                        ))}
+                    </ScrollView>
+                </View>
             </LinearGradient>
         </SafeAreaView>
     );
