@@ -30,6 +30,7 @@ export default function RootLayout() {
         <Stack.Screen name="SignUp" />;
         <Stack.Screen name="(tabs)" />;
       </Stack>
+
        <Toast config={toastConfig} /> 
     </CartProvider>
 

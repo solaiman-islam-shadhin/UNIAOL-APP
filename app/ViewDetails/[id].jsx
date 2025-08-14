@@ -6,17 +6,14 @@ import Animated, { FadeInUp, FadeInRight } from 'react-native-reanimated';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import Toast from 'react-native-toast-message';
-
-// --- Firebase Imports ---
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from '../../config/FireBAseConfig';
-
-// --- Context & Component Imports ---
 import { useCart } from '../context/CartContext';
-import FakePaymentComponent from '../../components/FakePayment';
+import FakePayment from '../../components/FakePayment';
 
-export default function ViewDetails() {
-    const { items, addToCart,purchasedCourses, purchaseCourse } = useCart();
+export default function id() {
+    const { items, addToCart, purchasedCourses, purchaseCourse } = useCart();
     const router = useRouter();
     const { id } = useLocalSearchParams();
 
@@ -24,67 +21,85 @@ export default function ViewDetails() {
     const [loading, setLoading] = useState(true);
     const [isExpanded, setIsExpanded] = useState(false);
     const [isPaymentModalVisible, setPaymentModalVisible] = useState(false);
-    // State to track if course is purchased
+    const [currentUser, setCurrentUser] = useState(null); 
 
     useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setCurrentUser(user); 
+        });
+
         const fetchCourseData = async () => {
             if (!id) {
                 setLoading(false);
                 return;
             }
             try {
-                // Fetch course details
                 const courseDocRef = doc(db, "CourseData", id);
                 const courseDocSnap = await getDoc(courseDocRef);
 
                 if (courseDocSnap.exists()) {
                     setCourse({ id: courseDocSnap.id, ...courseDocSnap.data() });
-                } else {
-                    console.log("No such document! ID:", id);
                 }
             } catch (error) {
-                console.error("Error fetching course details:", error);
+               
             } finally {
                 setLoading(false);
             }
         };
 
         fetchCourseData();
+        return () => unsubscribe();
     }, [id]);
 
     const handlePaymentSuccess = async (paidAmount) => {
-        if (!course) return;
+        if (!course || !currentUser) return;
 
         if (parseFloat(paidAmount) !== course.price) {
-            Alert.alert('Payment Error', `The amount paid (${paidAmount} tk) does not match the course price (${course.price} tk). Please try again.`);
+            Alert.alert('Payment Error', `The amount paid (${paidAmount} tk) does not match the course price (${course.price} tk).`);
             return;
         }
-       
-          purchaseCourse(course); 
-        setPaymentModalVisible(false);
-        Alert.alert('Purchase Successful!', `You have purchased "${course.course_name}".`);
-        
+
+        try {
+            const purchaseRef = doc(db, "users", currentUser.uid, "myCourses", course.id);
+            await setDoc(purchaseRef, {
+                courseId: course.id,
+                purchaseDate: serverTimestamp(),
+                courseName: course.course_name,
+                image: course.image,
+                video: course.video,
+                faculty: course.faculty
+            });
+            purchaseCourse(course);
+            setPaymentModalVisible(false);
+            Alert.alert('Purchase Successful!', `You have purchased "${course.course_name}".`);
+        } catch (error) {
+            Alert.alert("Error", "Could not save your purchase.");
+        }
+    };
+
+    const handleAddToCart = async () => {
+        if (!course || !currentUser) return;
+
+        try {
+            const cartRef = doc(db, "users", currentUser.uid, "cart", course.id);
+            await setDoc(cartRef, { ...course });
+            addToCart(course); 
+            Toast.show({ type: 'success', text1: 'Item Added Successfully..' });
+        } catch (error) {
+            Alert.alert("Error", "Could not add item to cart.");
+        }
     };
 
     const handleWatchNow = () => {
         if (course && course.video) {
-            router.push(`/player/${course.video}`);
+            router.push(`/(tabs)/Class`);
         } else {
             Alert.alert("No Video", "Video content is not available for this course.");
         }
     };
 
     const toggleText = () => setIsExpanded(!isExpanded);
-    const handleAddToCart = () => { 
-        if (course && !isInCart) {
-              Toast.show({
-      type: 'success',
-      text1: 'Items Added Successfully..',
-      
-    });
-            
-            addToCart(course);
-         } };
 
     if (loading) {
         return <SafeAreaView style={styles.centered}><ActivityIndicator size="large" color="#ff8353" /></SafeAreaView>;
@@ -95,10 +110,11 @@ export default function ViewDetails() {
     }
 
     const isInCart = items.some(item => item.id === course.id);
-const Purchased = purchasedCourses.some(item => item.id === course.id);
+    const isPurchased = purchasedCourses.some(item => item.id === course.id);
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <LinearGradient className="flex-1 px-4"  colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
+            <LinearGradient className="flex-1 px-4" colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <StatusBar barStyle={"dark-content"} backgroundColor='#151527' />
                 <Animated.View entering={FadeInRight.delay(200).duration(1000).springify()} className="mb-4">
                     <Text style={[styles.Btn_text, styles.courseName]}>{course.course_name}</Text>
@@ -120,37 +136,35 @@ const Purchased = purchasedCourses.some(item => item.id === course.id);
                                 <Text numberOfLines={isExpanded ? undefined : 10} className="text-white font-semibold text-justify text-base"><Text style={styles.detailLabel}>Description : </Text>{course.description}</Text>
                                 <Text className="text-[#ff8353] mt-2" onPress={toggleText}>{isExpanded ? 'Read less' : 'Read more...'}</Text>
                             </View>
-                            
+
                             {/* --- Conditional Button Rendering --- */}
-                            {Purchased ? (
-                                <TouchableOpacity onPress={handleWatchNow} className="w-full bg-[#16a34a] py-4 mt-4 rounded-xl">
-                                    <Text className="text-center font-bold text-white text-lg">Watch Now</Text>
-                                </TouchableOpacity>
+                            {currentUser ? (
+                                isPurchased ? (
+                                    <TouchableOpacity onPress={handleWatchNow} className="w-full bg-[#16a34a] py-4 mt-4 rounded-xl">
+                                        <Text className="text-center font-bold text-white text-lg">Watch Now</Text>
+                                    </TouchableOpacity>
+                                ) : (
+                                    <View className="flex-row justify-between items-center gap-4 mt-4">
+                                        {isInCart ? (
+                                            <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 border-2 border-[#ff8353] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
+                                        ) : (
+                                            <TouchableOpacity onPress={handleAddToCart} className="flex-1 border-2 border-[#ff8353] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">Add to Cart</Text></TouchableOpacity>
+                                        )}
+                                        <TouchableOpacity onPress={() => setPaymentModalVisible(true)} className="flex-1 border-2 border-white py-3 rounded-xl"><Text className="text-center font-semibold text-white text-base">Buy Now</Text></TouchableOpacity>
+                                    </View>
+                                )
                             ) : (
-                                <View className="flex-row justify-between items-center gap-4 mt-4">
-                                    {isInCart ? (
-                                        <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 border-2 border-[#ff8353] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
-                                    ) : (
-                                        <TouchableOpacity onPress={handleAddToCart} className="flex-1 border-2 border-[#ff8353] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">Add to Cart</Text></TouchableOpacity>
-                                    )}
-                                    <TouchableOpacity onPress={() => setPaymentModalVisible(true)} className="flex-1 border-2 border-white py-3 rounded-xl"><Text className="text-center font-semibold text-white text-base">Buy Now</Text></TouchableOpacity>
-                                </View>
+                                <TouchableOpacity onPress={() => router.push('/Login')} className="w-full bg-[#ff8353] py-4 mt-4 rounded-xl">
+                                    <Text className="text-center font-bold text-white text-lg">Login to Purchase</Text>
+                                </TouchableOpacity>
                             )}
                         </View>
                     </Animated.View>
                 </ScrollView>
             </LinearGradient>
 
-            <Modal
-                visible={isPaymentModalVisible}
-                animationType="slide"
-                onRequestClose={() => setPaymentModalVisible(false)}
-            >
-                {course && <FakePaymentComponent
-                    onClose={() => setPaymentModalVisible(false)}
-                    onPaymentSuccess={handlePaymentSuccess}
-                    amount={course.price}
-                />}
+            <Modal visible={isPaymentModalVisible} animationType="slide" onRequestClose={() => setPaymentModalVisible(false)}>
+                {course && <FakePayment onClose={() => setPaymentModalVisible(false)} onPaymentSuccess={handlePaymentSuccess} amount={course.price} />}
             </Modal>
         </SafeAreaView>
     );

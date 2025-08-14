@@ -1,10 +1,127 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
+import LottieView from 'lottie-react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
+// --- Firebase Imports ---
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../config/FireBAseConfig'; // Adjust path if needed
 
 export default function Profile() {
-  return (
-    <View>
-      <Text>Profile</Text>
-    </View>
-  )
+    const router = useRouter();
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            if (currentUser) {
+                const docRef = doc(db, "users", currentUser.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    setUser(docSnap.data());
+                } else {
+                    setUser({ email: currentUser.email, name: 'User' });
+                }
+            } else {
+                setUser(null);
+            }
+            setLoading(false);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    const handleLogout = async () => {
+        const auth = getAuth();
+        try {
+            await signOut(auth);
+            router.replace('/');
+        } catch (error) {
+            Alert.alert("Logout Failed", "An error occurred while trying to log out.");
+        }
+    };
+
+    if (loading) {
+        return (
+            <View className="flex-1 justify-center items-center bg-[#151527]">
+                <ActivityIndicator size="large" color="#ff8353" />
+            </View>
+        );
+    }
+
+    return (
+        <SafeAreaView className="flex-1">
+            <LinearGradient className='flex-1 px-4' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
+                {/* --- This container now uses padding instead of margin --- */}
+                <View className="flex-1 pt-10">
+                    {user ? (
+                        // --- Logged In View ---
+                        <View className="items-center">
+                      
+                            <Text style={styles.header} className="text-[#ff8353] mt-4">Welcome!</Text>
+                            <View className="w-full mt-6 p-6 bg-white/10 rounded-xl border border-white/20">
+                                <Text style={styles.label} className="text-white/70">Name</Text>
+                                <Text style={styles.info} className="text-white">{user.name}</Text>
+                                <Text style={styles.label} className="text-white/70 mt-4">Email</Text>
+                                <Text style={styles.info} className="text-white">{user.email}</Text>
+                            </View>
+                        </View>
+                    ) : (
+                        // --- Guest View ---
+                        <View className="items-center">
+                     
+                            <Text style={styles.header} className="text-[#ff8353] text-center mt-4">Profile</Text>
+                            <Text style={styles.info} className="text-white text-center mt-2">Please log in to view your profile and purchased courses.</Text>
+                        </View>
+                    )}
+
+                    {/* --- Common Sections for All Users --- */}
+                    <View className="w-full mt-10">
+                        <TouchableOpacity onPress={() => router.push('/Developer')} className="flex-row items-center bg-white/10 p-4 rounded-lg border border-white/20">
+                             <MaterialCommunityIcons name="code-braces" size={24} color="#ff8353" />
+                             <Text style={styles.info} className="text-white ml-4">Developer</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => router.push('/ContactUs')} className="flex-row items-center bg-white/10 p-4 rounded-lg border border-white/20 mt-4">
+                             <MaterialCommunityIcons name="email-fast-outline" size={24} color="#ff8353" />
+                             <Text style={styles.info} className="text-white ml-4">Contact Us</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* --- This View with mt-auto will now correctly push to the bottom --- */}
+                    <View className="mt-10 mb-6">
+                        {user ? (
+                            <TouchableOpacity onPress={handleLogout} className="w-full bg-[#ff8353] py-4 rounded-full">
+                                <Text className="text-center font-bold text-white text-lg" style={styles.buttonText}>Logout</Text>
+                            </TouchableOpacity>
+                        ) : (
+                             <TouchableOpacity onPress={() => router.push('/Login')} className="w-full bg-[#ff8353] py-4 rounded-full">
+                                <Text className="text-center font-bold text-white text-lg" style={styles.buttonText}>Login / Sign Up</Text>
+                            </TouchableOpacity>
+                        )}
+                    </View>
+                </View>
+            </LinearGradient>
+        </SafeAreaView>
+    );
 }
+
+const styles = StyleSheet.create({
+    header: {
+        fontSize: 32,
+        fontFamily: 'Cinzel-Bold',
+    },
+    label: {
+        fontSize: 16,
+        fontFamily: 'JosefinSans-Regular',
+    },
+    info: {
+        fontSize: 20,
+        fontFamily: 'JosefinSans-SemiBold',
+    },
+    buttonText: {
+        fontFamily: 'Cinzel-SemiBold',
+    }
+});

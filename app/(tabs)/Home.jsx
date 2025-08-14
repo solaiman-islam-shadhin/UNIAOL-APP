@@ -10,6 +10,7 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { LinearGradient } from 'expo-linear-gradient';
 // Make sure this path is correct for your project structure
 import { db } from '../../config/FireBAseConfig'; 
+import uploadCourseData from '../../config/DataUpload';
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -17,6 +18,7 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
+
     const fetchCourses = async () => {
       try {
         // Corrected collection name to "courses"

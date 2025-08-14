@@ -15,7 +15,7 @@ export default function TabBar({ state, descriptors, navigation }) {
     }
 
     return (
-        <View className="bg-[#ffffff] flex-row mb-3 absolute -bottom-0  justify-center items-center px-1 py-3  mx-5 rounded-full ">
+        <View className="bg-[#151527] flex-row mb-3 absolute -bottom-0  justify-center items-center px-1 py-3  mx-5 rounded-full ">
          
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];

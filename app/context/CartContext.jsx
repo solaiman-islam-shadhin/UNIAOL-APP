@@ -18,9 +18,16 @@ export  const CartProvider = ({ children }) => {
       setPurchasedCourses(prev => [...prev, course]);
     }
   };
+  const setCartItems = (newItems) => {
+    setItems(newItems);
+  };
+
+  const syncPurchasedCourses = (courses) => {
+    setPurchasedCourses(courses);
+  };
 
   return (
-    <CartContext.Provider value={{ items, addToCart, totalPrice,removeFromCart,purchasedCourses, purchaseCourse }}>
+    <CartContext.Provider value={{ items, addToCart, totalPrice,removeFromCart,purchasedCourses, purchaseCourse,setItems: setCartItems,syncPurchasedCourses }}>
       {children}
     </CartContext.Provider>
   );
