@@ -39,9 +39,9 @@ export default function ContactUs() {
     };
 
     return (
-        <SafeAreaView className="flex-1">
+        <SafeAreaView className="flex-1 ">
             <LinearGradient className='flex-1 px-4' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                <View className="flex-row items-center gap-3 mt-5 mb-6">
+                <View className="flex-row items-center gap-3 mt-6 mb-6">
                     <TouchableOpacity className='relative top-1' onPress={() => router.back()}>
                         <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
                     </TouchableOpacity>

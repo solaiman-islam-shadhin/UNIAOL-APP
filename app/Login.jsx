@@ -68,7 +68,7 @@ export default function Login() {
             } else {
                 Alert.alert('Login Failed', error.message);
             }
-            console.error(error);
+            
         } finally {
             setLoading(false);
         }
@@ -80,7 +80,7 @@ export default function Login() {
                 <StatusBar barStyle={"dark-content"} backgroundColor='#151527'></StatusBar>
                 <View className='mt-10'>
                     <View className='px-2'>
-                        <Animated.Text entering={FadeInUp.delay(200).duration(1500).springify()} style={styles.text} className='text-center w-96 mx-auto'>Welcome</Animated.Text>
+                        <Animated.Text entering={FadeInUp.delay(200).duration(1500).springify()} style={styles.text} className='text-center w-96 mx-auto'>UNISOL</Animated.Text>
                         <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()} className="flex justify-center items-center">
                             <LottieView style={{ width: 200, height: 150 }} source={require('../Lottie_Animations/S4xABGRXHM (1).json')} autoPlay loop />
                         </Animated.View>

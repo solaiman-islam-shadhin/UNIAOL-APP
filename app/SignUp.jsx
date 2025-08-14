@@ -66,7 +66,7 @@ export default function SignUp() {
             } else {
                 Alert.alert('Sign Up Failed', error.message);
             }
-            console.error(error);
+            
         } finally {
             setLoading(false);
         }
