@@ -7,8 +7,8 @@ import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import Toast from 'react-native-toast-message';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { db } from '../../config/FireBAseConfig';
+import {  onAuthStateChanged } from 'firebase/auth';
+import { auth, db } from '../../config/FireBAseConfig';
 import { useCart } from '../context/CartContext';
 import FakePayment from '../../components/FakePayment';
 
@@ -24,7 +24,7 @@ export default function id() {
     const [currentUser, setCurrentUser] = useState(null); 
 
     useEffect(() => {
-        const auth = getAuth();
+        
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setCurrentUser(user); 
         });

@@ -7,9 +7,9 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
 import LottieView from 'lottie-react-native';
 import Toast from 'react-native-toast-message';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {  onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs, doc, writeBatch, deleteDoc } from 'firebase/firestore';
-import { db } from '../../config/FireBAseConfig';
+import { auth, db } from '../../config/FireBAseConfig';
 import FakePayment from '../../components/FakePayment';
 import { StatusBar } from 'react-native';
 
@@ -22,7 +22,7 @@ export default function Cart() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const auth = getAuth();
+   
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             try {
                 if (user) {

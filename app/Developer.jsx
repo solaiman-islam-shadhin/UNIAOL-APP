@@ -17,7 +17,7 @@ const developers = [
         id: '2',
         name: 'Sabekun Nahar Chouwdhury',
         description: 'Lead UI/UX designer.',
-        image: 'https://tse1.mm.bing.net/th/id/OIP.9t7htXFPzrmIc-dsCkNzhwHaD5?rs=1&pid=ImgDetMain&o=7&rm=3',
+        image: 'https://img.freepik.com/premium-vector/ui-ux-programmer-flat-design-vector-illustration-business-information-team-sharing-ideas-with-designer-coding-interface-software-app-development_2175-1843.jpg',
     },
     {
         id: '3',

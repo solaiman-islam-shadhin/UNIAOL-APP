@@ -1,9 +1,17 @@
+import '../config/FireBAseConfig';
 import { Stack } from "expo-router";
 import { useFonts } from 'expo-font';
 import "../global.css"
 import { CartProvider } from './context/CartContext'
+import {AuthProvider} from './context/AuthContext'
 import Toast from 'react-native-toast-message';
-import {toastConfig }from '../components/toastConfig'
+import { toastConfig } from '../components/toastConfig'
+
+
+
+
+
+
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     'Michroma-Regular': require('../assets/fonts/Michroma-Regular.ttf'),
@@ -17,22 +25,21 @@ export default function RootLayout() {
     'JosefinSans-Regular': require('../assets/fonts/JosefinSans-Regular.ttf'),
     'JosefinSans-Thin': require('../assets/fonts/JosefinSans-Thin.ttf'),
     'JosefinSans-Light': require('../assets/fonts/JosefinSans-Light.ttf'),
-
-
-
   });
+
   return (
 
-    <CartProvider>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />;
-        <Stack.Screen name="Login" />;
-        <Stack.Screen name="SignUp" />;
-        <Stack.Screen name="(tabs)" />;
-      </Stack>
-
-       <Toast config={toastConfig} /> 
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />;
+          <Stack.Screen name="Login" />;
+          <Stack.Screen name="SignUp" />;
+          <Stack.Screen name="(tabs)" />;
+        </Stack>
+        <Toast config={toastConfig} />
+      </CartProvider>
+    </AuthProvider>
 
   )
 }

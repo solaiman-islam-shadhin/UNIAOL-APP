@@ -6,9 +6,9 @@ import { Formik } from 'formik';
 import { useState } from 'react';
 
 // --- Firebase Imports ---
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../config/FireBAseConfig'; // Make sure this path is correct
+import { auth, db } from '../config/FireBAseConfig'; // Make sure this path is correct
 
 // --- Import your existing Validation Schema ---
 import ValidationSchema from '../utils/authVelidation'; // Make sure this path is correct
@@ -38,7 +38,7 @@ export default function SignUp() {
 
     const handleSignUp = async (values) => {
         setLoading(true);
-        const auth = getAuth();
+     ;
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
             const user = userCredential.user;
@@ -49,8 +49,6 @@ export default function SignUp() {
                 uid: user.uid,
                 createdAt: new Date(),
             });
-
-            // 4. Inform the user and navigate to the Login screen
             Alert.alert(
                 'Account Created!',
                 'A verification link has been sent to your email. Please verify your account before logging in.',
@@ -58,7 +56,7 @@ export default function SignUp() {
             );
 
         } catch (error) {
-            // Handle specific Firebase errors
+        
             if (error.code === 'auth/email-already-in-use') {
                 Alert.alert('Sign Up Failed', 'That email address is already in use!');
             } else if (error.code === 'auth/invalid-email') {
@@ -85,7 +83,7 @@ export default function SignUp() {
                         <View>
                             <Formik
                                 initialValues={{ name: '', email: '', password: '' }}
-                                validationSchema={ValidationSchema} // Use your imported validation schema
+                                validationSchema={ValidationSchema} 
                                 onSubmit={handleSignUp}
                             >
                                 {({

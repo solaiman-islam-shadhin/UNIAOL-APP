@@ -8,7 +8,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import LottieView from 'lottie-react-native';
 
-// --- Validation Schema for the Contact Form ---
 const ContactSchema = Yup.object().shape({
     name: Yup.string()
         .min(2, 'Name is too short!')
@@ -27,7 +26,7 @@ export default function ContactUs() {
 
     const handleSendMessage = (values, { resetForm }) => {
         setLoading(true);
-        // Simulate sending a message
+     
         setTimeout(() => {
             setLoading(false);
             Alert.alert(
@@ -56,7 +55,6 @@ export default function ContactUs() {
                         <Animated.View entering={FadeInUp.delay(100).duration(600).springify()} className="items-center">
                         </Animated.View>
 
-                        {/* --- Contact Info Section --- */}
                         <Animated.View entering={FadeInUp.delay(200).duration(600).springify()} className="w-full mt-6">
                             <TouchableOpacity onPress={() => Linking.openURL('tel:01882808626')} className="flex-row items-center bg-white/10 p-4 rounded-lg border border-white/20">
                                 <MaterialCommunityIcons name="phone" size={24} color="#ff8353" />

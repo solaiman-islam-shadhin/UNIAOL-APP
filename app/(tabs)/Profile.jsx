@@ -4,19 +4,16 @@ import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
-// --- Firebase Imports ---
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import {  onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../config/FireBAseConfig'; // Adjust path if needed
-
+import { auth, db } from '../../config/FireBAseConfig'; 
 export default function Profile() {
     const router = useRouter();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const auth = getAuth();
+      
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
                 const docRef = doc(db, "users", currentUser.uid);
@@ -35,7 +32,7 @@ export default function Profile() {
     }, []);
 
     const handleLogout = async () => {
-        const auth = getAuth();
+      
         try {
             await signOut(auth);
             router.replace('/');
@@ -56,10 +53,10 @@ export default function Profile() {
         <SafeAreaView className="flex-1">
              <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient className='flex-1 px-4' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                {/* --- This container now uses padding instead of margin --- */}
+               
                 <View className="flex-1 pt-10">
                     {user ? (
-                        // --- Logged In View ---
+                       
                         <View className="items-center">
                       
                             <Text style={styles.header} className="text-[#ff8353] mt-4">Welcome!</Text>
@@ -71,7 +68,6 @@ export default function Profile() {
                             </View>
                         </View>
                     ) : (
-                        // --- Guest View ---
                         <View className="items-center">
                      
                             <Text style={styles.header} className="text-[#ff8353] text-center mt-4">Profile</Text>
@@ -79,7 +75,6 @@ export default function Profile() {
                         </View>
                     )}
 
-                    {/* --- Common Sections for All Users --- */}
                     <View className="w-full mt-10">
                         <TouchableOpacity onPress={() => router.push('/Developer')} className="flex-row items-center bg-white/10 p-4 rounded-lg border border-white/20">
                              <MaterialCommunityIcons name="code-braces" size={24} color="#ff8353" />
@@ -91,7 +86,6 @@ export default function Profile() {
                         </TouchableOpacity>
                     </View>
 
-                    {/* --- This View with mt-auto will now correctly push to the bottom --- */}
                     <View className="mt-10 mb-6">
                         {user ? (
                             <TouchableOpacity onPress={handleLogout} className="w-full bg-[#ff8353] py-4 rounded-full">

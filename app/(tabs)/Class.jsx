@@ -10,9 +10,9 @@ import { BlurView } from 'expo-blur';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 
 // --- Firebase Imports ---
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {  onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../config/FireBAseConfig';
+import { auth, db } from '../../config/FireBAseConfig';
 
 
 export default function MyClass() {
@@ -22,7 +22,7 @@ export default function MyClass() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const auth = getAuth();
+        
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 setCurrentUser(user);

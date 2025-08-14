@@ -4,11 +4,8 @@ import LottieView from 'lottie-react-native';
 import Animated, { FadeInDown, FadeInLeft, FadeInRight, FadeInUp } from 'react-native-reanimated';
 import { Formik } from 'formik';
 import { useState } from 'react';
-
-// --- Firebase Imports ---
-import { getAuth, signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-
-// --- Import your existing Validation Schema --- // Make sure this path is correct
+import{auth} from "../config/FireBAseConfig"
+import { getAuth,signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import loginValidationScema from '../utils/loginValidation';
 import Toast from 'react-native-toast-message';
 
@@ -37,22 +34,20 @@ export default function Login() {
 
     const handleLogin = async (values) => {
         setLoading(true);
-        const auth = getAuth();
+       
         try {
             const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
             const user = userCredential.user;
-
-            // --- Check if the user's email is verified ---
             if (user.emailVerified) {
               Toast.show({
                     type: 'success',
                     text1: 'Login Successful!',
                     text2: 'Welcome back.'
                 });
-                // If verified, proceed to the app
+            
                 router.replace('/(tabs)/Home');
             } else {
-                // If not verified, inform the user and give them an option to resend the email
+           l
                 Alert.alert(
                     'Verify Your Email',
                     'You need to verify your email before you can log in. Would you like to resend the verification email?',
