@@ -14,7 +14,7 @@ import Toast from 'react-native-toast-message';
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 80,
+        fontSize: 70,
         fontFamily: 'Cinzel-Medium',
         padding: 2,
         color: "#ff8353",

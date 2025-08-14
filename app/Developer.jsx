@@ -16,7 +16,7 @@ const developers = [
     {
         id: '2',
         name: 'Sabekun Nahar Chouwdhury',
-        description: 'UI/UX designer who translates complex requirements into beautiful, functional app interfaces.',
+        description: 'Lead UI/UX designer.',
         image: 'https://tse1.mm.bing.net/th/id/OIP.9t7htXFPzrmIc-dsCkNzhwHaD5?rs=1&pid=ImgDetMain&o=7&rm=3',
     },
     {
@@ -42,7 +42,7 @@ export default function Developer() {
             <LinearGradient className='flex-1 px-4' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <View className='mt-10 '>
                     <View className="flex-row items-center gap-3 mb-5 ">
-                        <TouchableOpacity className='relative top-1' onPress={() => router.back()}>
+                        <TouchableOpacity className='' onPress={() => router.back()}>
                             <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
                         </TouchableOpacity>
                         <Text style={styles.header} className="text-[#ff8353]">Our Team</Text>
@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
         fontFamily: 'Cinzel-Bold',
     },
     name: {
-        fontSize: 22,
+        fontSize: 18,
         fontFamily: 'JosefinSans-Bold',
     },
     description: {
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'JosefinSans-Regular',
         textAlign: 'justify',
     },

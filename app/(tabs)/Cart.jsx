@@ -181,7 +181,7 @@ export default function Cart() {
 }
 
 const styles = StyleSheet.create({
-    container: {  padding: 5, marginTop: 5, fontFamily: 'JosefinSans-Regular' },
+    container: {  padding: 0, marginTop: 0, fontFamily: 'JosefinSans-Regular' },
     title: { fontSize: 28, fontFamily: 'JosefinSans-Bold' },
     itemName: { fontSize: 16, fontFamily: 'JosefinSans-SemiBold' },
     itemPrice: { fontSize: 16, fontFamily: 'JosefinSans-Regular', opacity: 0.8 },

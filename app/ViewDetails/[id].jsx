@@ -146,9 +146,9 @@ export default function id() {
                                 ) : (
                                     <View className="flex-row justify-between items-center gap-4 mt-4">
                                         {isInCart ? (
-                                            <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 border-2 border-[#ff8353] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
+                                            <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 bg-[#151527] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
                                         ) : (
-                                            <TouchableOpacity onPress={handleAddToCart} className="flex-1 border-2 border-[#ff8353] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">Add to Cart</Text></TouchableOpacity>
+                                            <TouchableOpacity onPress={handleAddToCart} className="flex-1  bg-[#151527] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">Add to Cart</Text></TouchableOpacity>
                                         )}
                                         <TouchableOpacity onPress={() => setPaymentModalVisible(true)} className="flex-1 border-2 border-white py-3 rounded-xl"><Text className="text-center font-semibold text-white text-base">Buy Now</Text></TouchableOpacity>
                                     </View>

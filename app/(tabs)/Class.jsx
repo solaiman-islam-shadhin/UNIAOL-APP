@@ -85,7 +85,7 @@ export default function MyClass() {
                 
                 {!currentUser ? (
                     // --- Guest View ---
-                    <View className="flex-1 justify-center items-center">
+                    <View className="flex justify-center items-center">
                      
                         <Text style={styles.emptyText} className="text-white text-center">Please log in to view your purchased courses.</Text>
                         <TouchableOpacity onPress={() => router.push('/Login')} className="w-full bg-[#ff8353] py-4 mt-8 rounded-full">

@@ -15,7 +15,7 @@ import ValidationSchema from '../utils/authVelidation'; // Make sure this path i
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 80,
+        fontSize: 70,
         fontFamily: 'Cinzel-Medium',
         padding: 2,
         color: "#ff8353",
