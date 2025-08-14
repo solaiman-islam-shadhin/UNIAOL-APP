@@ -8,9 +8,8 @@ import { useRouter } from 'expo-router';
 import { BlurView } from 'expo-blur';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { LinearGradient } from 'expo-linear-gradient';
-// Make sure this path is correct for your project structure
 import { db } from '../../config/FireBAseConfig'; 
-import uploadCourseData from '../../config/DataUpload';
+
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
@@ -54,7 +53,7 @@ const Home = () => {
         <BlurView intensity={10} tint="light" style={StyleSheet.absoluteFill} />
         <Image source={{ uri: item.image }} style={styles.verticalImage} />
         <View style={styles.cardContent}>
-             <Text style={[styles.Btn_text, styles.cardTitle]}>{item.id}</Text>
+            
           <Text style={[styles.Btn_text, styles.cardTitle]}>{item.course_name}</Text>
           <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.course_code}</Text>
           <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.faculty}</Text>
@@ -70,7 +69,7 @@ const Home = () => {
         <BlurView intensity={10} tint="light" style={StyleSheet.absoluteFill} />
         <Image source={{ uri: item.image }} style={styles.horizontalImage} />
         <View style={styles.cardContent}>
-          <Text style={[styles.Btn_text, styles.cardTitle]}>{item.id}</Text>
+         
           <Text style={[styles.Btn_text, styles.cardTitle]}>{item.course_name}</Text>
           <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.course_code}</Text>
           <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.faculty}</Text>
@@ -193,7 +192,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   verticalCard: {
-    height: 320,
+    height: 300,
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 16,
@@ -203,7 +202,7 @@ const styles = StyleSheet.create({
   },
   horizontalCard: {
     width: 310,
-    height: 270,
+    height: 250,
     borderRadius: 12,
     overflow: 'hidden',
     marginRight: 16,

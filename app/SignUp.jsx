@@ -74,7 +74,7 @@ export default function SignUp() {
 
     return (
         <SafeAreaView className='bg-[#151527]'>
-            <ScrollView contentContainerStyle={{ height: '100%', justifyContent: 'center' }} >
+            <ScrollView contentContainerStyle={{ height: '100%'}} className='mt-7' >
                 <StatusBar barStyle={"dark-content"} backgroundColor='#151527'></StatusBar>
                 <View>
                     <View className='px-2'>
@@ -129,7 +129,24 @@ export default function SignUp() {
                                 <Text className='text-xl border-b border-[#ff8353] text-[#ff8353]' style={styles.Act_text} onPress={() => router.push("Login")}>Login</Text>
                             </Animated.View>
                         </View>
+                        
                     </View>
+                    <View className=' felx relative '>
+
+                        <Animated.View entering={FadeInRight.delay(700).duration(1000).springify()} className="  right-24" >
+
+                            <LottieView style={{ width: 280, height: 200 }} source={require('../Lottie_Animations/rhh2tfidxj.json')} autoPlay loop />
+
+                        </Animated.View>
+
+                        <Animated.View entering={FadeInLeft.delay(800).duration(1000).springify()} className="bottom-28 -right-72 " >
+
+                            <LottieView style={{ width: 200, height: 150 }} source={require('../Lottie_Animations/Education.json')} autoPlay loop />
+
+                        </Animated.View>
+
+                    </View>
+
                 </View>
             </ScrollView>
         </SafeAreaView>

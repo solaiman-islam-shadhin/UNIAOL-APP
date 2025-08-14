@@ -1,0 +1,198 @@
+import { View, Text, Pressable, SafeAreaView, StatusBar, ScrollView, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+
+import { router, useRouter } from 'expo-router'
+
+import LottieView from 'lottie-react-native';
+
+import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeInRight, FadeInUp, FadeOut, FadeOutUp } from 'react-native-reanimated';
+
+import { Formik } from 'formik';
+
+import ValidationSchema from '../utils/authVelidation';
+
+
+
+const styles = StyleSheet.create({
+
+    text: {
+
+        fontSize: 80,
+
+        fontFamily: 'Cinzel-Medium',
+
+        padding: 2,
+
+        color: "#ff8353",
+
+        textAlign: 'center',
+
+    },
+
+    Btn_text: {
+
+        fontFamily: 'Cinzel-SemiBold',
+
+    },
+
+    Iinput_text: {
+
+        fontFamily: 'Roboto-SemiBold',
+
+    },
+
+    Act_text: {
+
+        fontFamily: 'JosefinSans-Regular',
+
+    }
+
+})
+
+
+
+export default function LandingPage() {
+
+    const handaleSignUp = () => {
+
+
+
+    }
+
+    const router = useRouter()
+
+    return (
+
+        <SafeAreaView className='bg-[#151527] '>
+
+            <ScrollView contentContainerStyle={{ height: '100%', }} >
+
+                <StatusBar style={"dark-content"} className='bg-[#151527]'></StatusBar>
+
+                <View className='mt-10'>
+
+                    <View className='px-2'>
+
+                        <Animated.Text entering={FadeInUp.delay(200).duration(1500).springify()} style={styles.text} className='text-center w-96 mx-auto  animate-pulse'> UNISOL</Animated.Text>
+
+                        <Animated.View entering={FadeInUp.delay(300).duration(1500).springify()} className="flex justify-center items-center mt-5" >
+
+                            <LottieView style={{ width: 200, height: 150 }} source={require('../Lottie_Animations/nu7q12Cxs7.json')} autoPlay loop />
+
+                        </Animated.View>
+
+                        <View >
+
+                            <Formik initialValues={{ name: '', email: '', password: '' }} validationSchema={ValidationSchema} onSubmit={handaleSignUp}>
+
+                                {({
+
+                                    handleSubmit,
+
+                                    handleChange,
+
+                                    handleBlur,
+
+                                    values,
+
+                                    errors,
+
+                                    touched
+
+                                }) => (
+
+                                    <View className=' w-[86%]  mx-auto'>
+
+                                        <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()}>
+
+                                            <Text style={styles.Btn_text} className='text-[#ff8353]'>Name</Text>
+
+                                            <TextInput onChangeText={handleChange('name')} onBlur={handleBlur('name')} value={values.name} style={styles.Iinput_text} placeholder='Name' placeholderTextColor="#ff8353" className=' text-white border-2 border-[#ff8353] w-full px-2 py-4 rounded-xl bg-[#151527] mx-auto mt-5 text-white]' />
+
+                                            {errors.name && touched.name && <Text className='text-red-500 text-xs mt-2'>{errors.name}</Text>}
+
+                                        </Animated.View>
+
+                                        <Animated.View entering={FadeInDown.delay(300).duration(1000).springify()}>
+
+                                            <Text style={styles.Btn_text} className='text-[#ff8353] mt-4'>Email</Text>
+
+                                            <TextInput onChangeText={handleChange('email')} onBlur={handleBlur('email')} value={values.email} style={styles.Iinput_text} placeholder='Email' placeholderTextColor="#ff8353" className=' text-white border-2 border-[#ff8353] w-full px-2 py-4 rounded-xl bg-[#151527] mx-auto mt-5 text-white]' />
+
+                                            {errors.email && touched.email && <Text className='text-red-500 text-xs mt-2'>{errors.email}</Text>}
+
+                                        </Animated.View>
+
+                                        <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
+
+                                            <Text style={styles.Btn_text} className='text-[#ff8353] mt-4'>Password</Text>
+
+                                            <TextInput secureTextEntry={true} onChangeText={handleChange('password')} onBlur={handleBlur('password')} value={values.password} style={styles.Iinput_text} placeholder='Password' placeholderTextColor="#ff8353" className=' text-white font-normal border-2 border-[#ff8353] w-full px-2 py-4 rounded-xl bg-[#151527] mx-auto mt-5 text-white]' />
+
+                                            {errors.password && touched.password && <Text className='text-red-500 text-xs mt-2'>{errors.password}</Text>}
+
+                                        </Animated.View>
+
+                                        <Animated.View entering={FadeInDown.delay(500).duration(1000).springify()}>
+
+                                            <TouchableOpacity className=' w-72 py-4 rounded-full bg-[#ff8353] text-center mx-auto mt-5' onPress={handleSubmit}>
+
+                                                <Text style={styles.Btn_text} className='text-center text-2xl text-white  '>SignUp</Text>
+
+                                            </TouchableOpacity>
+
+                                        </Animated.View>
+
+                                    </View>
+
+                                )}
+
+
+
+                            </Formik>
+
+                            <Animated.View entering={FadeInLeft.delay(600).duration(1000).springify()} className='flex-row justify-center mt-5 gap-2 '>
+
+                                <Text className='text-xl animate-pulse text-white '>Already a user?</Text>
+
+                                <Text className='text-xl animate-pulse border-b border-[#ff8353] text-[#ff8353]' onPress={() => router.push("Login")}>Login</Text>
+
+                            </Animated.View>
+
+
+
+                        </View>
+
+                    </View>
+
+                    <View className=' felx  relative  '>
+
+                        <Animated.View entering={FadeInRight.delay(700).duration(1000).springify()} className="   right-24" >
+
+                            <LottieView style={{ width: 280, height: 200 }} source={require('../Lottie_Animations/rhh2tfidxj.json')} autoPlay loop />
+
+                        </Animated.View>
+
+                        <Animated.View entering={FadeInLeft.delay(800).duration(1000).springify()} className="bottom-48  -right-72 " >
+
+                            <LottieView style={{ width: 200, height: 150 }} source={require('../Lottie_Animations/Education.json')} autoPlay loop />
+
+                        </Animated.View>
+
+                    </View>
+
+                </View>
+
+            </ScrollView>
+
+        </SafeAreaView>
+
+
+
+
+
+    )
+
+
+
+}
+
