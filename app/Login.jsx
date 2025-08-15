@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Cinzel-SemiBold',
     },
     Iinput_text: {
-        fontFamily: 'Roboto-SemiBold',
+        fontFamily: 'NataSans-SemiBold',
     },
     Act_text: {
-        fontFamily: 'Cinzel-SemiBold',
+        fontFamily: 'Cinzel-Regular',
     }
 })
 
@@ -119,9 +119,7 @@ export default function Login() {
                                             <Animated.View entering={FadeInDown.delay(300).duration(1000).springify()}>
                                                 <View className="flex-row justify-between items-center mt-4">
                                                     <Text style={styles.Btn_text} className='text-[#ff8353]'>Password</Text>
-                                                    <TouchableOpacity onPress={() => handleForgotPassword(values.email)}>
-                                                        <Text className="text-[#ff8353] text-xs" style={styles.Act_text}>Forgot Password?</Text>
-                                                    </TouchableOpacity>
+                                                   
                                                 </View>
                                                 {/* --- Password Input with Visibility Toggle --- */}
                                                 <View className="flex-row items-center border-2 border-[#ff8353] rounded-xl mt-2">
@@ -140,6 +138,9 @@ export default function Login() {
                                                     </TouchableOpacity>
                                                 </View>
                                                 {errors.password && touched.password && <Text className='text-red-500 text-xs mt-1'>{errors.password}</Text>}
+                                                 <TouchableOpacity onPress={() => handleForgotPassword(values.email)}>
+                                                        <Text className="text-[#ff8353] text-base mt-3" style={styles.Act_text}>Forgot Password?</Text>
+                                                    </TouchableOpacity>
                                             </Animated.View>
                                             <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
                                                 <TouchableOpacity className='w-full py-4 rounded-full bg-[#ff8353] text-center mt-5' onPress={handleSubmit} disabled={loading}>

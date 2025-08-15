@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Cinzel-SemiBold',
     },
     Act_text: {
-        fontFamily: 'JosefinSans-Regular',
+        fontFamily: 'NataSans-Regular',
     }
 })
 

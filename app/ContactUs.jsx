@@ -144,15 +144,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Cinzel-Bold',
     },
     label: {
-        fontFamily: 'JosefinSans-SemiBold',
+        fontFamily: 'NataSans-SemiBold',
         fontSize: 16,
     },
     input: {
-        fontFamily: 'JosefinSans-Regular',
+        fontFamily: 'NataSans-Regular',
         fontSize: 16,
     },
     infoText: {
-        fontFamily: 'JosefinSans-SemiBold',
+        fontFamily: 'NataSans-SemiBold',
         fontSize: 18,
     },
     buttonText: {

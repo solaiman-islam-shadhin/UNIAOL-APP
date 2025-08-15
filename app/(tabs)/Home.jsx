@@ -156,7 +156,20 @@ const Home = () => {
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={styles.sectionTitle}>Top Selling Courses</Text>
+
+          <View className='my-5'>
+            <Text style={styles.Hero_text_1} className='text-white text-6xl text-left'>
+              Unlock Your Potential.
+            </Text>
+            <Text style={styles.Hero_text_1} className='text-[#ff8353] text-[45px] my-2'>
+              Master New Skills.
+            </Text>
+            <Text style={styles.Hero_text} className='text-gray-400 text-xl'>
+              Join thousands of learners on Unisol and access high-quality courses from top instructors, anytime, anywhere. Your journey to excellence starts here.
+            </Text>
+          </View>
+
+          <Text style={styles.sectionTitle}>Top Selling Courses..</Text>
           <FlatList
             horizontal
             data={filterData}
@@ -166,7 +179,7 @@ const Home = () => {
             contentContainerStyle={{ paddingBottom: 20 }}
           />
 
-          <Text style={styles.sectionTitle}>Discount Ongoing</Text>
+          <Text style={styles.sectionTitle}>Discount Ongoing %</Text>
           <FlatList
             horizontal
             data={discountData}
@@ -176,7 +189,7 @@ const Home = () => {
             contentContainerStyle={{ paddingBottom: 20 }}
           />
 
-          <Text style={styles.sectionTitle}>Browse Our Courses</Text>
+          <Text style={styles.sectionTitle}>Browse Our Courses...</Text>
           <FlatList
             data={courses}
             renderItem={VerticalScroll}
@@ -201,7 +214,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: '#ff8353',
     fontSize: 16,
-    fontFamily: 'JosefinSans-SemiBold',
+    fontFamily: 'NataSans-SemiBold',
   },
   header: {
     flexDirection: 'row',
@@ -220,14 +233,22 @@ const styles = StyleSheet.create({
     fontFamily: 'Cinzel-Medium',
     color: "#ff8353",
   },
+  Hero_text_1: {
+    fontFamily: 'NataSans-Bold',
+    
+  },
+  Hero_text: {
+    fontFamily: 'NataSans-Regular',
+    
+  },
   Btn_text: {
-    fontFamily: 'JosefinSans-SemiBold',
+    fontFamily: 'NataSans-SemiBold',
   },
   sectionTitle: {
-    fontFamily: 'JosefinSans-SemiBold',
+    fontFamily: 'NataSans-SemiBold',
     backgroundColor: '#ff8353',
     color: '#151527',
-    fontSize: 24,
+    fontSize: 20,
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,

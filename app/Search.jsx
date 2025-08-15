@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cinzel-Medium',
   },
   font: {
-    fontFamily: 'JosefinSans-SemiBold',
+    fontFamily: 'NataSans-SemiBold',
   },
 });
 

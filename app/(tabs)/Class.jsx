@@ -77,7 +77,7 @@ export default function MyClass() {
              <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <View className="flex-row items-center gap-3 mt-5 mb-6">
-                    <TouchableOpacity className='relative top-1' onPress={() => router.back()}>
+                    <TouchableOpacity className='relative' onPress={() => router.back()}>
                         <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
                     </TouchableOpacity>
                     <Text style={styles.title} className="text-[#ff8353]">My Classes</Text>
@@ -113,9 +113,9 @@ export default function MyClass() {
 }
 
 const styles = StyleSheet.create({
-    title: { fontSize: 28, fontFamily: 'JosefinSans-Bold' },
-    itemName: { fontSize: 18, fontFamily: 'JosefinSans-SemiBold' },
-    itemFaculty: { fontSize: 16, fontFamily: 'JosefinSans-Regular', opacity: 0.8, marginTop: 4 },
-    emptyText: { textAlign: 'center', marginTop: 50, fontSize: 18, color: 'white', fontFamily: 'JosefinSans-SemiBold' },
+    title: { fontSize: 28, fontFamily: 'Cinzel-SemiBold' },
+    itemName: { fontSize: 18, fontFamily: 'NataSans-SemiBold' },
+    itemFaculty: { fontSize: 16, fontFamily: 'NataSans-Regular', opacity: 0.8, marginTop: 4 },
+    emptyText: { textAlign: 'center', marginTop: 50, fontSize: 18, color: 'white', fontFamily: 'NataSans-SemiBold' },
     buttonText: { fontFamily: 'Cinzel-SemiBold' },
 });

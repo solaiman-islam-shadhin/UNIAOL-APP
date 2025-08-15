@@ -25,6 +25,10 @@ export default function RootLayout() {
     'JosefinSans-Regular': require('../assets/fonts/JosefinSans-Regular.ttf'),
     'JosefinSans-Thin': require('../assets/fonts/JosefinSans-Thin.ttf'),
     'JosefinSans-Light': require('../assets/fonts/JosefinSans-Light.ttf'),
+    'NataSans-Regular': require('../assets/fonts/NataSans-Regular.ttf'),
+    'NataSans-SemiBold': require('../assets/fonts/NataSans-SemiBold.ttf'),
+    'NataSans-Bold': require('../assets/fonts/NataSans-Bold.ttf'),
+    'NataSans-Thin': require('../assets/fonts/NataSans-Thin.ttf'),
   });
 
   return (

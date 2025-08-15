@@ -110,11 +110,11 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: 16,
-        fontFamily: 'JosefinSans-Regular',
+        fontFamily: 'NataSans-Regular',
     },
     info: {
         fontSize: 20,
-        fontFamily: 'JosefinSans-SemiBold',
+        fontFamily: 'NataSans-SemiBold',
     },
     buttonText: {
         fontFamily: 'Cinzel-SemiBold',

@@ -176,9 +176,9 @@ export default function id() {
 
 const styles = StyleSheet.create({
     centered: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#151527' },
-    errorText: { fontFamily: 'JosefinSans-SemiBold', color: 'white', fontSize: 18 },
-    Btn_text: { fontFamily: 'JosefinSans-SemiBold' },
+    errorText: { fontFamily: 'NataSans-SemiBold', color: 'white', fontSize: 18 },
+    Btn_text: { fontFamily: 'NataSans-SemiBold' },
     courseName: { fontSize: 28, textAlign: 'center', marginTop: 20, color: '#ff8353' },
     priceText: { fontSize: 32, alignSelf: 'center', textAlign: 'center', borderRadius: 12, marginTop: 12, borderWidth: 2, borderColor: '#ff8353', padding: 12, color: '#ff8353' },
-    detailLabel: { fontFamily: 'JosefinSans-SemiBold', color: '#ff8353' },
+    detailLabel: { fontFamily: 'NataSans-SemiBold', color: '#ff8353' },
 });

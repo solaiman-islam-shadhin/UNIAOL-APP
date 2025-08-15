@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Cinzel-SemiBold',
     },
     Iinput_text: {
-        fontFamily: 'Roboto-SemiBold',
+        fontFamily: 'NataSans-SemiBold',
     },
     Act_text: {
-        fontFamily: 'JosefinSans-Regular',
+        fontFamily: 'Cinzel-Regular',
     }
 })
 

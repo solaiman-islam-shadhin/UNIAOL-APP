@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 18,
-        fontFamily: 'JosefinSans-Bold',
+        fontFamily: 'NataSans-Bold',
     },
     description: {
         fontSize: 12,
-        fontFamily: 'JosefinSans-Regular',
+        fontFamily: 'NataSans-Regular',
         textAlign: 'justify',
     },
 });

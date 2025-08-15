@@ -62,7 +62,7 @@ export default function TabBar({ state, descriptors, navigation }) {
                                 color: isFocused ? "#ff8353" : "#a6a7aa"
                             })
                         }
-                        <Text style={{ color: isFocused ? "#ff8353" : "#a6a7aa", fontSize: 12, fontFamily: 'JosefinSans-SemiBold' }}>
+                        <Text style={{ color: isFocused ? "#ff8353" : "#a6a7aa", fontSize: 12, fontFamily: 'NataSans-SemiBold' }}>
                             {label}
                         </Text>
                     </Pressable>

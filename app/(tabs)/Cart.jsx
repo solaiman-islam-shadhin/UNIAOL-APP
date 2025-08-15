@@ -182,13 +182,13 @@ export default function Cart() {
 }
 
 const styles = StyleSheet.create({
-    container: {  padding: 0, marginTop: 0, fontFamily: 'JosefinSans-Regular' },
-    title: { fontSize: 28, fontFamily: 'JosefinSans-Bold' },
-    itemName: { fontSize: 16, fontFamily: 'JosefinSans-SemiBold' },
-    itemPrice: { fontSize: 16, fontFamily: 'JosefinSans-Regular', opacity: 0.8 },
-    emptyText: { textAlign: 'center', marginTop: 50, fontSize: 18, color: 'white', fontFamily: 'JosefinSans-SemiBold' },
+    container: {  padding: 0, marginTop: 0, fontFamily: 'NataSans-Regular' },
+    title: { fontSize: 28, fontFamily: 'NataSans-Bold' },
+    itemName: { fontSize: 16, fontFamily: 'NataSans-SemiBold' },
+    itemPrice: { fontSize: 16, fontFamily: 'NataSans-Regular', opacity: 0.8 },
+    emptyText: { textAlign: 'center', marginTop: 50, fontSize: 18, color: 'white', fontFamily: 'NataSans-SemiBold' },
     totalContainer: { marginTop: 20, paddingTop: 15, borderTopWidth: 2, borderTopColor: 'white' },
-    totalText: { fontSize: 22, fontFamily: 'JosefinSans-Bold' },
-    totalPrice: { fontSize: 22, color: 'white', fontFamily: 'JosefinSans-Bold' },
+    totalText: { fontSize: 22, fontFamily: 'NataSans-Bold' },
+    totalPrice: { fontSize: 22, color: 'white', fontFamily: 'NataSans-Bold' },
     buttonText: { fontFamily: 'Cinzel-SemiBold' },
 });
