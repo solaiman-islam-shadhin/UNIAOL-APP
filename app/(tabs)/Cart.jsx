@@ -98,7 +98,8 @@ export default function Cart() {
             removeFromCart(itemId);
             Toast.show({
                 type: 'error',
-                text1: 'Item removed from cart.'
+                text1: 'Item removed from cart.',
+                visibilityTime: 1000
             });
         } catch (error) {
             console.error("Error removing item from cart:", error);

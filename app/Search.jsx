@@ -118,11 +118,11 @@ const Search = () => {
 
   return (
     <SafeAreaView className='flex-1 px-3 bg-[#151527]'>
-      <View className='flex-row items-center mb-3 gap-3'>
-        <TouchableOpacity className='pt-5' onPress={() => router.back()}>
+      <View className='flex-row mt-5 pb-3 items-center mb-3 gap-3'>
+        <TouchableOpacity className='' onPress={() => router.back()}>
           <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
         </TouchableOpacity>
-        <Text className='text-3xl text-[#ff8353] pt-5 pb-2' style={styles.headerFont}>Course Catalog</Text>
+        <Text className='text-3xl text-[#ff8353] ' style={styles.headerFont}>Course Catalog</Text>
       </View>
       {loading ? (
         <View className='flex-1 justify-center items-center'>

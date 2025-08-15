@@ -4,10 +4,14 @@ import LottieView from 'lottie-react-native';
 import Animated, { FadeInDown, FadeInLeft, FadeInRight, FadeInUp } from 'react-native-reanimated';
 import { Formik } from 'formik';
 import { useState } from 'react';
-import{auth} from "../config/FireBAseConfig"
-import { getAuth,signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { auth } from "../config/FireBAseConfig"
+// --- Firebase Imports ---
+import { signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from 'firebase/auth';
+
+// --- Import your existing Validation Schema ---
 import loginValidationScema from '../utils/loginValidation';
 import Toast from 'react-native-toast-message';
+import { Ionicons } from '@expo/vector-icons'; // Import icons
 
 const styles = StyleSheet.create({
     text: {
@@ -24,30 +28,31 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto-SemiBold',
     },
     Act_text: {
-        fontFamily: 'JosefinSans-Regular',
+        fontFamily: 'Cinzel-SemiBold',
     }
 })
 
 export default function Login() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false); // State for password visibility
 
     const handleLogin = async (values) => {
         setLoading(true);
-       
+
         try {
             const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
             const user = userCredential.user;
             if (user.emailVerified) {
-              Toast.show({
+                Toast.show({
                     type: 'success',
                     text1: 'Login Successful!',
-                    text2: 'Welcome back.'
+                    text2: 'Welcome back.',
+                    visibilityTime: 1000
                 });
-            
+
                 router.replace('/(tabs)/Home');
             } else {
-           l
                 Alert.alert(
                     'Verify Your Email',
                     'You need to verify your email before you can log in. Would you like to resend the verification email?',
@@ -63,11 +68,29 @@ export default function Login() {
             } else {
                 Alert.alert('Login Failed', error.message);
             }
-            
+
         } finally {
             setLoading(false);
         }
     }
+    const handleForgotPassword = (email) => {
+        if (!email) {
+            Alert.alert("Input Required", "Please enter your email address in the email field first.");
+            return;
+        }
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                Alert.alert("Password Reset", "A link to reset your password has been sent to your email.");
+            })
+            .catch((error) => {
+                if (error.code === 'auth/user-not-found') {
+                    Alert.alert("Error", "No user found with that email address.");
+                } else {
+                    Alert.alert("Error", "Could not send password reset email. Please try again.");
+                }
+
+            });
+    };
 
     return (
         <SafeAreaView className='bg-[#151527]'>
@@ -86,9 +109,6 @@ export default function Login() {
                                 onSubmit={handleLogin}
                             >
                                 {({ handleSubmit, handleChange, handleBlur, values, errors, touched }) => {
-                                   
-                            
-                                    
                                     return (
                                         <View className='w-[86%] mx-auto'>
                                             <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()}>
@@ -97,8 +117,28 @@ export default function Login() {
                                                 {errors.email && touched.email && <Text className='text-red-500 text-xs mt-1'>{errors.email}</Text>}
                                             </Animated.View>
                                             <Animated.View entering={FadeInDown.delay(300).duration(1000).springify()}>
-                                                <Text style={styles.Btn_text} className='text-[#ff8353] mt-4'>Password</Text>
-                                                <TextInput secureTextEntry={true} onChangeText={handleChange('password')} onBlur={handleBlur('password')} value={values.password} style={styles.Iinput_text} placeholder='Password' placeholderTextColor="#ff8353" className='text-white border-2 border-[#ff8353] w-full px-4 py-3 rounded-xl bg-[#151527] mt-2' />
+                                                <View className="flex-row justify-between items-center mt-4">
+                                                    <Text style={styles.Btn_text} className='text-[#ff8353]'>Password</Text>
+                                                    <TouchableOpacity onPress={() => handleForgotPassword(values.email)}>
+                                                        <Text className="text-[#ff8353] text-xs" style={styles.Act_text}>Forgot Password?</Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                                {/* --- Password Input with Visibility Toggle --- */}
+                                                <View className="flex-row items-center border-2 border-[#ff8353] rounded-xl mt-2">
+                                                    <TextInput
+                                                        secureTextEntry={!isPasswordVisible}
+                                                        onChangeText={handleChange('password')}
+                                                        onBlur={handleBlur('password')}
+                                                        value={values.password}
+                                                        style={styles.Iinput_text}
+                                                        placeholder='Password'
+                                                        placeholderTextColor="#ff8353"
+                                                        className='flex-1 text-white px-4 py-3'
+                                                    />
+                                                    <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)} className="p-3">
+                                                        <Ionicons name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'} size={24} color="#ff8353" />
+                                                    </TouchableOpacity>
+                                                </View>
                                                 {errors.password && touched.password && <Text className='text-red-500 text-xs mt-1'>{errors.password}</Text>}
                                             </Animated.View>
                                             <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
@@ -110,7 +150,9 @@ export default function Login() {
                                     )
                                 }}
                             </Formik>
+
                             <Animated.View entering={FadeInLeft.delay(500).duration(1000).springify()} className='flex-row justify-center mt-5 gap-2'>
+
                                 <Text className='text-xl text-white' style={styles.Act_text}>New here?</Text>
                                 <Text className='text-xl border-b border-[#ff8353] text-[#ff8353]' style={styles.Act_text} onPress={() => router.push("SignUp")}>Sign Up</Text>
                             </Animated.View>

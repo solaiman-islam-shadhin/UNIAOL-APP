@@ -4,6 +4,7 @@ import LottieView from 'lottie-react-native';
 import Animated, { FadeInDown, FadeInLeft, FadeInRight, FadeInUp } from 'react-native-reanimated';
 import { Formik } from 'formik';
 import { useState } from 'react';
+import { Ionicons } from '@expo/vector-icons'; // Import icons
 
 // --- Firebase Imports ---
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
@@ -35,10 +36,11 @@ const styles = StyleSheet.create({
 export default function SignUp() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false); // State for password visibility
 
     const handleSignUp = async (values) => {
         setLoading(true);
-     ;
+        ;
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
             const user = userCredential.user;
@@ -56,7 +58,7 @@ export default function SignUp() {
             );
 
         } catch (error) {
-        
+
             if (error.code === 'auth/email-already-in-use') {
                 Alert.alert('Sign Up Failed', 'That email address is already in use!');
             } else if (error.code === 'auth/invalid-email') {
@@ -64,7 +66,7 @@ export default function SignUp() {
             } else {
                 Alert.alert('Sign Up Failed', error.message);
             }
-            
+
         } finally {
             setLoading(false);
         }
@@ -72,7 +74,7 @@ export default function SignUp() {
 
     return (
         <SafeAreaView className='bg-[#151527]'>
-            <ScrollView contentContainerStyle={{ height: '100%'}} className='mt-7' >
+            <ScrollView contentContainerStyle={{ height: '100%' }} className='mt-7' >
                 <StatusBar barStyle={"dark-content"} backgroundColor='#151527'></StatusBar>
                 <View>
                     <View className='px-2 mt-4'>
@@ -83,7 +85,7 @@ export default function SignUp() {
                         <View>
                             <Formik
                                 initialValues={{ name: '', email: '', password: '' }}
-                                validationSchema={ValidationSchema} 
+                                validationSchema={ValidationSchema}
                                 onSubmit={handleSignUp}
                             >
                                 {({
@@ -107,7 +109,22 @@ export default function SignUp() {
                                         </Animated.View>
                                         <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
                                             <Text style={styles.Btn_text} className='text-[#ff8353] mt-4'>Password</Text>
-                                            <TextInput secureTextEntry={true} onChangeText={handleChange('password')} onBlur={handleBlur('password')} value={values.password} style={styles.Iinput_text} placeholder='Password' placeholderTextColor="#ff8353" className='text-white border-2 border-[#ff8353] w-full px-4 py-3 rounded-xl bg-[#151527] mt-2' />
+                                            {/* --- Password Input with Visibility Toggle --- */}
+                                            <View className="flex-row items-center border-2 border-[#ff8353] rounded-xl mt-2">
+                                                <TextInput
+                                                    secureTextEntry={!isPasswordVisible}
+                                                    onChangeText={handleChange('password')}
+                                                    onBlur={handleBlur('password')}
+                                                    value={values.password}
+                                                    style={styles.Iinput_text}
+                                                    placeholder='Password'
+                                                    placeholderTextColor="#ff8353"
+                                                    className='flex-1 text-white px-4 py-3'
+                                                />
+                                                <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)} className="p-3">
+                                                    <Ionicons name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'} size={24} color="#ff8353" />
+                                                </TouchableOpacity>
+                                            </View>
                                             {errors.password && touched.password && <Text className='text-red-500 text-xs mt-1'>{errors.password}</Text>}
                                         </Animated.View>
                                         <Animated.View entering={FadeInDown.delay(500).duration(1000).springify()}>
@@ -127,11 +144,11 @@ export default function SignUp() {
                                 <Text className='text-xl border-b border-[#ff8353] text-[#ff8353]' style={styles.Act_text} onPress={() => router.push("Login")}>Login</Text>
                             </Animated.View>
                         </View>
-                        
+
                     </View>
                     <View className=' felx relative '>
 
-                        <Animated.View entering={FadeInRight.delay(700).duration(1000).springify()} className="  right-24" >
+                        <Animated.View entering={FadeInRight.delay(700).duration(1000).springify()} className="  right-24" >
 
                             <LottieView style={{ width: 280, height: 200 }} source={require('../Lottie_Animations/rhh2tfidxj.json')} autoPlay loop />
 

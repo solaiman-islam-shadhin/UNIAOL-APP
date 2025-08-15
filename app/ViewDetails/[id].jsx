@@ -85,7 +85,11 @@ export default function id() {
             const cartRef = doc(db, "users", currentUser.uid, "cart", course.id);
             await setDoc(cartRef, { ...course });
             addToCart(course); 
-            Toast.show({ type: 'success', text1: 'Item Added Successfully..' });
+            Toast.show({
+                 type: 'success',
+                  text1: 'Item Added Successfully..',
+                  visibilityTime: 1000
+                 });
         } catch (error) {
             Alert.alert("Error", "Could not add item to cart.");
         }
