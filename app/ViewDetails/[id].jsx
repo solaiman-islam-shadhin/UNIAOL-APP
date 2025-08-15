@@ -1,7 +1,6 @@
-import { View, Text, Image, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Alert, Modal } from 'react-native';
+import {SafeAreaView, View, Text, Image, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Alert, Modal } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Animated, { FadeInUp, FadeInRight } from 'react-native-reanimated';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';

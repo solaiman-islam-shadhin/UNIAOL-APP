@@ -1,10 +1,9 @@
-import { View, Text, FlatList, StyleSheet, Alert, TouchableOpacity, Image, ActivityIndicator, Pressable, StatusBar } from 'react-native';
+import {SafeAreaView, View, Text, FlatList, StyleSheet, Alert, TouchableOpacity, Image, ActivityIndicator, Pressable, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import LottieView from 'lottie-react-native';
 import { BlurView } from 'expo-blur';
 import Animated, { FadeInUp } from 'react-native-reanimated';

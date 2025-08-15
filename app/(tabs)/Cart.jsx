@@ -183,7 +183,7 @@ export default function Cart() {
 
 const styles = StyleSheet.create({
     container: {  padding: 0, marginTop: 0, fontFamily: 'NataSans-Regular' },
-    title: { fontSize: 28, fontFamily: 'NataSans-Bold' },
+    title: { fontSize: 28, fontFamily: 'Cinzel-Bold' },
     itemName: { fontSize: 16, fontFamily: 'NataSans-SemiBold' },
     itemPrice: { fontSize: 16, fontFamily: 'NataSans-Regular', opacity: 0.8 },
     emptyText: { textAlign: 'center', marginTop: 50, fontSize: 18, color: 'white', fontFamily: 'NataSans-SemiBold' },
