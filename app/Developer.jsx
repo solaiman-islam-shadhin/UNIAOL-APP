@@ -15,20 +15,20 @@ const developers = [
     },
     {
         id: '2',
-        name: 'Sabekun Nahar Chouwdhury',
+        name: 'Sabekun Nahar Chowdhury',
         description: 'Lead UI/UX designer.',
         image: 'https://img.freepik.com/premium-vector/ui-ux-programmer-flat-design-vector-illustration-business-information-team-sharing-ideas-with-designer-coding-interface-software-app-development_2175-1843.jpg',
     },
     {
         id: '3',
-        name: 'Mehedi Hasan Parvez',
-        description: 'Firebase specialist and developer with a passion for creating robust APIs and ensuring seamless data flow between the app and server.',
+        name: 'MD.Mehedi Hasan',
+        description: 'Firebase specialist and developer.',
         image: 'https://media-sin11-1.cdn.whatsapp.net/v/t61.24694-24/363035589_6401489473294078_4682999899759549692_n.jpg?ccb=11-4&oh=01_Q5Aa2QGScx7e-D9myD0soOkmx5h5bY43I5UHXyc1JHYkJoGSMg&oe=68AB0FA4&_nc_sid=5e03e0&_nc_cat=104',
     },
     {
         id: '4',
         name: 'MD.Tanvir Alam',
-        description: 'UI/UX designer and front-end developer who translates complex requirements into beautiful, functional app interfaces.',
+        description: 'UI/UX designer and front-end developer.',
         image: 'https://media-sin2-1.cdn.whatsapp.net/v/t61.24694-24/315763494_545296157028687_2937590678254268355_n.jpg?ccb=11-4&oh=01_Q5Aa2QFHmT5Lau05ta3V4t3Zgx5ASKX0Hc2bGdFEBTNReFF4PA&oe=68AB1DBD&_nc_sid=5e03e0&_nc_cat=100',
     },
 ];
