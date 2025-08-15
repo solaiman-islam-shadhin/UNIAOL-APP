@@ -150,16 +150,16 @@ export default function id() {
                                 ) : (
                                     <View className="flex-row justify-between items-center gap-4 mt-4">
                                         {isInCart ? (
-                                            <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 bg-[#151527] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
+                                            <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 bg-[#151527] py-3 rounded-xl"><Text  style={styles.Btn_text} className="text-center  text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
                                         ) : (
-                                            <TouchableOpacity onPress={handleAddToCart} className="flex-1  bg-[#151527] py-3 rounded-xl"><Text className="text-center font-semibold text-[#ff8353] text-base">Add to Cart</Text></TouchableOpacity>
+                                            <TouchableOpacity onPress={handleAddToCart} className="flex-1  bg-[#151527] py-3 rounded-xl"><Text style={styles.Btn_text} className="text-center  text-[#ff8353] text-base">Add to Cart</Text></TouchableOpacity>
                                         )}
-                                        <TouchableOpacity onPress={() => setPaymentModalVisible(true)} className="flex-1 border-2 border-white py-3 rounded-xl"><Text className="text-center font-semibold text-white text-base">Buy Now</Text></TouchableOpacity>
+                                        <TouchableOpacity onPress={() => setPaymentModalVisible(true)} className="flex-1 border-2 border-white py-3 rounded-xl"><Text style={styles.Btn_text} className="text-center  text-white text-base">Buy Now</Text></TouchableOpacity>
                                     </View>
                                 )
                             ) : (
-                                <TouchableOpacity onPress={() => router.push('/Login')} className="w-full bg-[#ff8353] py-4 mt-4 rounded-xl">
-                                    <Text className="text-center font-bold text-white text-lg">Login to Purchase</Text>
+                                <TouchableOpacity onPress={() => router.push('/Login')} className="w-full bg-[#151527] py-4 mt-4 rounded-xl">
+                                    <Text style={styles.Btn_text} className="text-center  text-white text-lg">Login to Purchase</Text>
                                 </TouchableOpacity>
                             )}
                         </View>

@@ -65,24 +65,11 @@ const Home = () => {
   const discountData = [...courses].filter((item) => item.sold_course > 2500).sort((a, b) => a.sold_course - b.sold_course);
 
   const VerticalScroll = ({ item }) => (
-    <Pressable onPress={() => router.push(`/ViewDetails/${item.id}`)}>
-      <View style={styles.verticalCard}>
-        <BlurView intensity={10} tint="light" style={StyleSheet.absoluteFill} />
-        <Image source={{ uri: item.image }} style={styles.verticalImage} />
-        <View style={styles.cardContent}>
-
-          <Text style={[styles.Btn_text, styles.cardTitle]}>{item.course_name}</Text>
-          <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.course_code}</Text>
-          <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.faculty}</Text>
-        </View>
-      </View>
-    </Pressable>
-  );
-
-  const HorizontalCard = ({ item }) => (
-    <Pressable onPress={() => router.push(`/ViewDetails/${item.id}`)}>
-      <View style={styles.horizontalCard}>
-        <BlurView intensity={10} tint="light" style={StyleSheet.absoluteFill} />
+     <View>
+    <LinearGradient style={styles.verticalCard} className=' ' colors={['#6a546d', '#5a71a4']} start={{ x: 0.5, y: 0.2 }} end={{ x: 0.2, y: 0.8 }}>
+      <Pressable onPress={() => router.push(`/ViewDetails/${item.id}`)}>
+      <View >
+      
         <Image source={{ uri: item.image }} style={styles.horizontalImage} />
         <View style={styles.cardContent}>
 
@@ -92,6 +79,45 @@ const Home = () => {
         </View>
       </View>
     </Pressable>
+    </LinearGradient>
+  </View>
+  );
+
+  const HorizontalCard = ({ item }) => (
+  <View>
+    <LinearGradient style={styles.horizontalCard} className='mr-4 p-2' colors={['#8e5d4c', '#607597']} start={{ x: 0.5, y: 0.2 }} end={{ x: 0.2, y: 0.8 }}>
+      <Pressable onPress={() => router.push(`/ViewDetails/${item.id}`)}>
+      <View >
+      
+        <Image source={{ uri: item.image }} style={styles.horizontalImage} />
+        <View style={styles.cardContent}>
+
+          <Text style={[styles.Btn_text, styles.cardTitle]}>{item.course_name}</Text>
+          <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.course_code}</Text>
+          <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.faculty}</Text>
+        </View>
+      </View>
+    </Pressable>
+    </LinearGradient>
+  </View>
+  );
+  const HorizontalCard_2 = ({ item }) => (
+  <View>
+    <LinearGradient style={styles.horizontalCard} className='mr-4 p-2' colors={['#b18561','#3c5b93' ]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
+      <Pressable onPress={() => router.push(`/ViewDetails/${item.id}`)}>
+      <View >
+      
+        <Image source={{ uri: item.image }} style={styles.horizontalImage} />
+        <View style={styles.cardContent}>
+
+          <Text style={[styles.Btn_text, styles.cardTitle]}>{item.course_name}</Text>
+          <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.course_code}</Text>
+          <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.faculty}</Text>
+        </View>
+      </View>
+    </Pressable>
+    </LinearGradient>
+  </View>
   );
 
   if (loading) {
@@ -168,8 +194,8 @@ const Home = () => {
               Join thousands of learners on Unisol and access high-quality courses from top instructors, anytime, anywhere. Your journey to excellence starts here.
             </Text>
           </View>
-
-          <Text style={styles.sectionTitle}>Top Selling Courses..</Text>
+ {/* #8e5d4c */}
+          <Text style={styles.sectionTitle} className='bg-[#5de8d3] text-gray-900'>Top Selling Courses..</Text>
           <FlatList
             horizontal
             data={filterData}
@@ -179,17 +205,17 @@ const Home = () => {
             contentContainerStyle={{ paddingBottom: 20 }}
           />
 
-          <Text style={styles.sectionTitle}>Discount Ongoing %</Text>
+          <Text style={styles.sectionTitle} className='bg-[#5de8d3] text-gray-900'>Discount Ongoing %</Text>
           <FlatList
             horizontal
             data={discountData}
-            renderItem={HorizontalCard}
+            renderItem={HorizontalCard_2}
             keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 20 }}
           />
 
-          <Text style={styles.sectionTitle}>Browse Our Courses...</Text>
+          <Text style={styles.sectionTitle} className='bg-[#5de8d3] w-full text-center'>Browse Our Courses...</Text>
           <FlatList
             data={courses}
             renderItem={VerticalScroll}
@@ -246,8 +272,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontFamily: 'NataSans-SemiBold',
-    backgroundColor: '#ff8353',
-    color: '#151527',
+ 
+    
     fontSize: 20,
     paddingVertical: 8,
     paddingHorizontal: 12,
@@ -267,14 +293,11 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   horizontalCard: {
-    width: 310,
-    height: 250,
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginRight: 16,
-    borderBottomWidth: 2,
-    borderColor: '#ff8353',
-    padding: 8,
+    width: 320,
+    height: 260,
+    borderRadius:10
+   
+  
   },
   cardContent: {
     marginTop: 8,
