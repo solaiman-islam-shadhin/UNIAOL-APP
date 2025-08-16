@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Pressable, TouchableOpacity, Modal, Alert, ActivityIndicator, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Pressable, TouchableOpacity, Modal, Alert, ActivityIndicator } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import Fontisto from '@expo/vector-icons/Fontisto';
@@ -12,7 +12,7 @@ import { collection, getDocs, doc, writeBatch, deleteDoc } from 'firebase/firest
 import { auth, db } from '../../config/FireBAseConfig';
 import FakePayment from '../../components/FakePayment';
 import { StatusBar } from 'react-native';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Cart() {
     const router = useRouter();

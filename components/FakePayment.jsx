@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Alert, KeyboardAvoidingView, Platform, Pressable, TextInput, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Alert, KeyboardAvoidingView, Platform, Pressable, TextInput,  ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 // --- Reusable Payment Component ---
 export default function FakePayment({ onClose, onPaymentSuccess, amount }) {
     const PAYMENT_METHODS = [

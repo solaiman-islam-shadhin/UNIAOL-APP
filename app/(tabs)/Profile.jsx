@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,6 +7,9 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import {  onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../config/FireBAseConfig'; 
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+
 export default function Profile() {
     const router = useRouter();
     const [user, setUser] = useState(null);
@@ -89,11 +92,11 @@ export default function Profile() {
                     <View className="mt-10 mb-6">
                         {user ? (
                             <TouchableOpacity onPress={handleLogout} className="w-full bg-[#ff8353] py-4 rounded-full">
-                                <Text className="text-center font-bold text-white text-lg" style={styles.buttonText}>Logout</Text>
+                                <Text className="text-center  text-white text-lg" style={styles.buttonText}>Logout</Text>
                             </TouchableOpacity>
                         ) : (
                              <TouchableOpacity onPress={() => router.push('/Login')} className="w-full bg-[#ff8353] py-4 rounded-full">
-                                <Text className="text-center font-bold text-white text-lg" style={styles.buttonText}>Login / Sign Up</Text>
+                                <Text className="text-center  text-white text-lg" style={styles.buttonText}>Login / Sign Up</Text>
                             </TouchableOpacity>
                         )}
                     </View>
@@ -117,6 +120,6 @@ const styles = StyleSheet.create({
         fontFamily: 'NataSans-SemiBold',
     },
     buttonText: {
-        fontFamily: 'Cinzel-SemiBold',
+        fontFamily: 'NataSans-SemiBold',
     }
 });

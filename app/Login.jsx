@@ -1,10 +1,11 @@
-import { View, Text, SafeAreaView, StatusBar, ScrollView, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
+import { View, Text, StatusBar, ScrollView, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
 import { useRouter } from 'expo-router'
 import LottieView from 'lottie-react-native';
 import Animated, { FadeInDown, FadeInLeft, FadeInRight, FadeInUp } from 'react-native-reanimated';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { auth } from "../config/FireBAseConfig"
+import { SafeAreaView } from 'react-native-safe-area-context';
 // --- Firebase Imports ---
 import { signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from 'firebase/auth';
 

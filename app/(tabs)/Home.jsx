@@ -1,4 +1,4 @@
-import {  SafeAreaView,View, Text, StatusBar, FlatList, StyleSheet, Image, TouchableOpacity, Pressable, ActivityIndicator, BackHandler, Alert, Modal } from 'react-native';
+import {View, Text, StatusBar, FlatList, StyleSheet, Image, TouchableOpacity, Pressable, ActivityIndicator, BackHandler, Alert, Modal } from 'react-native';
 import { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native-virtualized-view';
 import Feather from '@expo/vector-icons/Feather';
@@ -9,6 +9,7 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { LinearGradient } from 'expo-linear-gradient'; // Corrected typo in path
 import React from 'react';
 import { db } from '../../config/FireBAseConfig';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -169,7 +170,7 @@ const Home = () => {
       </Modal>
 
       <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-        <View style={styles.header} className='mt-5'>
+        <View style={styles.header} className='mt-2'>
           <Text style={styles.Home_text}>UNISOL</Text>
           <View style={styles.headerIcons}>
             <TouchableOpacity onPress={() => router.push("Search")}>
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
   },
   Home_text: {
     fontSize: 30,
-    fontFamily: 'Cinzel-Medium',
+    fontFamily: 'Cinzel-SemiBold',
     color: "#ff8353",
   },
   Hero_text_1: {

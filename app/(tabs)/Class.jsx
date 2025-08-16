@@ -1,4 +1,4 @@
-import {SafeAreaView, View, Text, FlatList, StyleSheet, Alert, TouchableOpacity, Image, ActivityIndicator, Pressable, StatusBar } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Alert, TouchableOpacity, Image, ActivityIndicator, Pressable, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,7 +7,7 @@ import { useRouter } from 'expo-router';
 import LottieView from 'lottie-react-native';
 import { BlurView } from 'expo-blur';
 import Animated, { FadeInUp } from 'react-native-reanimated';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 // --- Firebase Imports ---
 import {  onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';

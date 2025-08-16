@@ -1,4 +1,4 @@
-import {SafeAreaView, View, Text, Image, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Alert, Modal } from 'react-native';
+import { View, Text, Image, StatusBar, TouchableOpacity, StyleSheet, ActivityIndicator, ScrollView, Alert, Modal } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Animated, { FadeInUp, FadeInRight } from 'react-native-reanimated';
@@ -10,7 +10,7 @@ import {  onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../../config/FireBAseConfig';
 import { useCart } from '../context/CartContext';
 import FakePayment from '../../components/FakePayment';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 export default function id() {
     const { items, addToCart, purchasedCourses, purchaseCourse } = useCart();
     const router = useRouter();

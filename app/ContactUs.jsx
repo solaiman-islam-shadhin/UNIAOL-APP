@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, TextInput, Alert, ActivityIndicator, Linking, StatusBar } from 'react-native';
+import { View, Text,  StyleSheet, TouchableOpacity, ScrollView, TextInput, Alert, ActivityIndicator, Linking, StatusBar } from 'react-native';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -6,7 +6,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Animated, { FadeInUp, FadeInDown } from 'react-native-reanimated';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import LottieView from 'lottie-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ContactSchema = Yup.object().shape({
     name: Yup.string()

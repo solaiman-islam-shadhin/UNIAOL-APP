@@ -1,10 +1,10 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 // --- Developer Data ---
 const developers = [
     {
