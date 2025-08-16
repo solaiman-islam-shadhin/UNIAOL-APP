@@ -11,6 +11,7 @@ import React from 'react';
 import { db } from '../../config/FireBAseConfig';
 
 
+
 const Home = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true); // State for loading indicator
@@ -179,6 +180,7 @@ const Home = () => {
             </TouchableOpacity>
           </View>
         </View>
+      
 
         <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -193,6 +195,9 @@ const Home = () => {
               Join thousands of learners on Unisol and access high-quality courses from top instructors, anytime, anywhere. Your journey to excellence starts here.
             </Text>
           </View>
+
+          
+
           {/* #8e5d4c */}
           <Text style={styles.sectionTitle} className='border-b-2 w-full border-b-white text-white'>Top Selling Courses..</Text>
           <FlatList
@@ -327,6 +332,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.6)'
   },
 });
-
-
 export default Home;
