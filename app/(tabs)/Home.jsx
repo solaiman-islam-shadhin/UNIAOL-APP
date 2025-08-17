@@ -200,7 +200,7 @@ const Home = () => {
           
 
           {/* #8e5d4c */}
-          <Text style={styles.sectionTitle} className='border-b-2 w-full border-b-white text-white'>Top Selling Courses..</Text>
+          <Text style={styles.sectionTitle} className='border-b-2 w-full  border-b-white text-white'>Top Selling Courses..</Text>
           <FlatList
             horizontal
             data={filterData}
@@ -228,7 +228,14 @@ const Home = () => {
             contentContainerStyle={{ paddingBottom: 100 }}
             scrollEnabled={false}
           />
+
         </ScrollView>
+        <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
       </LinearGradient>
     </SafeAreaView>
   );
@@ -277,7 +284,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontFamily: 'NataSans-SemiBold',
-    fontSize: 20,
+    fontSize: 24,
     paddingVertical: 5,
     marginTop: 10,
     marginBottom: 15,

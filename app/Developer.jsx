@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from '@expo/vector-icons/Ionicons';
 // --- Developer Data ---
 const developers = [
     {
@@ -65,6 +66,12 @@ export default function Developer() {
                         ))}
                     </ScrollView>
                 </View>
+                                     <TouchableOpacity
+          onPress={() => router.push('Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute  right-1 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
     );

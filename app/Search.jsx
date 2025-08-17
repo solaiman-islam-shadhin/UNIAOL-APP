@@ -6,7 +6,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
 import { BlurView } from 'expo-blur';
 import LottieView from 'lottie-react-native';
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../config/FireBAseConfig'; 
 
@@ -134,6 +134,12 @@ const Search = () => {
           renderItem={renderProductItem}
         />
       )}
+              <TouchableOpacity
+          onPress={() => router.push('Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-2 bg-[#ff8353] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#151527" />
+        </TouchableOpacity>
     </SafeAreaView>
   );
 };

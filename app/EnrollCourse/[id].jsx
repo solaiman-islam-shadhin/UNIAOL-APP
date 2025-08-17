@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Animated, { FadeInUp, FadeInRight } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import YoutubePlayer from 'react-native-youtube-iframe';
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 // --- Firebase Imports ---
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../config/FireBAseConfig';
@@ -77,6 +77,12 @@ export default function id() {
                         </View>
                     </Animated.View>
                 </ScrollView>
+                        <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
     );

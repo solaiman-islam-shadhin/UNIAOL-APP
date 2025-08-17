@@ -8,13 +8,14 @@ import LottieView from 'lottie-react-native';
 import { BlurView } from 'expo-blur';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from '@expo/vector-icons/Ionicons';
 // --- Firebase Imports ---
 import {  onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import { auth, db } from '../../config/FireBAseConfig';
 
 
-export default function MyClass() {
+export default function Class() {
     const router = useRouter();
     const { purchasedCourses, syncPurchasedCourses } = useCart();
     const [currentUser, setCurrentUser] = useState(null);
@@ -106,6 +107,12 @@ export default function MyClass() {
                         }
                     />
                 )}
+                 <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
     );

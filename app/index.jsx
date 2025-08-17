@@ -1,11 +1,12 @@
 import 'react-native-get-random-values';
-import { View, Text,SafeAreaView, StatusBar, ScrollView, Image, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, Text, StatusBar, ScrollView, Image, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { useRouter, Redirect } from 'expo-router'
 import LottieView from 'lottie-react-native';
 import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeInRight, FadeInUp, FadeOut, FadeOutUp } from 'react-native-reanimated';
 import React from 'react';
 import { useAuth } from './context/AuthContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 const styles = StyleSheet.create({
     text: {
         fontSize: 80,

@@ -11,6 +11,11 @@ import { auth, db } from '../../config/FireBAseConfig';
 import { useCart } from '../context/CartContext';
 import FakePayment from '../../components/FakePayment';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+
+
+
 export default function id() {
     const { items, addToCart, purchasedCourses, purchaseCourse } = useCart();
     const router = useRouter();
@@ -164,6 +169,12 @@ export default function id() {
                         </View>
                     </Animated.View>
                 </ScrollView>
+                        <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
             </LinearGradient>
 
             <Modal visible={isPaymentModalVisible} animationType="slide" onRequestClose={() => setPaymentModalVisible(false)}>

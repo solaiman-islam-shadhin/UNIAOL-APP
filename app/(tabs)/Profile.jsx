@@ -8,7 +8,7 @@ import {  onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../config/FireBAseConfig'; 
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Profile() {
     const router = useRouter();
@@ -101,6 +101,12 @@ export default function Profile() {
                         )}
                     </View>
                 </View>
+                 <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
     );

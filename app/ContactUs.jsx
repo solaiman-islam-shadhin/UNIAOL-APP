@@ -7,7 +7,7 @@ import Animated, { FadeInUp, FadeInDown } from 'react-native-reanimated';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 const ContactSchema = Yup.object().shape({
     name: Yup.string()
         .min(2, 'Name is too short!')
@@ -133,6 +133,12 @@ export default function ContactUs() {
                         </Formik>
                     </ScrollView>
                 </View>
+                        <TouchableOpacity
+          onPress={() => router.push('Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute  right-1 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
     );

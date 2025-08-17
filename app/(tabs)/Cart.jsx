@@ -13,7 +13,7 @@ import { auth, db } from '../../config/FireBAseConfig';
 import FakePayment from '../../components/FakePayment';
 import { StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 export default function Cart() {
     const router = useRouter();
     const { items, totalPrice, removeFromCart, purchaseCourse, setItems } = useCart();
@@ -121,7 +121,7 @@ export default function Cart() {
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <View style={styles.container}>
                     <View className="flex-row items-center gap-3 mt-5 mb-6">
-                        <TouchableOpacity className='relative top-1' onPress={() => router.back()}>
+                        <TouchableOpacity className='' onPress={() => router.back()}>
                             <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
                         </TouchableOpacity>
                         <Text style={styles.title} className="text-[#ff8353]">Your Cart 🛒</Text>
@@ -172,6 +172,12 @@ export default function Cart() {
                         </>
                     )}
                 </View>
+                        <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="absolute top-4 right-4 "
+        >
+          <Ionicons className=' bg-[#ff8353] p-2 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#151527" />
+        </TouchableOpacity>
             </LinearGradient>
 
             <Modal visible={isPaymentModalVisible} animationType="slide" onRequestClose={() => setPaymentModalVisible(false)}>
