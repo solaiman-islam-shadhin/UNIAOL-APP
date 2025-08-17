@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity, FlatList, ActivityIndicator, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity, FlatList, ActivityIndicator, StyleSheet, KeyboardAvoidingView, Platform, BackHandler } from 'react-native';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,32 +8,74 @@ import Animated, { FadeInUp } from 'react-native-reanimated';
 
 // --- Firebase Imports ---
 import { onAuthStateChanged } from 'firebase/auth';
-// NOTE: I corrected the typo here ('FireBAseConfig' to 'FirebaseConfig') as it's a critical error that would prevent the app from running.
 import { auth, db } from '../config/FireBAseConfig'; 
 import { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, getDocs, deleteDoc, writeBatch } from 'firebase/firestore';
 
-// --- Color Palettes (Unchanged) ---
+// --- Color Palettes ---
 const colorPalettes = [
-    { primary: '#3498db', gradient: ['#2c3e50', '#1a2531'], user: '#3498db', bot: '#4e5d6c', input: '#4e5d6c' },
-    { primary: '#9b59b6', gradient: ['#34495e', '#23313f'], user: '#9b59b6', bot: '#5c6a79', input: '#5c6a79' },
-    { primary: '#e67e22', gradient: ['#2c3e50', '#1a2531'], user: '#e67e22', bot: '#4e5d6c', input: '#4e5d6c' },
-    { primary: '#1abc9c', gradient: ['#2c3e50', '#1a2531'], user: '#1abc9c', bot: '#4e5d6c', input: '#4e5d6c' },
-    { primary: '#f1c40f', gradient: ['#34495e', '#23313f'], user: '#f1c40f', bot: '#5c6a79', input: '#5c6a79' },
-    { primary: '#2ecc71', gradient: ['#2c3e50', '#1a2531'], user: '#2ecc71', bot: '#4e5d6c', input: '#4e5d6c' },
-    { primary: '#e74c3c', gradient: ['#34495e', '#23313f'], user: '#e74c3c', bot: '#5c6a79', input: '#5c6a79' },
-    { primary: '#00b894', gradient: ['#0984e3', '#00cec9'], user: '#00b894', bot: '#6c5ce7', input: '#2d3436' },
-    { primary: '#fd79a8', gradient: ['#6c5ce7', '#a29bfe'], user: '#fd79a8', bot: '#00b894', input: '#2d3436' },
-    { primary: '#ff7675', gradient: ['#d63031', '#e17055'], user: '#ff7675', bot: '#fdcb6e', input: '#2d3436' },
-    { primary: '#74b9ff', gradient: ['#0984e3', '#00cec9'], user: '#74b9ff', bot: '#a29bfe', input: '#2d3436' },
-    { primary: '#55efc4', gradient: ['#00b894', '#00cec9'], user: '#55efc4', bot: '#6c5ce7', input: '#2d3436' },
-    { primary: '#a29bfe', gradient: ['#6c5ce7', '#8e44ad'], user: '#a29bfe', bot: '#fd79a8', input: '#2d3436' },
-    { primary: '#81ecec', gradient: ['#00cec9', '#0984e3'], user: '#81ecec', bot: '#74b9ff', input: '#2d3436' },
-    { primary: '#ff6b6b', gradient: ['#48dbfb', '#0abde3'], user: '#ff6b6b', bot: '#1dd1a1', input: '#2e2e2e' },
-    { primary: '#feca57', gradient: ['#ff9f43', '#ee5253'], user: '#feca57', bot: '#10ac84', input: '#2e2e2e' },
-    { primary: '#48dbfb', gradient: ['#1dd1a1', '#00d2d3'], user: '#48dbfb', bot: '#ff6b6b', input: '#2e2e2e' },
-    { primary: '#5f27cd', gradient: ['#341f97', '#222f3e'], user: '#5f27cd', bot: '#c8d6e5', input: '#2e2e2e' },
-    { primary: '#c8d6e5', gradient: ['#8395a7', '#576574'], user: '#c8d6e5', bot: '#222f3e', input: '#2e2e2e' },
-    { primary: '#222f3e', gradient: ['#1e272e', '#0f1418'], user: '#222f3e', bot: '#8395a7', input: '#2e2e2e' },
+    // --- Professional & Muted Palettes ---
+    { primary: '#5dade2', gradient: ['#2c3e50', '#1a2531'], user: '#5dade2', bot: '#4e5d6c', input: '#4e5d6c', text: '#FFFFFF' },
+    { primary: '#48c9b0', gradient: ['#23313f', '#34495e'], user: '#48c9b0', bot: '#5c6a79', input: '#5c6a79', text: '#FFFFFF' },
+    { primary: '#af7ac5', gradient: ['#2c3e50', '#1a2531'], user: '#af7ac5', bot: '#4e5d6c', input: '#4e5d6c', text: '#FFFFFF' },
+    { primary: '#e59866', gradient: ['#4a235a', '#2c3e50'], user: '#e59866', bot: '#5c6a79', input: '#5c6a79', text: '#FFFFFF' },
+    { primary: '#85c1e9', gradient: ['#154360', '#1a2531'], user: '#85c1e9', bot: '#2471a3', input: '#2471a3', text: '#FFFFFF' },
+    { primary: '#76d7c4', gradient: ['#148f77', '#0e6655'], user: '#76d7c4', bot: '#117864', input: '#0b5345', text: '#FFFFFF' },
+    { primary: '#a569bd', gradient: ['#2c3e50', '#4a235a'], user: '#a569bd', bot: '#5c6a79', input: '#5c6a79', text: '#FFFFFF' },
+    { primary: '#f7f9f9', gradient: ['#839192', '#5d6d7e'], user: '#34495e', bot: '#d0d3d4', input: '#d0d3d4', text: '#FFFFFF' },
+
+    // --- Vibrant & Energetic Palettes ---
+    { primary: '#f39c12', gradient: ['#d35400', '#873600'], user: '#f39c12', bot: '#e67e22', input: '#e67e22', text: '#FFFFFF' },
+    { primary: '#8e44ad', gradient: ['#2c003e', '#1a0022'], user: '#8e44ad', bot: '#4a235a', input: '#4a235a', text: '#FFFFFF' },
+    { primary: '#2980b9', gradient: ['#1a2531', '#0e1636'], user: '#2980b9', bot: '#34495e', input: '#34495e', text: '#FFFFFF' },
+    { primary: '#d35400', gradient: ['#3e2723', '#212121'], user: '#d35400', bot: '#6d4c41', input: '#6d4c41', text: '#FFFFFF' },
+    { primary: '#c0392b', gradient: ['#2c3e50', '#1b2631'], user: '#c0392b', bot: '#7b241c', input: '#7b241c', text: '#FFFFFF' },
+    { primary: '#16a085', gradient: ['#0e6251', '#0b5345'], user: '#16a085', bot: '#117864', input: '#117864', text: '#FFFFFF' },
+    { primary: '#27ae60', gradient: ['#145a32', '#186a3b'], user: '#27ae60', bot: '#1e8449', input: '#1e8449', text: '#FFFFFF' },
+    { primary: '#ff4b5c', gradient: ['#4b0008', '#2a0004'], user: '#ff4b5c', bot: '#a01221', input: '#a01221', text: '#FFFFFF' },
+
+    // --- Light & Airy Palettes ---
+    { primary: '#3498db', gradient: ['#ecf0f1', '#ffffff'], user: '#3498db', bot: '#bdc3c7', input: '#ecf0f1', text: '#1A1A1A' },
+    { primary: '#9b59b6', gradient: ['#f5f5f5', '#e8eaf6'], user: '#9b59b6', bot: '#d1c4e9', input: '#d1c4e9', text: '#1A1A1A' },
+    { primary: '#1abc9c', gradient: ['#e0f2f1', '#ffffff'], user: '#1abc9c', bot: '#b2dfdb', input: '#b2dfdb', text: '#1A1A1A' },
+    { primary: '#e74c3c', gradient: ['#fdebd0', '#fef9e7'], user: '#e74c3c', bot: '#fad7a0', input: '#fad7a0', text: '#1A1A1A' },
+    { primary: '#2ecc71', gradient: ['#e8f5e9', '#ffffff'], user: '#2ecc71', bot: '#c8e6c9', input: '#c8e6c9', text: '#1A1A1A' },
+    { primary: '#f39c12', gradient: ['#fff3e0', '#ffffff'], user: '#f39c12', bot: '#ffe0b2', input: '#ffe0b2', text: '#1A1A1A' },
+    { primary: '#7f8c8d', gradient: ['#eceff1', '#cfd8dc'], user: '#7f8c8d', bot: '#b0bec5', input: '#b0bec5', text: '#1A1A1A' },
+    { primary: '#ff8a65', gradient: ['#fff3e0', '#fbe9e7'], user: '#ff8a65', bot: '#ffccbc', input: '#ffccbc', text: '#1A1A1A' },
+
+    // --- Nature-Inspired Palettes ---
+    { primary: '#556b2f', gradient: ['#2e2e2e', '#1a1a1a'], user: '#556b2f', bot: '#4a4a4a', input: '#4a4a4a', text: '#FFFFFF' },
+    { primary: '#4682b4', gradient: ['#1c3a50', '#0f1f2b'], user: '#4682b4', bot: '#3a5f7e', input: '#3a5f7e', text: '#FFFFFF' },
+    { primary: '#b8860b', gradient: ['#3e2723', '#212121'], user: '#b8860b', bot: '#6d4c41', input: '#6d4c41', text: '#FFFFFF' },
+    { primary: '#2e8b57', gradient: ['#004d40', '#00251a'], user: '#2e8b57', bot: '#00695c', input: '#00695c', text: '#FFFFFF' },
+    { primary: '#8b4513', gradient: ['#261a0d', '#1a1107'], user: '#8b4513', bot: '#4e342e', input: '#4e342e', text: '#FFFFFF' },
+    { primary: '#9acd32', gradient: ['#33691e', '#1b5e20'], user: '#9acd32', bot: '#558b2f', input: '#558b2f', text: '#FFFFFF' },
+    { primary: '#00ced1', gradient: ['#00363a', '#001c1e'], user: '#00ced1', bot: '#006064', input: '#006064', text: '#FFFFFF' },
+    { primary: '#d2691e', gradient: ['#3e2723', '#2a1b16'], user: '#d2691e', bot: '#5d4037', input: '#5d4037', text: '#FFFFFF' },
+
+    // --- Monochromatic Palettes ---
+    { primary: '#81d4fa', gradient: ['#01579b', '#002f6c'], user: '#81d4fa', bot: '#0277bd', input: '#0277bd', text: '#FFFFFF' },
+    { primary: '#ef9a9a', gradient: ['#b71c1c', '#7f0000'], user: '#ef9a9a', bot: '#d32f2f', input: '#d32f2f', text: '#FFFFFF' },
+    { primary: '#a5d6a7', gradient: ['#1b5e20', '#003300'], user: '#a5d6a7', bot: '#388e3c', input: '#388e3c', text: '#FFFFFF' },
+    { primary: '#ce93d8', gradient: ['#4a148c', '#2c003e'], user: '#ce93d8', bot: '#7b1fa2', input: '#7b1fa2', text: '#FFFFFF' },
+    { primary: '#b0bec5', gradient: ['#263238', '#102027'], user: '#b0bec5', bot: '#455a64', input: '#455a64', text: '#FFFFFF' },
+    { primary: '#fff59d', gradient: ['#f57f17', '#c25e00'], user: '#fff59d', bot: '#fbc02d', input: '#fbc02d', text: '#1A1A1A' },
+    { primary: '#ffab91', gradient: ['#d84315', '#a31500'], user: '#ffab91', bot: '#f4511e', input: '#f4511e', text: '#FFFFFF' },
+    { primary: '#90a4ae', gradient: ['#fafafa', '#e0e0e0'], user: '#90a4ae', bot: '#cfd8dc', input: '#cfd8dc', text: '#1A1A1A' },
+
+    // --- Unique & Themed Palettes ---
+    { primary: '#ffd700', gradient: ['#1a1a1a', '#000000'], user: '#ffd700', bot: '#333333', input: '#333333', text: '#FFFFFF' },
+    { primary: '#00ffff', gradient: ['#263238', '#000a12'], user: '#00ffff', bot: '#37474f', input: '#37474f', text: '#FFFFFF' },
+    { primary: '#ff69b4', gradient: ['#3e001f', '#2a0015'], user: '#ff69b4', bot: '#880e4f', input: '#880e4f', text: '#FFFFFF' },
+    { primary: '#f08080', gradient: ['#2c3e50', '#1a2531'], user: '#f08080', bot: '#4e5d6c', input: '#4e5d6c', text: '#FFFFFF' },
+    { primary: '#40e0d0', gradient: ['#00251a', '#004d40'], user: '#40e0d0', bot: '#00796b', input: '#00796b', text: '#FFFFFF' },
+    { primary: '#fa8072', gradient: ['#faf3dd', '#fbe9e7'], user: '#fa8072', bot: '#ffccbc', input: '#ffccbc', text: '#1A1A1A' },
+    { primary: '#c71585', gradient: ['#ffffff', '#fce4ec'], user: '#c71585', bot: '#f8bbd0', input: '#f8bbd0', text: '#1A1A1A' },
+    { primary: '#6a5acd', gradient: ['#1a1a1a', '#0c0c2a'], user: '#6a5acd', bot: '#3949ab', input: '#3949ab', text: '#FFFFFF' },
+    { primary: '#deb887', gradient: ['#3e2723', '#2a1b16'], user: '#deb887', bot: '#5d4037', input: '#5d4037', text: '#FFFFFF' },
+    { primary: '#6495ed', gradient: ['#e3f2fd', '#bbdefb'], user: '#6495ed', bot: '#90caf9', input: '#90caf9', text: '#1A1A1A' },
+    { primary: '#ff7f50', gradient: ['#1f1f1f', '#000000'], user: '#ff7f50', bot: '#4e342e', input: '#4e342e', text: '#FFFFFF' },
+    { primary: '#bdb76b', gradient: ['#f5f5f5', '#e8eaf6'], user: '#bdb76b', bot: '#e6ee9c', input: '#e6ee9c', text: '#1A1A1A' },
 ];
 
 const getRandomTheme = () => colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
@@ -79,7 +121,6 @@ const Chatbot = () => {
     const flatListRef = useRef();
 
     useEffect(() => {
-        // ... useEffect logic remains the same
         setTheme(getRandomTheme());
         const fetchDataForAI = async () => {
             try {
@@ -138,13 +179,24 @@ const Chatbot = () => {
 
 
     const handleSend = async () => {
-        // ... handleSend logic remains the same
         if (input.trim().length === 0 || dataLoading) return;
         const userMessageText = input;
+        const command = userMessageText.trim().toLowerCase();
         setInput('');
         const currentUser = auth.currentUser;
 
-        if (userMessageText.trim().toLowerCase() === 'clear everything') {
+        // --- NEW: Command to close the app ---
+        if (command === 'close the app' || command === 'exit app' || command === 'quit') {
+            const closingMessage = { id: Date.now().toString(), text: "Certainly. Closing the app now. Goodbye!", sender: 'bot' };
+            setMessages(prev => [...prev, closingMessage]);
+            // Use a short delay to allow the message to render before the app closes
+            setTimeout(() => {
+                BackHandler.exitApp(); // This will only work on Android
+            }, 1000);
+            return;
+        }
+
+        if (command === 'clear everything') {
             const resetMessage = { id: '1', text: 'Your chat history has been cleared. How can I help you?', sender: 'bot' };
             if (currentUser) {
                 setLoading(true);
@@ -184,18 +236,15 @@ const Chatbot = () => {
                 1.  **Prioritize Knowledge Base:** For questions related to UNISOL, courses, developers, or how the app works, you MUST use the provided knowledge base.
                 2.  **Use General Knowledge:** For questions not related to UNISOL, use your own extensive knowledge.
                 3.  **Be Conversational & Context-Aware:** Remember previous messages to answer follow-up questions.
-                **Navigation Commands:** If the user asks to navigate, respond with ONLY a JSON object in this format: \`{"action": "navigate", "route": "/path/to/screen"}\`.
+                4.  **Navigation Commands:** If a navigation action is required, your ENTIRE response must be ONLY the JSON object and nothing else.
                  - **General Pages:**
                    - Home -> "/(tabs)/Home"
                    - My Classes -> "/(tabs)/Class"
                    - Profile -> "/(tabs)/Profile"
                    - Cart -> "/(tabs)/Cart"
-                   - Search -> "/Search"
-                   - Developer -> "/Developer"
-                   - Contact Us -> "/ContactUs"
                  - **Specific Course Pages:**
-                   - To view details before buying: If the user asks to "view details" or "see the page for" a course by name or course code, find its ID from the course data and format the route as "/ViewDetails/[id]".
-                   
+                   - To view details before buying: format the route as "/ViewDetails/[id]".
+                   - To watch or open a course: your ONLY action is to navigate them to the main class page using this exact route: \`{"action": "navigate", "route": "/(tabs)/Class"}\`.
                 5.  **Formatting:** Use Markdown. **Bold** important terms.
                 `}]
             };
@@ -209,7 +258,7 @@ const Chatbot = () => {
                 contents: conversationHistoryForAPI,
                 systemInstruction: systemInstruction,
              };
-            const apiKey = "AIzaSyAc7leNWBA-cCjAz6PjejX0o6bOZfIdu7o"; // Replace with your actual key
+            const apiKey = "AIzaSyAc7leNWBA-cCjAz6PjejX0o6bOZfIdu7o";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
             const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
@@ -226,28 +275,9 @@ const Chatbot = () => {
                 if (jsonMatch && jsonMatch[0]) {
                     try {
                         const responseJson = JSON.parse(jsonMatch[0]);
-                        isNavigating = true; 
-
                         if (responseJson.action === 'navigate' && responseJson.route) {
-                            if (responseJson.route.includes('/EnrollCourse/')) {
-                                const courseId = responseJson.route.split('/').pop();
-                             
-
-                               
-                                {
-                                    const redirectRoute = `/ViewDetails/${courseId}`;
-                                    const botMessage = "It looks like you haven't purchased that course yet. Here are the details so you can enroll!";
-                                    
-                                    if (currentUser) {
-                                        await addDoc(collection(db, "users", currentUser.uid, "chatMessages"), { text: botMessage, sender: 'bot', createdAt: serverTimestamp() });
-                                    } else {
-                                        setMessages(prev => [...prev, { id: Date.now().toString(), text: botMessage, sender: 'bot' }]);
-                                    }
-                                    router.push(redirectRoute);
-                                }
-                            } else {
-                                router.push(responseJson.route);
-                            }
+                            isNavigating = true; 
+                            router.push(responseJson.route);
                         }
                     } catch (e) {
                         isNavigating = false;
@@ -279,19 +309,18 @@ const Chatbot = () => {
     return (
         <LinearGradient style={{ flex: 1 }} colors={theme.gradient}>
             <SafeAreaView style={styles.container}>
-                {/* --- KEYBOARD AVOIDING VIEW FIX STARTS HERE --- */}
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => router.back()} style={styles.headerButton}>
-                        <MaterialCommunityIcons name="arrow-left" size={28} color='white' />
-                    </TouchableOpacity>
-                    <Text style={[styles.header, { color: 'white' }]}>UNISOL Assistant</Text>
-                    <View style={styles.headerButton} />
-                </View>
-
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
                   
                 >
+                    <View style={styles.headerContainer}>
+                        <TouchableOpacity onPress={() => router.back()} style={styles.headerButton}>
+                            <MaterialCommunityIcons name="arrow-left" size={28} color={theme.primary} />
+                        </TouchableOpacity>
+                        <Text style={[styles.header, { color: theme.primary }]}>UNISOL Assistant</Text>
+                        <View style={styles.headerButton} />
+                    </View>
+                    
                     <View style={styles.chatContainer}>
                         <FlatList
                             ref={flatListRef}
@@ -311,7 +340,7 @@ const Chatbot = () => {
                             onChangeText={setInput}
                             placeholder={dataLoading ? "Learning about UNISOL..." : "Ask about a course..."}
                             placeholderTextColor={theme.primary + '80'}
-                            style={[styles.input, { backgroundColor: theme.input, color: 'white' }]}
+                            style={[styles.input, { backgroundColor: theme.input, color: theme.text }]}
                             editable={!dataLoading}
                         />
                         <TouchableOpacity
@@ -323,7 +352,6 @@ const Chatbot = () => {
                         </TouchableOpacity>
                     </View>
                 </KeyboardAvoidingView>
-                {/* --- KEYBOARD AVOIDING VIEW FIX ENDS HERE --- */}
             </SafeAreaView>
         </LinearGradient>
     );
@@ -345,7 +373,7 @@ const styles = StyleSheet.create({
         width: 40,
     },
     header: {
-        fontSize: 28,
+        fontSize: 24,
         fontFamily: 'Cinzel-Bold',
     },
     chatContainer: {
