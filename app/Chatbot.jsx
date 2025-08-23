@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 // --- Firebase Imports ---
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../config/FireBAseConfig';
-import{ApiKey} from '../config/ApiKey'
+import { ApiKey } from '../config/ApiKey'
 import { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, getDocs, deleteDoc, writeBatch } from 'firebase/firestore';
 
 // --- Color Palettes ---
@@ -25,7 +25,7 @@ const colorPalettes = [
     { primary: '#FF9F45', gradient: ['#2E232F', '#1C161D'], user: '#4A3A4C', bot: '#675269', input: '#4A3A4C', text: '#FFFFFF' },
     { primary: '#45A29E', gradient: ['#0B0C10', '#0B0C10'], user: '#1F2833', bot: '#2C3A47', input: '#1F2833', text: '#FFFFFF' },
     { primary: '#F2F2F2', gradient: ['#0D0D0D', '#0D0D0D'], user: '#242424', bot: '#3D3D3D', input: '#242424', text: '#FFFFFF' },
-    
+
     // --- High-Contrast Light Themes ---
     { primary: '#0052D4', gradient: ['#F5F7FA', '#E8EEF2'], user: '#FFFFFF', bot: '#E8EEF2', input: '#FFFFFF', text: '#1A1A1A' },
     { primary: '#D42E7A', gradient: ['#FCEFF6', '#F8E7F0'], user: '#FFFFFF', bot: '#FCEFF6', input: '#FFFFFF', text: '#1A1A1A' },
@@ -45,7 +45,7 @@ const getRandomTheme = () => colorPalettes[Math.floor(Math.random() * colorPalet
 const MessageBubble = React.memo(({ item, theme }) => {
     const isBot = item.sender === 'bot';
     // Use the new theme.text property for the text color, defaulting to white.
-    const textColor = theme.text || '#FFFFFF'; 
+    const textColor = theme.text || '#FFFFFF';
 
     const renderFormattedText = (text) => {
         const parts = text.split('**');
@@ -54,9 +54,9 @@ const MessageBubble = React.memo(({ item, theme }) => {
             <Text style={[styles.messageText, { color: textColor }]}>
                 {parts.map((part, index) => (
                     index % 2 === 1 ?
-                    // The primary color is now only for bolded highlights
-                    <Text key={index} style={{ fontFamily: 'JosefinSans-Bold', color: theme.primary }}>{part}</Text> :
-                    part
+                        // The primary color is now only for bolded highlights
+                        <Text key={index} style={{ fontFamily: 'JosefinSans-Bold', color: theme.primary }}>{part}</Text> :
+                        part
                 ))}
             </Text>
         );
@@ -224,9 +224,11 @@ const Chatbot = () => {
                    - My Classes -> "/(tabs)/Class"
                    - Profile -> "/(tabs)/Profile"
                    - Cart -> "/(tabs)/Cart"
-                    - Developer -> "/Developer"
-                  - Contact Us -> "/ContactUs"
-                 - **Specific Course Pages:**
+                   - Search -> "/Search"
+                   - Developer -> "/Developer"
+                   - Contact Us -> "/ContactUs"
+                   -Browse Courses -> "/BrowseCourses"
+                   - **Specific Course Pages:**
                    - To view details before buying: format the route as "/ViewDetails/[id]".
                    - To watch or open a course: your ONLY action is to navigate them to the main class page using this exact route: \`{"action": "navigate", "route": "/(tabs)/Class"}\`.
                 5.  **Formatting:** Use Markdown. **Bold** important terms.

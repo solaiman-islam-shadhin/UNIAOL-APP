@@ -36,10 +36,10 @@ export default function RootLayout() {
     <AuthProvider>
       <CartProvider>
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />;
+          <Stack.Screen name="index" options={{ unmountOnBlur: false }} />;
           <Stack.Screen name="Login" />;
           <Stack.Screen name="SignUp" />;
-          <Stack.Screen name="(tabs)" />;
+          <Stack.Screen name="(tabs)" options={{ lazy: false }} />;
         </Stack>
         <Toast config={toastConfig} />
       </CartProvider>

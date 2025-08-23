@@ -10,7 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../config/FireBAseConfig'; 
 
-const router = useRouter();
+
 
 const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -80,7 +80,7 @@ const Search = () => {
   // --- State for Firestore data and loading ---
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-
+const router = useRouter();
   // --- Fetch data from Firestore on component mount ---
   useEffect(() => {
     const fetchCourses = async () => {
@@ -94,7 +94,7 @@ const Search = () => {
         }));
         setCourses(coursesList);
       } catch (error) {
-        console.error("Error fetching courses for search: ", error);
+       alert(error)
       } finally {
         setLoading(false);
       }

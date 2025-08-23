@@ -6,7 +6,7 @@ import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import Toast from 'react-native-toast-message';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-import {  onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../../config/FireBAseConfig';
 import { useCart } from '../context/CartContext';
 import FakePayment from '../../components/FakePayment';
@@ -25,12 +25,12 @@ export default function id() {
     const [loading, setLoading] = useState(true);
     const [isExpanded, setIsExpanded] = useState(false);
     const [isPaymentModalVisible, setPaymentModalVisible] = useState(false);
-    const [currentUser, setCurrentUser] = useState(null); 
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
-        
+
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setCurrentUser(user); 
+            setCurrentUser(user);
         });
 
         const fetchCourseData = async () => {
@@ -46,7 +46,7 @@ export default function id() {
                     setCourse({ id: courseDocSnap.id, ...courseDocSnap.data() });
                 }
             } catch (error) {
-               
+
             } finally {
                 setLoading(false);
             }
@@ -88,12 +88,12 @@ export default function id() {
         try {
             const cartRef = doc(db, "users", currentUser.uid, "cart", course.id);
             await setDoc(cartRef, { ...course });
-            addToCart(course); 
+            addToCart(course);
             Toast.show({
-                 type: 'success',
-                  text1: 'Item Added Successfully..',
-                  visibilityTime: 1000
-                 });
+                type: 'success',
+                text1: 'Item Added Successfully..',
+                visibilityTime: 1000
+            });
         } catch (error) {
             Alert.alert("Error", "Could not add item to cart.");
         }
@@ -154,7 +154,7 @@ export default function id() {
                                 ) : (
                                     <View className="flex-row justify-between items-center gap-4 mt-4">
                                         {isInCart ? (
-                                            <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 bg-[#151527] py-3 rounded-xl"><Text  style={styles.Btn_text} className="text-center  text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
+                                            <TouchableOpacity onPress={() => router.push('/(tabs)/Cart')} className="flex-1 bg-[#151527] py-3 rounded-xl"><Text style={styles.Btn_text} className="text-center  text-[#ff8353] text-base">View Cart</Text></TouchableOpacity>
                                         ) : (
                                             <TouchableOpacity onPress={handleAddToCart} className="flex-1  bg-[#151527] py-3 rounded-xl"><Text style={styles.Btn_text} className="text-center  text-[#ff8353] text-base">Add to Cart</Text></TouchableOpacity>
                                         )}
@@ -169,12 +169,12 @@ export default function id() {
                         </View>
                     </Animated.View>
                 </ScrollView>
-                        <TouchableOpacity
-          onPress={() => router.push('/Chatbot')}
-          className="relative  "
-        >
-          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
-        </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => router.push('/Chatbot')}
+                    className="relative  "
+                >
+                    <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+                </TouchableOpacity>
             </LinearGradient>
 
             <Modal visible={isPaymentModalVisible} animationType="slide" onRequestClose={() => setPaymentModalVisible(false)}>
