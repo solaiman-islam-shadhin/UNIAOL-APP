@@ -245,16 +245,21 @@ const Home = () => {
 
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 {/* Header with User Info */}
-                <View style={styles.header} className='mt-2'>
-                    <View style={styles.userInfoContainer}>
-                        {auth.currentUser && (
-                            userImage ? (
-                                <Image source={{ uri: userImage }} style={styles.profileImage} />
-                            ) : (
-                                <Ionicons name="person-circle-outline" size={40} color="#ff8353" style={styles.avatarIcon} />
-                            )
-                        )}
-                        <Text style={styles.Home_text} numberOfLines={1}>{displayName}</Text>
+                <View className='mt-4 flex flex-row border-b-2 pb-3 border-[#ff8353]  w-full justify-between items-center'>
+                    <View>
+                        <Pressable className='flex-row items-center justify-between' onPress={() => router.push("Profile")} >
+                            <View style={styles.userInfoContainer}>
+                                {auth.currentUser && (
+                                    userImage ? (
+                                        <Image source={{ uri: userImage }} style={styles.profileImage} />
+                                    ) : (
+                                        <Ionicons name="person-circle-outline" size={40} color="#ff8353" style={styles.avatarIcon} />
+                                    )
+                                )}
+                               
+                            </View>
+                             <Text style={styles.Home_text} numberOfLines={1}>{displayName}</Text>
+                        </Pressable>
                     </View>
                     <View style={styles.headerIcons}>
                         <TouchableOpacity onPress={() => router.push("Search")}>
@@ -317,7 +322,7 @@ const Home = () => {
                     </TouchableOpacity>
                 </ScrollView>
                 <TouchableOpacity onPress={() => router.push('/Chatbot')} className="absolute bottom-24 right-5 bg-[#151527] p-4 rounded-full">
-                    <Ionicons  name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+                    <Ionicons name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
                 </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
@@ -337,27 +342,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'NataSans-SemiBold',
     },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: 12,
-        borderBottomWidth: 2,
-        borderBottomColor: '#ff8353',
-    },
+
     headerIcons: {
         flexDirection: 'row',
         gap: 15,
     },
     userInfoContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        flex: 1,
+       
     },
     profileImage: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: 50,
+        height: 50,
+        borderRadius: 100,
         marginRight: 10,
         borderWidth: 1.5,
         borderColor: '#ff8353',
