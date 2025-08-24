@@ -122,7 +122,7 @@ export default function Cart() {
                 <View style={styles.container}>
                     <View className="flex-row items-center gap-3 mt-5 mb-6">
                         <TouchableOpacity className='' onPress={() => router.back()}>
-                            <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
+                            <Ionicons name="arrow-back" size={30} color="#ff8353" />
                         </TouchableOpacity>
                         <Text style={styles.title} className="text-[#ff8353]">Your Cart 🛒</Text>
                     </View>

@@ -8,10 +8,7 @@ const _layout = () => {
             headerShown: false
             
           
-        }}><Tabs.Screen
-  name="index"
-  options={{ lazy: false }}   // ✅ don’t unmount when leaving
-/>
+        }}>
             <Tabs.Screen name="Home" options={{ unmountOnBlur: false }} />
             <Tabs.Screen name="Class" options={{ unmountOnBlur: false }} />
             <Tabs.Screen name="Cart" options={{ unmountOnBlur: false }} />

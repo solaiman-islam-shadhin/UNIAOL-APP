@@ -44,7 +44,7 @@ export default function Developer() {
                 <View className='mt-10 '>
                     <View className="flex-row items-center gap-3 mb-5 ">
                         <TouchableOpacity className='' onPress={() => router.back()}>
-                            <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
+                            <Ionicons name="arrow-back" size={30} color="#ff8353" />
                         </TouchableOpacity>
                         <Text style={styles.header} className="text-[#ff8353]">Our Team</Text>
                     </View>

@@ -71,10 +71,10 @@ const BrowseCourses = () => {
           <Text style={styles.Home_text}>UNISOL</Text>
           <View style={styles.headerIcons}>
             <TouchableOpacity onPress={() => router.push("Search")}>
-              <Feather name="search" size={24} color="#ff8353" />
+              <Feather name="search" size={28} color="#ff8353" />
             </TouchableOpacity>
            <TouchableOpacity className='' onPress={() => router.back()}>
-          <MaterialCommunityIcons name="backburger" size={26} color="#ff8353" />
+         <Ionicons name="arrow-back" size={28} color="#ff8353" />
         </TouchableOpacity>
           </View>
         </View>

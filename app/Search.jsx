@@ -120,7 +120,7 @@ const router = useRouter();
     <SafeAreaView className='flex-1 px-3 bg-[#151527]'>
       <View className='flex-row mt-6 pb-3 items-center mb-3 gap-3'>
         <TouchableOpacity className='' onPress={() => router.back()}>
-          <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
+         <Ionicons name="arrow-back" size={30} color="#ff8353" />
         </TouchableOpacity>
         <Text className='text-4xl text-[#ff8353]' style={styles.headerFont}>Course Catalog</Text>
       </View>

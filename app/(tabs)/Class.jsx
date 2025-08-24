@@ -78,7 +78,7 @@ export default function Class() {
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <View className="flex-row items-center gap-3 mt-5 mb-6">
                     <TouchableOpacity className='relative' onPress={() => router.back()}>
-                        <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
+                       <Ionicons name="arrow-back" size={30} color="#ff8353" />
                     </TouchableOpacity>
                     <Text style={styles.title} className="text-[#ff8353]">My Classes</Text>
                 </View>
@@ -102,7 +102,7 @@ export default function Class() {
                         ListEmptyComponent={
                             <View className="items-center mt-20">
                                
-                                <Text style={styles.emptyText} className="text-white -mt-5">You haven't purchased any courses yet.</Text>
+                                <Text style={styles.emptyText} className="text-white -mt-5">You have not purchased any courses yet.</Text>
                             </View>
                         }
                     />

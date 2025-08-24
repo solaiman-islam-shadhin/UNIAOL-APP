@@ -46,7 +46,7 @@ export default function ContactUs() {
                 <View className='mt-12'>
                     <View className="flex-row items-center gap-3 ">
                         <TouchableOpacity className='' onPress={() => router.back()}>
-                            <MaterialCommunityIcons name="backburger" size={32} color="#ff8353" />
+                           <Ionicons name="arrow-back" size={30} color="#ff8353" />
                         </TouchableOpacity>
                         <Text style={styles.header} className="text-[#ff8353]">Contact Us</Text>
                     </View>
