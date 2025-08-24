@@ -42,7 +42,7 @@ export default function Profile() {
         try {
             await signOut(auth);
             setUser(null); // Clear user state immediately
-            router.replace('/');
+            router.replace('/Login');
         } catch (error) {
             Alert.alert("Logout Failed", "An error occurred while trying to log out.");
         }

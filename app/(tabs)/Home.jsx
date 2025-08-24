@@ -19,7 +19,7 @@ const Home = () => {
     const router = useRouter();
     const navigation = useNavigation();
 
-    // State for dynamic user info
+    // Set initial state to the guest view
     const [displayName, setDisplayName] = useState('UNISOL');
     const [userImage, setUserImage] = useState(null);
 
@@ -33,9 +33,6 @@ const Home = () => {
 
     const [exitModalVisible, setExitModalVisible] = useState(false);
 
-    // ## DATA FETCHING LOGIC ##
-
-    // Fetches the user's profile details from Firestore
     const fetchUserData = useCallback(async () => {
         const user = auth.currentUser;
         if (user) {
@@ -53,7 +50,6 @@ const Home = () => {
         }
     }, []);
 
-    // Fetches the course data from Firestore
     const fetchCourseData = useCallback(async () => {
         try {
             const querySnapshot = await getDocs(collection(db, "CourseData"));
@@ -67,17 +63,12 @@ const Home = () => {
         }
     }, []);
 
-    // Combined function to refresh all data on the screen
     const refreshAllData = useCallback(async () => {
         await Promise.all([fetchCourseData(), fetchUserData()]);
     }, [fetchCourseData, fetchUserData]);
 
-    // ## HOOKS ##
-
-    // Use the custom hook to manage pull-to-refresh state
     const { isRefreshing, onRefresh } = useRefresh(refreshAllData);
 
-    // Effect for the initial load of all data
     useEffect(() => {
         const initialLoad = async () => {
             setLoading(true);
@@ -87,13 +78,11 @@ const Home = () => {
         initialLoad();
     }, [refreshAllData]);
 
-    // Effect to listen for login/logout changes
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                fetchUserData(); // Fetch data when a user logs in
+                fetchUserData();
             } else {
-                // Reset to guest state on logout
                 setDisplayName('UNISOL');
                 setUserImage(null);
             }
@@ -101,32 +90,24 @@ const Home = () => {
         return () => unsubscribe();
     }, [fetchUserData]);
 
-    // Back handler for exit modal
     useFocusEffect(
         useCallback(() => {
+            // This will refetch user data every time the screen comes into focus
+            fetchUserData(); 
+            
             const onBackPress = () => {
                 setExitModalVisible(true);
                 return true;
             };
             const backHandler = BackHandler.addEventListener("hardwareBackPress", onBackPress);
             return () => backHandler.remove();
-        }, [])
+        }, [fetchUserData])
     );
 
-    // Memoized data for FlatLists
-    const filterData = useMemo(() => {
-        return [...slides]
-            .filter((item) => item.sold_course > 2500)
-            .sort((a, b) => b.sold_course - a.sold_course);
-    }, [slides]);
-
-    const discountData = useMemo(() => {
-        return [...slides]
-            .filter((item) => item.price > 2000)
-            .sort((a, b) => a.price - b.price);
-    }, [slides]);
-
-    // Effects for carousels...
+    const filterData = useMemo(() => slides.filter(item => item.sold_course > 2500).sort((a, b) => b.sold_course - a.sold_course), [slides]);
+    const discountData = useMemo(() => slides.filter(item => item.price > 2000).sort((a, b) => a.price - b.price), [slides]);
+    
+    // Autoplaying carousel logic
     useEffect(() => {
         if (filterData.length > 0) {
             setLoopedFilterData([...filterData, filterData[0]]);
@@ -153,26 +134,36 @@ const Home = () => {
     useEffect(() => {
         if (filterData.length === 0) return;
         const timer = setInterval(() => {
-            autoplayIndex.current = (autoplayIndex.current + 1) % (filterData.length + 1);
-            flatListRef.current?.scrollToOffset({
-                offset: autoplayIndex.current * fullCardWidth,
-                animated: true,
-            });
+            autoplayIndex.current = autoplayIndex.current + 1;
+            if (autoplayIndex.current >= loopedFilterData.length) {
+                autoplayIndex.current = 0;
+                flatListRef.current?.scrollToOffset({ offset: 0, animated: false });
+            } else {
+                flatListRef.current?.scrollToOffset({
+                    offset: autoplayIndex.current * fullCardWidth,
+                    animated: true,
+                });
+            }
         }, 3000);
         return () => clearInterval(timer);
-    }, [filterData, fullCardWidth]);
+    }, [filterData, loopedFilterData.length, fullCardWidth]);
 
     useEffect(() => {
         if (discountData.length === 0) return;
         const timer = setInterval(() => {
-            discountAutoplayIndex.current = (discountAutoplayIndex.current + 1) % (discountData.length + 1);
-            discountFlatListRef.current?.scrollToOffset({
-                offset: discountAutoplayIndex.current * fullCardWidth,
-                animated: true,
-            });
+            discountAutoplayIndex.current = discountAutoplayIndex.current + 1;
+             if (discountAutoplayIndex.current >= loopedDiscountData.length) {
+                discountAutoplayIndex.current = 0;
+                discountFlatListRef.current?.scrollToOffset({ offset: 0, animated: false });
+            } else {
+                discountFlatListRef.current?.scrollToOffset({
+                    offset: discountAutoplayIndex.current * fullCardWidth,
+                    animated: true,
+                });
+            }
         }, 3500);
         return () => clearInterval(timer);
-    }, [discountData, fullCardWidth]);
+    }, [discountData, loopedDiscountData.length, fullCardWidth]);
 
 
     const HorizontalCard = ({ item }) => (
@@ -244,23 +235,19 @@ const Home = () => {
             </Modal>
 
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                {/* Header with User Info */}
-                <View className='mt-4 flex flex-row border-b-2 pb-3 border-[#ff8353]  w-full justify-between items-center'>
-                    <View>
-                        <Pressable className='flex-row items-center justify-between' onPress={() => router.push("Profile")} >
-                            <View style={styles.userInfoContainer}>
-                                {auth.currentUser && (
-                                    userImage ? (
-                                        <Image source={{ uri: userImage }} style={styles.profileImage} />
-                                    ) : (
-                                        <Ionicons name="person-circle-outline" size={40} color="#ff8353" style={styles.avatarIcon} />
-                                    )
-                                )}
-                               
-                            </View>
-                             <Text style={styles.Home_text} numberOfLines={1}>{displayName}</Text>
-                        </Pressable>
-                    </View>
+                
+                <View style={styles.header}>
+                    <Pressable style={styles.headerPressable} onPress={() => router.push("Profile")}>
+                        {displayName !== 'UNISOL'  ? (
+                                <Image source={{ uri: userImage }} style={styles.profileImage} />
+                            ) : (
+                                <Ionicons name="person-circle-outline" size={50} color="#ff8353" style={styles.avatarIcon} />
+                            )
+                        }
+                        <Text style={displayName === 'UNISOL' ? styles.Home_text_Guest : styles.Home_text} numberOfLines={1}>
+                            {displayName}
+                        </Text>
+                    </Pressable>
                     <View style={styles.headerIcons}>
                         <TouchableOpacity onPress={() => router.push("Search")}>
                             <Feather name="search" size={28} color="#ff8353" />
@@ -271,7 +258,6 @@ const Home = () => {
                     </View>
                 </View>
 
-                {/* Main Scrollable Content */}
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     refreshControl={
@@ -330,100 +316,39 @@ const Home = () => {
 }
 
 const styles = StyleSheet.create({
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#151527',
-    },
-    loadingText: {
-        marginTop: 10,
-        color: '#ff8353',
-        fontSize: 16,
-        fontFamily: 'NataSans-SemiBold',
-    },
-
-    headerIcons: {
+    loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#151527' },
+    loadingText: { marginTop: 10, color: '#ff8353', fontSize: 16, fontFamily: 'NataSans-SemiBold' },
+    header: {
+        marginTop: 16,
         flexDirection: 'row',
-        gap: 15,
-    },
-    userInfoContainer: {
-       
-    },
-    profileImage: {
-        width: 50,
-        height: 50,
-        borderRadius: 100,
-        marginRight: 10,
-        borderWidth: 1.5,
+        borderBottomWidth: 2,
+        paddingBottom: 12,
         borderColor: '#ff8353',
-    },
-    avatarIcon: {
-        marginRight: 10,
-    },
-    Home_text: {
-        fontSize: 30,
-        fontFamily: 'NataSans-SemiBold',
-        color: "#ff8353",
-        flexShrink: 1,
-    },
-    Home_text_Guest: {
-        fontSize: 30,
-        fontFamily: 'Cinzel-SemiBold',
-        color: "#ff8353",
-        flexShrink: 1,
-    },
-    Hero_text_1: {
-        fontFamily: 'NataSans-Bold',
-    },
-    Hero_text: {
-        fontFamily: 'NataSans-Regular',
-    },
-    Btn_text: {
-        fontFamily: 'NataSans-SemiBold',
-    },
-    Btn_text_price: {
-        fontFamily: 'NataSans-Bold',
-    },
-    sectionTitle: {
-        fontFamily: 'NataSans-SemiBold',
-        fontSize: 26,
-    },
-    horizontalCard: {
-        width: 340,
-        height: 315,
-        borderRadius: 10,
-        marginRight: 16,
-    },
-    cardContent: {
-        marginTop: 8,
-        borderTopWidth: 2,
-        borderStyle: 'solid',
-        borderColor: '#ff8353',
-        paddingTop: 8,
-    },
-    cardTitle: {
-        color: 'white',
-        fontSize: 18,
-    },
-    cardSubtitle: {
-        color: 'white',
-        fontSize: 16,
-        opacity: 0.8,
-    },
-    horizontalImage: {
         width: '100%',
-        height: 200,
-        borderRadius: 8,
-        marginBottom: 8,
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
-    modalBackdrop: {
-        flex: 1,
-        justifyContent: 'center',
+    headerPressable: {
+        flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'rgba(0,0,0,0.6)'
+        flex: 1,
     },
-
+    headerIcons: { flexDirection: 'row', gap: 15 },
+    profileImage: { width: 50, height: 50, borderRadius: 25, marginRight: 10, borderWidth: 1.5, borderColor: '#ff8353' },
+    avatarIcon: { marginRight: 10 },
+    Home_text: { fontSize: 30, fontFamily: 'NataSans-SemiBold', color: "#ff8353", flexShrink: 1 },
+    Home_text_Guest: { fontSize: 30, fontFamily: 'Cinzel-SemiBold', color: "#ff8353", flexShrink: 1 },
+    Hero_text_1: { fontFamily: 'NataSans-Bold' },
+    Hero_text: { fontFamily: 'NataSans-Regular' },
+    Btn_text: { fontFamily: 'NataSans-SemiBold' },
+    Btn_text_price: { fontFamily: 'NataSans-Bold' },
+    sectionTitle: { fontFamily: 'NataSans-SemiBold', fontSize: 26 },
+    horizontalCard: { width: 340, height: 260, borderRadius: 10, marginRight: 16 },
+    cardContent: { marginTop: 8, borderTopWidth: 2, borderStyle: 'solid', borderColor: '#ff8353', paddingTop: 8 },
+    cardTitle: { color: 'white', fontSize: 18 },
+    cardSubtitle: { color: 'white', fontSize: 16, opacity: 0.8 },
+    horizontalImage: { width: '100%', height: 150, borderRadius: 8, marginBottom: 8 },
+    modalBackdrop: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.6)' },
 });
 
 export default Home;

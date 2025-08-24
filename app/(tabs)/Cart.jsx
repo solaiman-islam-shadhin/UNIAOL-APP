@@ -172,11 +172,11 @@ export default function Cart() {
                         </>
                     )}
                 </View>
-                        <TouchableOpacity
+                         <TouchableOpacity
           onPress={() => router.push('/Chatbot')}
-          className="absolute top-4 right-4 "
+          className="relative flex-1 "
         >
-          <Ionicons className=' bg-[#ff8353] p-2 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#151527" />
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
             </LinearGradient>
 
