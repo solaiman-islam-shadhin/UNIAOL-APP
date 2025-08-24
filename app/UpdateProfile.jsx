@@ -13,6 +13,9 @@ import * as ImagePicker from 'expo-image-picker';
 import { decode } from 'base64-arraybuffer';
 import { supabase } from '../config/SupabaseConfig'; // Import your new Supabase client
 
+// --- IMPORTS FOR ANIMATIONS ---
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, withDelay } from 'react-native-reanimated';
+
 export default function UpdateProfile() {
     const router = useRouter();
     const [user, setUser] = useState(null);
@@ -27,14 +30,91 @@ export default function UpdateProfile() {
     const [imageUri, setImageUri] = useState(null);
     const [imageBase64, setImageBase64] = useState(null);
 
-    // --- NEW: State for password visibility ---
     const [secureText, setSecureText] = useState({
-        current: true,
-        new: true,
-        confirm: true,
+        current: true, new: true, confirm: true,
     });
 
+    // --- ANIMATION VALUES ---
+    // Header Animation
+    const headerOpacity = useSharedValue(0);
+    const headerTranslateY = useSharedValue(-30);
+    const headerStyle = useAnimatedStyle(() => ({
+        opacity: headerOpacity.value,
+        transform: [{ translateY: headerTranslateY.value }],
+    }));
+
+    // Image Picker Animation
+    const imagePickerOpacity = useSharedValue(0);
+    const imagePickerTranslateY = useSharedValue(30);
+    const imagePickerStyle = useAnimatedStyle(() => ({
+        opacity: imagePickerOpacity.value,
+        transform: [{ translateY: imagePickerTranslateY.value }],
+    }));
+
+    // Personal Details Animation
+    const personalDetailsOpacity = useSharedValue(0);
+    const personalDetailsTranslateY = useSharedValue(30);
+    const personalDetailsStyle = useAnimatedStyle(() => ({
+        opacity: personalDetailsOpacity.value,
+        transform: [{ translateY: personalDetailsTranslateY.value }],
+    }));
+    
+    // Academic Details Animation
+    const academicDetailsOpacity = useSharedValue(0);
+    const academicDetailsTranslateY = useSharedValue(30);
+    const academicDetailsStyle = useAnimatedStyle(() => ({
+        opacity: academicDetailsOpacity.value,
+        transform: [{ translateY: academicDetailsTranslateY.value }],
+    }));
+
+    // Save Button Animation
+    const saveButtonOpacity = useSharedValue(0);
+    const saveButtonTranslateY = useSharedValue(30);
+    const saveButtonStyle = useAnimatedStyle(() => ({
+        opacity: saveButtonOpacity.value,
+        transform: [{ translateY: saveButtonTranslateY.value }],
+    }));
+    
+    // Password Form Animation
+    const passwordFormOpacity = useSharedValue(0);
+    const passwordFormTranslateY = useSharedValue(30);
+    const passwordFormStyle = useAnimatedStyle(() => ({
+        opacity: passwordFormOpacity.value,
+        transform: [{ translateY: passwordFormTranslateY.value }],
+    }));
+    
+    // Update Password Button Animation
+    const updatePasswordButtonOpacity = useSharedValue(0);
+    const updatePasswordButtonTranslateY = useSharedValue(30);
+    const updatePasswordButtonStyle = useAnimatedStyle(() => ({
+        opacity: updatePasswordButtonOpacity.value,
+        transform: [{ translateY: updatePasswordButtonTranslateY.value }],
+    }));
+
+
     useEffect(() => {
+        // Trigger all animations with a stagger
+        headerOpacity.value = withTiming(1, { duration: 500 });
+        headerTranslateY.value = withTiming(0, { duration: 500 });
+
+        imagePickerOpacity.value = withDelay(100, withTiming(1, { duration: 500 }));
+        imagePickerTranslateY.value = withDelay(100, withTiming(0, { duration: 500 }));
+
+        personalDetailsOpacity.value = withDelay(200, withTiming(1, { duration: 500 }));
+        personalDetailsTranslateY.value = withDelay(200, withTiming(0, { duration: 500 }));
+        
+        academicDetailsOpacity.value = withDelay(300, withTiming(1, { duration: 500 }));
+        academicDetailsTranslateY.value = withDelay(300, withTiming(0, { duration: 500 }));
+
+        saveButtonOpacity.value = withDelay(400, withTiming(1, { duration: 500 }));
+        saveButtonTranslateY.value = withDelay(400, withTiming(0, { duration: 500 }));
+        
+        passwordFormOpacity.value = withDelay(500, withTiming(1, { duration: 500 }));
+        passwordFormTranslateY.value = withDelay(500, withTiming(0, { duration: 500 }));
+        
+        updatePasswordButtonOpacity.value = withDelay(600, withTiming(1, { duration: 500 }));
+        updatePasswordButtonTranslateY.value = withDelay(600, withTiming(0, { duration: 500 }));
+
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
                 const docRef = doc(db, "users", currentUser.uid);
@@ -83,10 +163,10 @@ export default function UpdateProfile() {
                 const arrayBuffer = decode(imageBase64);
                 const filePath = `public/${auth.currentUser.uid}.jpg`;
                 const { error: uploadError } = await supabase.storage
-                    .from('profile-images')
+                    .from('PROFILE-IMAGES')
                     .upload(filePath, arrayBuffer, { contentType: 'image/jpeg', upsert: true });
                 if (uploadError) throw uploadError;
-                const { data: urlData } = supabase.storage.from('profile-images').getPublicUrl(filePath);
+                const { data: urlData } = supabase.storage.from('PROFILE-IMAGES').getPublicUrl(filePath);
                 imageUrlToSave = `${urlData.publicUrl}?t=${new Date().getTime()}`;
             }
             const userRef = doc(db, "users", auth.currentUser.uid);
@@ -132,7 +212,6 @@ export default function UpdateProfile() {
         }
     };
 
-    // --- NEW: Function to toggle password visibility ---
     const toggleSecureText = (field) => {
         setSecureText(prev => ({ ...prev, [field]: !prev[field] }));
     };
@@ -145,51 +224,64 @@ export default function UpdateProfile() {
         <SafeAreaView style={{ flex: 1 }}>
             <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient style={{ flex: 1 }} colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity onPress={() => router.back()}><Ionicons name="arrow-back" size={28} color="#ff8353" /></TouchableOpacity>
-                    <Text style={styles.header}>Update Profile</Text>
-                    <View style={{ width: 28 }} />
-                </View>
-                <ScrollView contentContainerStyle={styles.container}>
-                    <View style={styles.imagePickerContainer}>
-                        <Image source={{ uri: imageUri || user?.imageUrl || 'https://placehold.co/120x120/2c2c2c/ff8353?text=Photo' }} style={styles.avatar} />
-                        <TouchableOpacity style={styles.imagePickerButton} onPress={handleImagePick}><Text style={styles.imagePickerText}>Change Photo</Text></TouchableOpacity>
+                <Animated.View style={headerStyle}>
+                    <View style={styles.headerContainer}>
+                        <TouchableOpacity onPress={() => router.back()}><Ionicons name="arrow-back" size={30} color="#ff8353" /></TouchableOpacity>
+                        <Text style={styles.header}>Update Profile</Text>
+                      
                     </View>
-                    <View style={styles.formSection}>
-                        <Text style={styles.sectionTitle}>Personal Details</Text>
-                        <TextInput style={styles.input} placeholderTextColor="#999" placeholder="First Name" value={formData.firstName} onChangeText={(val) => setFormData(p => ({ ...p, firstName: val }))} />
-                        <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Last Name" value={formData.lastName} onChangeText={(val) => setFormData(p => ({ ...p, lastName: val }))} />
-                        <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Address" value={formData.address} onChangeText={(val) => setFormData(p => ({ ...p, address: val }))} />
-                        <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Gender" value={formData.gender} onChangeText={(val) => setFormData(p => ({ ...p, gender: val }))} />
-                    </View>
-                    <View style={styles.formSection}>
-                        <Text style={styles.sectionTitle}>Academic Details</Text>
-                        <TextInput style={styles.input} placeholderTextColor="#999" placeholder="University Name" value={formData.university} onChangeText={(val) => setFormData(p => ({ ...p, university: val }))} />
-                        <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Department" value={formData.department} onChangeText={(val) => setFormData(p => ({ ...p, department: val }))} />
-                        <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Semester" value={formData.semester} onChangeText={(val) => setFormData(p => ({ ...p, semester: val }))} />
-                    </View>
-                    <TouchableOpacity onPress={handleUpdateProfile} style={styles.button} disabled={isSaving}>
-                        {isSaving ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Save Profile Changes</Text>}
-                    </TouchableOpacity>
-                    <View style={styles.formSection}>
-                        <Text style={styles.sectionTitle}>Change Password</Text>
-                        {/* --- MODIFIED: Password fields with visibility toggle --- */}
-                        <View style={styles.passwordContainer}>
-                            <TextInput style={styles.passwordInput} placeholderTextColor="#999" placeholder="Current Password" secureTextEntry={secureText.current} value={passwordData.currentPassword} onChangeText={(val) => setPasswordData(p => ({ ...p, currentPassword: val }))} />
-                            <TouchableOpacity onPress={() => toggleSecureText('current')}><Ionicons name={secureText.current ? "eye-off" : "eye"} size={24} color="#999" /></TouchableOpacity>
+                </Animated.View>
+                <ScrollView className='p-4'>
+                    <Animated.View style={imagePickerStyle}>
+                        <View style={styles.imagePickerContainer}>
+                            <Image source={{ uri: imageUri || user?.imageUrl || 'https://placehold.co/120x120/2c2c2c/ff8353?text=Photo' }} style={styles.avatar} />
+                            <TouchableOpacity style={styles.imagePickerButton} onPress={handleImagePick}><Text style={styles.imagePickerText}>Change Photo</Text></TouchableOpacity>
                         </View>
-                        <View style={styles.passwordContainer}>
-                            <TextInput style={styles.passwordInput} placeholderTextColor="#999" placeholder="New Password" secureTextEntry={secureText.new} value={passwordData.newPassword} onChangeText={(val) => setPasswordData(p => ({ ...p, newPassword: val }))} />
-                            <TouchableOpacity onPress={() => toggleSecureText('new')}><Ionicons name={secureText.new ? "eye-off" : "eye"} size={24} color="#999" /></TouchableOpacity>
+                    </Animated.View>
+                    <Animated.View style={personalDetailsStyle}>
+                        <View style={styles.formSection}>
+                            <Text style={styles.sectionTitle}>Personal Details</Text>
+                            <TextInput style={styles.input} placeholderTextColor="#999" placeholder="First Name" value={formData.firstName} onChangeText={(val) => setFormData(p => ({ ...p, firstName: val }))} />
+                            <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Last Name" value={formData.lastName} onChangeText={(val) => setFormData(p => ({ ...p, lastName: val }))} />
+                            <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Address" value={formData.address} onChangeText={(val) => setFormData(p => ({ ...p, address: val }))} />
+                            <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Gender" value={formData.gender} onChangeText={(val) => setFormData(p => ({ ...p, gender: val }))} />
                         </View>
-                        <View style={styles.passwordContainer}>
-                            <TextInput style={styles.passwordInput} placeholderTextColor="#999" placeholder="Confirm New Password" secureTextEntry={secureText.confirm} value={passwordData.confirmPassword} onChangeText={(val) => setPasswordData(p => ({ ...p, confirmPassword: val }))} />
-                            <TouchableOpacity onPress={() => toggleSecureText('confirm')}><Ionicons name={secureText.confirm ? "eye-off" : "eye"} size={24} color="#999" /></TouchableOpacity>
+                    </Animated.View>
+                    <Animated.View style={academicDetailsStyle}>
+                        <View style={styles.formSection}>
+                            <Text style={styles.sectionTitle}>Academic Details</Text>
+                            <TextInput style={styles.input} placeholderTextColor="#999" placeholder="University Name" value={formData.university} onChangeText={(val) => setFormData(p => ({ ...p, university: val }))} />
+                            <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Department" value={formData.department} onChangeText={(val) => setFormData(p => ({ ...p, department: val }))} />
+                            <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Semester" value={formData.semester} onChangeText={(val) => setFormData(p => ({ ...p, semester: val }))} />
                         </View>
-                    </View>
-                    <TouchableOpacity onPress={handleChangePassword} style={[styles.button, { backgroundColor: '#8e5d4c' }]} disabled={isSaving}>
-                        {isSaving ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Update Password</Text>}
-                    </TouchableOpacity>
+                    </Animated.View>
+                    <Animated.View style={saveButtonStyle}>
+                        <TouchableOpacity onPress={handleUpdateProfile} style={styles.button} disabled={isSaving}>
+                            {isSaving ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Save Profile Changes</Text>}
+                        </TouchableOpacity>
+                    </Animated.View>
+                    <Animated.View style={passwordFormStyle}>
+                        <View style={styles.formSection}>
+                            <Text style={styles.sectionTitle}>Change Password</Text>
+                            <View style={styles.passwordContainer}>
+                                <TextInput style={styles.passwordInput} placeholderTextColor="#999" placeholder="Current Password" secureTextEntry={secureText.current} value={passwordData.currentPassword} onChangeText={(val) => setPasswordData(p => ({ ...p, currentPassword: val }))} />
+                                <TouchableOpacity onPress={() => toggleSecureText('current')}><Ionicons name={secureText.current ? "eye-off" : "eye"} size={24} color="#999" /></TouchableOpacity>
+                            </View>
+                            <View style={styles.passwordContainer}>
+                                <TextInput style={styles.passwordInput} placeholderTextColor="#999" placeholder="New Password" secureTextEntry={secureText.new} value={passwordData.newPassword} onChangeText={(val) => setPasswordData(p => ({ ...p, newPassword: val }))} />
+                                <TouchableOpacity onPress={() => toggleSecureText('new')}><Ionicons name={secureText.new ? "eye-off" : "eye"} size={24} color="#999" /></TouchableOpacity>
+                            </View>
+                            <View style={styles.passwordContainer}>
+                                <TextInput style={styles.passwordInput} placeholderTextColor="#999" placeholder="Confirm New Password" secureTextEntry={secureText.confirm} value={passwordData.confirmPassword} onChangeText={(val) => setPasswordData(p => ({ ...p, confirmPassword: val }))} />
+                                <TouchableOpacity onPress={() => toggleSecureText('confirm')}><Ionicons name={secureText.confirm ? "eye-off" : "eye"} size={24} color="#999" /></TouchableOpacity>
+                            </View>
+                        </View>
+                    </Animated.View>
+                    <Animated.View style={updatePasswordButtonStyle}>
+                        <TouchableOpacity onPress={handleChangePassword} style={[styles.button, { backgroundColor: '#8e5d4c' }]} disabled={isSaving}>
+                            {isSaving ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Update Password</Text>}
+                        </TouchableOpacity>
+                    </Animated.View>
                 </ScrollView>
             </LinearGradient>
         </SafeAreaView>
@@ -197,10 +289,9 @@ export default function UpdateProfile() {
 }
 
 const styles = StyleSheet.create({
-    // ... (all previous styles are the same)
     container: { padding: 20 },
-    headerContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: 10, paddingBottom: 10 },
-    header: { fontSize: 28, fontFamily: 'Cinzel-Bold', color: '#ff8353', textAlign: 'center' },
+    headerContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'centere',gap:10, paddingHorizontal: 20, paddingTop: 10, paddingBottom: 10 },
+    header: { fontSize: 32, fontFamily: 'Cinzel-Bold', color: '#ff8353', textAlign: 'center' },
     formSection: { marginBottom: 20, backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: 20, borderRadius: 10, borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.2)' },
     sectionTitle: { fontSize: 20, fontFamily: 'NataSans-SemiBold', color: 'white', marginBottom: 15, borderBottomWidth: 1, borderBottomColor: '#ff8353', paddingBottom: 5 },
     input: { backgroundColor: 'rgba(0,0,0,0.3)', color: 'white', paddingHorizontal: 15, paddingVertical: 12, borderRadius: 8, fontSize: 16, fontFamily: 'NataSans-Regular', marginBottom: 12 },
@@ -211,8 +302,6 @@ const styles = StyleSheet.create({
     imagePickerButton: { marginTop: 15, backgroundColor: 'rgba(255, 131, 83, 0.2)', paddingVertical: 8, paddingHorizontal: 20, borderRadius: 20 },
     imagePickerText: { color: '#ff8353', fontFamily: 'NataSans-SemiBold', fontSize: 16 },
     loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#151527' },
-    
-    // --- NEW: Styles for password input with icon ---
     passwordContainer: {
         flexDirection: 'row',
         alignItems: 'center',

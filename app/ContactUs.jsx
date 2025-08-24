@@ -43,7 +43,7 @@ export default function ContactUs() {
             <LinearGradient className='flex-1 px-4' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
 
                
-                <View className='mt-12'>
+                <View className='mt-2'>
                     <View className="flex-row items-center gap-3 ">
                         <TouchableOpacity className='' onPress={() => router.back()}>
                            <Ionicons name="arrow-back" size={30} color="#ff8353" />
