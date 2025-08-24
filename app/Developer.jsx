@@ -12,7 +12,7 @@ const developers = [
         id: '1',
         name: 'Md Solaiman Islam Shadhin',
         description: 'Lead React Native and React JS developer specializing in UI/UX and full stack Mobile app and Web development',
-        image: 'https://scontent-sin6-2.xx.fbcdn.net/v/t39.30808-6/491932379_2144108269387914_8599008879674339284_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHlIJdXTkU1M70uY0mMwv9vLkPMDAqo2WwuQ8wMCqjZbJbSWEwzHX7bX5tVTbv-W8BmbwHpps4jxHfkP_nQMle_&_nc_ohc=ajGhvBXsoaMQ7kNvwHk5Jfy&_nc_oc=AdmV-72yH17yF_Tf5D-8nvVCwOK_PATYQcXAhdpk4w2INCAG8f1-kKpJ4_a519Ora4DzkNgBhDRBtB69O6Mi_GYL&_nc_zt=23&_nc_ht=scontent-sin6-2.xx&_nc_gid=cmfyIJhy-m9gt9mPE5aAyA&oh=00_AfU6bxsDSoVPIm9UZH6mQuYFk1UqEk_BYYdRMCIOAz2QLA&oe=68A3B9E2',
+        image: 'https://scontent-sin6-2.xx.fbcdn.net/v/t39.30808-6/491932379_2144108269387914_8599008879674339284_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHlIJdXTkU1M70uY0mMwv9vLkPMDAqo2WwuQ8wMCqjZbJbSWEwzHX7bX5tVTbv-W8BmbwHpps4jxHfkP_nQMle_&_nc_ohc=6eKLfJa18hkQ7kNvwF87BtR&_nc_oc=AdkMI77Fwyr199EZkrnT00Wf5wgBPfFQA-BEBP3zdk7z3htdGeEqBXClJPxMzMFFxdvgd8M-eEgItfz8wkGWMemC&_nc_zt=23&_nc_ht=scontent-sin6-2.xx&_nc_gid=oj6I16K0ZEbVsiRd0DCEDQ&oh=00_AfV6J0mBBPH6PfKng5T8h-UhIt6seVRtffyh45PWQJ4_wQ&oe=68B12122',
     },
     {
         id: '2',
@@ -54,7 +54,7 @@ export default function Developer() {
                             <Animated.View key={dev.id} entering={FadeInUp.delay(index * 150).duration(600).springify()}>
                                 <View className="w-full bg-white/10 rounded-xl border border-white/20 p-4 mb-6 flex-row items-center">
                                     <Image
-                                        source={{ uri: dev.image }}
+                                        source={{ uri:dev.image}}
                                         className="w-24 h-24 rounded-full border-2 border-[#ff8353]"
                                     />
                                     <View className="flex-1 ml-4">

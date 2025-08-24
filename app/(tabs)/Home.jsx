@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
-import { View, Text, StatusBar, FlatList, StyleSheet, Image, TouchableOpacity, Pressable, ActivityIndicator, BackHandler, Modal, RefreshControl } from 'react-native';
+import { View, Text, StatusBar, FlatList, StyleSheet, Image, TouchableOpacity, Pressable, ActivityIndicator, BackHandler, Modal, RefreshControl, Alert } from 'react-native';
 import { ScrollView } from 'react-native-virtualized-view';
 import Feather from '@expo/vector-icons/Feather';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -59,7 +59,7 @@ const Home = () => {
             }));
             setSlides(items);
         } catch (error) {
-            console.error("Failed to fetch course data:", error);
+            Alert.error("Failed to fetch course data:", error);
         }
     }, []);
 
