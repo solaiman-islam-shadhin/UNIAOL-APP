@@ -1,36 +1,38 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar } from 'react-native';
-import React from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import solaiman from '../assets/images/solaiman.jpeg'
+import sabekun from '../assets/images/sabekun.png'
+import parvez from '../assets/images/parvez.jpeg'
+import tanvir from '../assets/images/tanvir.jpg'
 // --- Developer Data ---
 const developers = [
     {
         id: '1',
         name: 'Md Solaiman Islam Shadhin',
         description: 'Lead React Native and React JS developer specializing in UI/UX and full stack Mobile app and Web development',
-        image: 'https://scontent-sin6-2.xx.fbcdn.net/v/t39.30808-6/491932379_2144108269387914_8599008879674339284_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHlIJdXTkU1M70uY0mMwv9vLkPMDAqo2WwuQ8wMCqjZbJbSWEwzHX7bX5tVTbv-W8BmbwHpps4jxHfkP_nQMle_&_nc_ohc=6eKLfJa18hkQ7kNvwF87BtR&_nc_oc=AdkMI77Fwyr199EZkrnT00Wf5wgBPfFQA-BEBP3zdk7z3htdGeEqBXClJPxMzMFFxdvgd8M-eEgItfz8wkGWMemC&_nc_zt=23&_nc_ht=scontent-sin6-2.xx&_nc_gid=oj6I16K0ZEbVsiRd0DCEDQ&oh=00_AfV6J0mBBPH6PfKng5T8h-UhIt6seVRtffyh45PWQJ4_wQ&oe=68B12122',
+        image: solaiman,
     },
     {
         id: '2',
         name: 'Sabekun Nahar Chowdhury',
         description: 'Lead UI/UX designer.',
-        image: 'https://img.freepik.com/premium-vector/ui-ux-programmer-flat-design-vector-illustration-business-information-team-sharing-ideas-with-designer-coding-interface-software-app-development_2175-1843.jpg',
+        image: sabekun,
     },
     {
         id: '3',
         name: 'Md Mahamud Hasan',
         description: 'Firebase specialist and developer.',
-        image: 'https://media-sin11-1.cdn.whatsapp.net/v/t61.24694-24/363035589_6401489473294078_4682999899759549692_n.jpg?ccb=11-4&oh=01_Q5Aa2QGScx7e-D9myD0soOkmx5h5bY43I5UHXyc1JHYkJoGSMg&oe=68AB0FA4&_nc_sid=5e03e0&_nc_cat=104',
+       image: parvez,
     },
     {
         id: '4',
         name: 'Md Tanvir Alam',
         description: 'UI/UX designer and front-end developer.',
-        image: 'https://media-sin2-1.cdn.whatsapp.net/v/t61.24694-24/315763494_545296157028687_2937590678254268355_n.jpg?ccb=11-4&oh=01_Q5Aa2QFHmT5Lau05ta3V4t3Zgx5ASKX0Hc2bGdFEBTNReFF4PA&oe=68AB1DBD&_nc_sid=5e03e0&_nc_cat=100',
+       image: tanvir,
     },
 ];
 
@@ -54,7 +56,7 @@ export default function Developer() {
                             <Animated.View key={dev.id} entering={FadeInUp.delay(index * 150).duration(600).springify()}>
                                 <View className="w-full bg-white/10 rounded-xl border border-white/20 p-4 mb-6 flex-row items-center">
                                     <Image
-                                        source={{ uri:dev.image}}
+                                        source={dev.image}
                                         className="w-24 h-24 rounded-full border-2 border-[#ff8353]"
                                     />
                                     <View className="flex-1 ml-4">
@@ -66,11 +68,11 @@ export default function Developer() {
                         ))}
                     </ScrollView>
                 </View>
-                                     <TouchableOpacity
+        <TouchableOpacity
           onPress={() => router.push('Chatbot')}
           className="relative  "
         >
-          <Ionicons className='absolute  right-1 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+          <Ionicons className='absolute  flex-1 top-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>

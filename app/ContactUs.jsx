@@ -135,9 +135,9 @@ export default function ContactUs() {
                 </View>
                         <TouchableOpacity
           onPress={() => router.push('Chatbot')}
-          className="relative  "
+          className="relative flex-1 "
         >
-          <Ionicons className='absolute  right-1 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+          <Ionicons className='absolute top-24  right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
             </LinearGradient>
         </SafeAreaView>
