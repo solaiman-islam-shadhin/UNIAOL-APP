@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, StatusBar, Image, ScrollView, RefreshControl, Modal, Pressable } from 'react-native';
 import React, { useState, useCallback } from 'react';
-import { useRouter, useFocusEffect } from 'expo-router'; // Import useFocusEffect
+import { useRouter, useFocusEffect } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../config/FireBAseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRefresh } from '../../config/useRefresh'; // Ensure the path to your custom hook is correct
 
 export default function Profile() {
     const router = useRouter();
@@ -15,33 +16,41 @@ export default function Profile() {
     const [loading, setLoading] = useState(true);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    // --- NEW: useFocusEffect to fetch data every time the screen is focused ---
+    // --- Standalone function to fetch user data ---
+    const fetchUserData = useCallback(async () => {
+        const currentUser = auth.currentUser;
+        if (currentUser) {
+            const docRef = doc(db, "users", currentUser.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setUser(docSnap.data());
+            } else {
+                setUser({ email: currentUser.email, name: 'User' });
+            }
+        } else {
+            setUser(null);
+        }
+    }, []);
+
+    // --- Use the custom hook for pull-to-refresh ---
+    const { isRefreshing, onRefresh } = useRefresh(fetchUserData);
+
+    // --- useFocusEffect to fetch data every time the screen is focused ---
     useFocusEffect(
         useCallback(() => {
-            const fetchUserData = async () => {
-                const currentUser = auth.currentUser;
-                if (currentUser) {
-                    const docRef = doc(db, "users", currentUser.uid);
-                    const docSnap = await getDoc(docRef);
-                    if (docSnap.exists()) {
-                        setUser(docSnap.data());
-                    } else {
-                        setUser({ email: currentUser.email, name: 'User' });
-                    }
-                } else {
-                    setUser(null); // Clear user data if not logged in
-                }
+            const loadData = async () => {
+                setLoading(true);
+                await fetchUserData();
                 setLoading(false);
             };
-
-            fetchUserData();
-        }, [])
+            loadData();
+        }, [fetchUserData])
     );
 
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            setUser(null); // Clear user state immediately
+            setUser(null);
             router.replace('/Login');
         } catch (error) {
             Alert.alert("Logout Failed", "An error occurred while trying to log out.");
@@ -73,8 +82,18 @@ export default function Profile() {
             </Modal>
 
             <LinearGradient className='flex-1' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                <ScrollView contentContainerStyle={{ flexGrow: 0 }}>
-                    <View className="flex-1 pt-10 px-4">
+                <ScrollView
+                    contentContainerStyle={{ flexGrow: 1 }} // Ensures refresh works on short content
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={isRefreshing}
+                            onRefresh={onRefresh}
+                            colors={['#ff8353']}
+                            tintColor={'#ff8353'}
+                        />
+                    }
+                >
+                    <View className=" pt-10 px-4">
                         {user ? (
                             <View className="items-center">
                                 <TouchableOpacity onPress={() => user?.imageUrl && setIsModalVisible(true)}>

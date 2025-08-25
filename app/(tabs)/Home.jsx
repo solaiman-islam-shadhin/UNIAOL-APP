@@ -271,7 +271,7 @@ const Home = () => {
                 >
                     <View className='mt-5 border-2 border-dotted rounded-2xl border-y-white border-x-[#ff8353] p-2'>
                         <Text style={styles.Hero_text_1} className='text-white text-5xl text-left'>Unlock Your Potential........</Text>
-                        <Text style={styles.Hero_text_1} className='text-[#ff8353] text-[41px] my-2'>Master New Skills.</Text>
+                        <Text style={styles.Hero_text_1} className='text-[#ff8353] text-[40px] my-2'>Master New Skills.</Text>
                         <Text style={styles.Hero_text} className='text-gray-400 text-xl'>Join thousands of learners on Unisol and access high-quality courses from top instructors, anytime, anywhere. Your journey to excellence starts here.</Text>
                     </View>
 
@@ -343,10 +343,10 @@ const styles = StyleSheet.create({
     Btn_text: { fontFamily: 'NataSans-SemiBold' },
     Btn_text_price: { fontFamily: 'NataSans-Bold' },
     sectionTitle: { fontFamily: 'NataSans-SemiBold', fontSize: 26 },
-    horizontalCard: { width: 340, height: 260, borderRadius: 10, marginRight: 16 },
+    horizontalCard: { width: 340, height: 270, borderRadius: 10, marginRight: 16 },
     cardContent: { marginTop: 8, borderTopWidth: 2, borderStyle: 'solid', borderColor: '#ff8353', paddingTop: 8 },
-    cardTitle: { color: 'white', fontSize: 18 },
-    cardSubtitle: { color: 'white', fontSize: 16, opacity: 0.8 },
+    cardTitle: { color: 'white', fontSize: 17 },
+    cardSubtitle: { color: 'white', fontSize: 15,},
     horizontalImage: { width: '100%', height: 150, borderRadius: 8, marginBottom: 8 },
     modalBackdrop: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.6)' },
 });

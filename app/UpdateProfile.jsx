@@ -14,7 +14,7 @@ import { decode } from 'base64-arraybuffer';
 import { supabase } from '../config/SupabaseConfig'; // Import your new Supabase client
 
 // --- IMPORTS FOR ANIMATIONS ---
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, withDelay } from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, withDelay, FadeInDown, FadeInUp } from 'react-native-reanimated';
 
 export default function UpdateProfile() {
     const router = useRouter();
@@ -35,85 +35,10 @@ export default function UpdateProfile() {
     });
 
     // --- ANIMATION VALUES ---
-    // Header Animation
-    const headerOpacity = useSharedValue(0);
-    const headerTranslateY = useSharedValue(-30);
-    const headerStyle = useAnimatedStyle(() => ({
-        opacity: headerOpacity.value,
-        transform: [{ translateY: headerTranslateY.value }],
-    }));
-
-    // Image Picker Animation
-    const imagePickerOpacity = useSharedValue(0);
-    const imagePickerTranslateY = useSharedValue(30);
-    const imagePickerStyle = useAnimatedStyle(() => ({
-        opacity: imagePickerOpacity.value,
-        transform: [{ translateY: imagePickerTranslateY.value }],
-    }));
-
-    // Personal Details Animation
-    const personalDetailsOpacity = useSharedValue(0);
-    const personalDetailsTranslateY = useSharedValue(30);
-    const personalDetailsStyle = useAnimatedStyle(() => ({
-        opacity: personalDetailsOpacity.value,
-        transform: [{ translateY: personalDetailsTranslateY.value }],
-    }));
     
-    // Academic Details Animation
-    const academicDetailsOpacity = useSharedValue(0);
-    const academicDetailsTranslateY = useSharedValue(30);
-    const academicDetailsStyle = useAnimatedStyle(() => ({
-        opacity: academicDetailsOpacity.value,
-        transform: [{ translateY: academicDetailsTranslateY.value }],
-    }));
-
-    // Save Button Animation
-    const saveButtonOpacity = useSharedValue(0);
-    const saveButtonTranslateY = useSharedValue(30);
-    const saveButtonStyle = useAnimatedStyle(() => ({
-        opacity: saveButtonOpacity.value,
-        transform: [{ translateY: saveButtonTranslateY.value }],
-    }));
-    
-    // Password Form Animation
-    const passwordFormOpacity = useSharedValue(0);
-    const passwordFormTranslateY = useSharedValue(30);
-    const passwordFormStyle = useAnimatedStyle(() => ({
-        opacity: passwordFormOpacity.value,
-        transform: [{ translateY: passwordFormTranslateY.value }],
-    }));
-    
-    // Update Password Button Animation
-    const updatePasswordButtonOpacity = useSharedValue(0);
-    const updatePasswordButtonTranslateY = useSharedValue(30);
-    const updatePasswordButtonStyle = useAnimatedStyle(() => ({
-        opacity: updatePasswordButtonOpacity.value,
-        transform: [{ translateY: updatePasswordButtonTranslateY.value }],
-    }));
-
-
     useEffect(() => {
         // Trigger all animations with a stagger
-        headerOpacity.value = withTiming(1, { duration: 500 });
-        headerTranslateY.value = withTiming(0, { duration: 500 });
-
-        imagePickerOpacity.value = withDelay(100, withTiming(1, { duration: 500 }));
-        imagePickerTranslateY.value = withDelay(100, withTiming(0, { duration: 500 }));
-
-        personalDetailsOpacity.value = withDelay(200, withTiming(1, { duration: 500 }));
-        personalDetailsTranslateY.value = withDelay(200, withTiming(0, { duration: 500 }));
-        
-        academicDetailsOpacity.value = withDelay(300, withTiming(1, { duration: 500 }));
-        academicDetailsTranslateY.value = withDelay(300, withTiming(0, { duration: 500 }));
-
-        saveButtonOpacity.value = withDelay(400, withTiming(1, { duration: 500 }));
-        saveButtonTranslateY.value = withDelay(400, withTiming(0, { duration: 500 }));
-        
-        passwordFormOpacity.value = withDelay(500, withTiming(1, { duration: 500 }));
-        passwordFormTranslateY.value = withDelay(500, withTiming(0, { duration: 500 }));
-        
-        updatePasswordButtonOpacity.value = withDelay(600, withTiming(1, { duration: 500 }));
-        updatePasswordButtonTranslateY.value = withDelay(600, withTiming(0, { duration: 500 }));
+     
 
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
@@ -163,10 +88,10 @@ export default function UpdateProfile() {
                 const arrayBuffer = decode(imageBase64);
                 const filePath = `public/${auth.currentUser.uid}.jpg`;
                 const { error: uploadError } = await supabase.storage
-                    .from('PROFILE-IMAGES')
+                    .from('profile-images')
                     .upload(filePath, arrayBuffer, { contentType: 'image/jpeg', upsert: true });
                 if (uploadError) throw uploadError;
-                const { data: urlData } = supabase.storage.from('PROFILE-IMAGES').getPublicUrl(filePath);
+                const { data: urlData } = supabase.storage.from('profile-images').getPublicUrl(filePath);
                 imageUrlToSave = `${urlData.publicUrl}?t=${new Date().getTime()}`;
             }
             const userRef = doc(db, "users", auth.currentUser.uid);
@@ -224,7 +149,7 @@ export default function UpdateProfile() {
         <SafeAreaView style={{ flex: 1 }}>
             <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient style={{ flex: 1 }} colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                <Animated.View style={headerStyle}>
+                <Animated.View entering={FadeInUp.delay(200).duration(1000).springify()} >
                     <View style={styles.headerContainer}>
                         <TouchableOpacity onPress={() => router.back()}><Ionicons name="arrow-back" size={30} color="#ff8353" /></TouchableOpacity>
                         <Text style={styles.header}>Update Profile</Text>
@@ -232,13 +157,13 @@ export default function UpdateProfile() {
                     </View>
                 </Animated.View>
                 <ScrollView className='p-4'>
-                    <Animated.View style={imagePickerStyle}>
+                    <Animated.View entering={FadeInUp.delay(300).duration(1000).springify()} >
                         <View style={styles.imagePickerContainer}>
                             <Image source={{ uri: imageUri || user?.imageUrl || 'https://placehold.co/120x120/2c2c2c/ff8353?text=Photo' }} style={styles.avatar} />
                             <TouchableOpacity style={styles.imagePickerButton} onPress={handleImagePick}><Text style={styles.imagePickerText}>Change Photo</Text></TouchableOpacity>
                         </View>
                     </Animated.View>
-                    <Animated.View style={personalDetailsStyle}>
+                    <Animated.View entering={FadeInUp.delay(400).duration(1000).springify()}>
                         <View style={styles.formSection}>
                             <Text style={styles.sectionTitle}>Personal Details</Text>
                             <TextInput style={styles.input} placeholderTextColor="#999" placeholder="First Name" value={formData.firstName} onChangeText={(val) => setFormData(p => ({ ...p, firstName: val }))} />
@@ -247,7 +172,7 @@ export default function UpdateProfile() {
                             <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Gender" value={formData.gender} onChangeText={(val) => setFormData(p => ({ ...p, gender: val }))} />
                         </View>
                     </Animated.View>
-                    <Animated.View style={academicDetailsStyle}>
+                    <Animated.View entering={FadeInUp.delay(500).duration(1000).springify()}>
                         <View style={styles.formSection}>
                             <Text style={styles.sectionTitle}>Academic Details</Text>
                             <TextInput style={styles.input} placeholderTextColor="#999" placeholder="University Name" value={formData.university} onChangeText={(val) => setFormData(p => ({ ...p, university: val }))} />
@@ -255,12 +180,12 @@ export default function UpdateProfile() {
                             <TextInput style={styles.input} placeholderTextColor="#999" placeholder="Semester" value={formData.semester} onChangeText={(val) => setFormData(p => ({ ...p, semester: val }))} />
                         </View>
                     </Animated.View>
-                    <Animated.View style={saveButtonStyle}>
+                    <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()}>
                         <TouchableOpacity onPress={handleUpdateProfile} style={styles.button} disabled={isSaving}>
                             {isSaving ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Save Profile Changes</Text>}
                         </TouchableOpacity>
                     </Animated.View>
-                    <Animated.View style={passwordFormStyle}>
+                    <Animated.View entering={FadeInDown.delay(300).duration(1000).springify()}>
                         <View style={styles.formSection}>
                             <Text style={styles.sectionTitle}>Change Password</Text>
                             <View style={styles.passwordContainer}>
@@ -277,7 +202,7 @@ export default function UpdateProfile() {
                             </View>
                         </View>
                     </Animated.View>
-                    <Animated.View style={updatePasswordButtonStyle}>
+                    <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()}>
                         <TouchableOpacity onPress={handleChangePassword} style={[styles.button, { backgroundColor: '#8e5d4c' }]} disabled={isSaving}>
                             {isSaving ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Update Password</Text>}
                         </TouchableOpacity>
