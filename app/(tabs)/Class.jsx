@@ -76,11 +76,21 @@ export default function Class() {
         <SafeAreaView className="flex-1 ">
              <StatusBar barStyle={"light-content"} backgroundColor='#151527' />
             <LinearGradient className='flex-1 px-3' colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
-                <View className="flex-row items-center gap-3 mt-5 mb-6">
-                    <TouchableOpacity className='relative' onPress={() => router.back()}>
+                <View className="flex-row items-center justify-between mt-1 mb-6">
+                   <View className='flex-row gap-2 justify-center items-center'>
+                     <TouchableOpacity className='relative' onPress={() => router.back()}>
                        <Ionicons name="arrow-back" size={30} color="#ff8353" />
                     </TouchableOpacity>
                     <Text style={styles.title} className="text-[#ff8353]">My Classes</Text>
+                   </View>
+                          <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className=""
+        >
+          <Ionicons className=' bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
+        </Animated.View>
                 </View>
                 
                 {!currentUser ? (
@@ -107,14 +117,7 @@ export default function Class() {
                         }
                     />
                 )}
-                <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
-             <TouchableOpacity
-          onPress={() => router.push('/Chatbot')}
-          className="relative  "
-        >
-          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
-        </TouchableOpacity>
-        </Animated.View>
+          
             </LinearGradient>
         </SafeAreaView>
     );

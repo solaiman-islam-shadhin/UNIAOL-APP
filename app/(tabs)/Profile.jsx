@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, StatusBar, Image, ScrollView, RefreshControl, Modal, Pressable } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Alert, StatusBar, Image, RefreshControl, Modal, Pressable } from 'react-native';
 import React, { useState, useCallback } from 'react';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,6 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRefresh } from '../../config/useRefresh'; // Ensure the path to your custom hook is correct
 import Animated, { FadeInRight } from 'react-native-reanimated';
+import { ScrollView } from 'react-native-virtualized-view';
 
 export default function Profile() {
     const router = useRouter();
@@ -119,6 +120,10 @@ export default function Profile() {
                                     <MaterialCommunityIcons name="account-edit-outline" size={24} color="#ff8353" />
                                     <Text style={styles.info} className="text-white ml-4">Update Profile</Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity onPress={() => router.push('/SupportSession')} className="flex-row items-center bg-white/10 p-4 rounded-lg border border-white/20 mt-4 w-full">
+                                    <MaterialCommunityIcons name="account-edit-outline" size={24} color="#ff8353" />
+                                    <Text style={styles.info} className="text-white ml-4">Support Session</Text>
+                                </TouchableOpacity>
                             </View>
                         ) : (
                             <View className="items-center justify-center flex-1">
@@ -135,9 +140,9 @@ export default function Profile() {
                                 <MaterialCommunityIcons name="email-fast-outline" size={24} color="#ff8353" />
                                 <Text style={styles.info} className="text-white ml-4">Contact Us</Text>
                             </TouchableOpacity>
-                            <View className="mt-4 mb-6">
+                            <View className="mt-4 mb-28">
                                 {user ? (
-                                    <TouchableOpacity onPress={handleLogout} className="w-full bg-[#ff8353] py-4 rounded-full"><Text className="text-center text-white text-lg" style={styles.buttonText}>Logout</Text></TouchableOpacity>
+                                    <TouchableOpacity onPress={handleLogout} className="w-full bg-[#ff8353] py-4 rounded-full "><Text className="text-center text-white text-lg " style={styles.buttonText}>Logout</Text></TouchableOpacity>
                                 ) : (
                                     <TouchableOpacity onPress={() => router.push('/Login')} className="w-full bg-[#ff8353] py-4 rounded-full"><Text className="text-center text-white text-lg" style={styles.buttonText}>Login / Sign Up</Text></TouchableOpacity>
                                 )}
