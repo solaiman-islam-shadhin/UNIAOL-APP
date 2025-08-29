@@ -49,9 +49,9 @@ export default function SupportSession() {
 
         // --- UNIFIED SCHEDULE LOGIC ---
         // Active on Sunday (0) through Thursday (4)
-        const isDayActive = currentDay >= 0 && currentDay <= 7;
+        const isDayActive = currentDay >= 0 && currentDay <= 4;
         // Active from 9 AM (9) up to 10 PM (22)
-        const isTimeActive = currentHour >= 1 && currentHour < 24;
+        const isTimeActive = currentHour >= 9 && currentHour < 22;
         const isActive = isDayActive && isTimeActive;
 
         const meetLink = SUPPORT_LINKS[selectedDept];
