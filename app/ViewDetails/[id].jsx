@@ -124,8 +124,16 @@ export default function id() {
         <SafeAreaView style={{ flex: 1 }}>
             <LinearGradient className="flex-1 px-4" colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <StatusBar barStyle={"dark-content"} backgroundColor='#151527' />
-                <Animated.View entering={FadeInRight.delay(200).duration(1000).springify()} className="mb-4">
-                    <Text style={[styles.Btn_text, styles.courseName]}>{course.course_name}</Text>
+
+                <Animated.View entering={FadeInRight.delay(200).duration(1000).springify()} className="my-4">
+                   <View className=' flex flex-row justify-center items-start px-2'>
+      <TouchableOpacity className='relative mt-[5px]' onPress={() => router.back()}>
+                            <Ionicons name="arrow-back" size={30} color="#ff8353" />
+                        </TouchableOpacity>
+                         <Text style={[styles.Btn_text, styles.courseName]}>{course.course_name}</Text>
+</View>
+                       
+                    
                     <Text style={[styles.Btn_text, styles.priceText]}>Price : {course.price} tk</Text>
                 </Animated.View>
 
@@ -133,7 +141,7 @@ export default function id() {
                     <Animated.View entering={FadeInUp.delay(300).duration(1000).springify()}>
                         <View className="rounded-xl overflow-hidden mt-5 mb-10 p-4 border-b-2 border-[#ff8353]">
                             <BlurView intensity={10} tint="light" style={StyleSheet.absoluteFill} />
-                            <Image source={{ uri: course.image }} className="rounded-md w-full h-44 mb-2 border border-[#ff8353]" />
+                            <Image source={{ uri: course.image }} style={styles.Image} className="rounded-md   mb-2 border border-[#ff8353]" />
                             <View className="mt-2 pt-2 border-t-2 border-dotted border-[#ff8353]">
                                 <Text className="text-white font-semibold text-base mb-1"><Text style={styles.detailLabel}>Course Name : </Text>{course.course_name}</Text>
                                 <Text className="text-white font-semibold text-base mb-1"><Text style={styles.detailLabel}>Course Code : </Text>{course.course_code}</Text>
@@ -141,7 +149,7 @@ export default function id() {
                                 <Text className="text-white font-semibold text-base mb-1"><Text style={styles.detailLabel}>Department : </Text>{course.department}</Text>
                                 <Text className="text-white font-semibold text-base mb-1"><Text style={styles.detailLabel}>Class Duration : </Text>{course.class_time} hr</Text>
                                 <Text className="text-white font-semibold text-base mb-1"><Text style={styles.detailLabel}>Sold Course : </Text>{course.sold_course}</Text>
-                                <Text numberOfLines={isExpanded ? undefined : 10} className="text-white font-semibold text-justify text-base"><Text style={styles.detailLabel}>Description : </Text>{course.description}</Text>
+                                <Text numberOfLines={isExpanded ? undefined : 6} className="text-white font-semibold text-justify text-base"><Text style={styles.detailLabel}>Description : </Text>{course.description}</Text>
                                 <Text className="text-[#ff8353] mt-2" onPress={toggleText}>{isExpanded ? 'Read less' : 'Read more...'}</Text>
                             </View>
 
@@ -169,12 +177,14 @@ export default function id() {
                         </View>
                     </Animated.View>
                 </ScrollView>
-                <TouchableOpacity
-                    onPress={() => router.push('/Chatbot')}
-                    className="relative  "
-                >
-                    <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
-                </TouchableOpacity>
+                <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+                    <TouchableOpacity
+                        onPress={() => router.push('/Chatbot')}
+                        className="relative  "
+                    >
+                        <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+                    </TouchableOpacity>
+                </Animated.View>
             </LinearGradient>
 
             <Modal visible={isPaymentModalVisible} animationType="slide" onRequestClose={() => setPaymentModalVisible(false)}>
@@ -188,7 +198,12 @@ const styles = StyleSheet.create({
     centered: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#151527' },
     errorText: { fontFamily: 'NataSans-SemiBold', color: 'white', fontSize: 18 },
     Btn_text: { fontFamily: 'NataSans-SemiBold' },
-    courseName: { fontSize: 28, textAlign: 'center', marginTop: 20, color: '#ff8353' },
-    priceText: { fontSize: 32, alignSelf: 'center', textAlign: 'center', borderRadius: 12, marginTop: 12, borderWidth: 2, borderColor: '#ff8353', padding: 12, color: '#ff8353' },
+    courseName: { fontSize: 24, textAlign: 'center', color: '#ff8353' },
+    priceText: { fontSize: 25, alignSelf: 'center', textAlign: 'center', borderRadius: 12, marginTop: 12, borderWidth: 2, borderColor: '#ff8353', padding: 10, color: '#ff8353' },
     detailLabel: { fontFamily: 'NataSans-SemiBold', color: '#ff8353' },
+    Image: {
+    width: '100%',
+    height: 200,
+    borderRadius: 8,
+  },
 });

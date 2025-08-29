@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Animated, { FadeInUp, FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeInUp, FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -133,12 +133,14 @@ export default function ContactUs() {
                         </Formik>
                     </ScrollView>
                 </View>
-                        <TouchableOpacity
-          onPress={() => router.push('Chatbot')}
-          className="relative flex-1 "
+      <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
         >
-          <Ionicons className='absolute top-24  right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+          <Ionicons className='absolute top-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
+        </Animated.View>
             </LinearGradient>
         </SafeAreaView>
     );

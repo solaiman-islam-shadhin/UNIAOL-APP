@@ -2,13 +2,14 @@ import { View, Text, Image, StatusBar, TouchableOpacity, StyleSheet, ActivityInd
 import React, { useEffect, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Animated, { FadeInUp, FadeInRight } from 'react-native-reanimated';
+import Animated, { FadeInUp, FadeInRight, FadeInDown } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import Ionicons from '@expo/vector-icons/Ionicons';
 // --- Firebase Imports ---
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../config/FireBAseConfig';
+import PDFDownloader from '../pdf/[PDFDownloader]';
 
 export default function id() {
     const router = useRouter();
@@ -55,15 +56,20 @@ export default function id() {
         <SafeAreaView style={{ flex: 1 }}>
             <LinearGradient className="flex-1 px-4" colors={['#151527', '#0e1636', '#ff8353']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <StatusBar barStyle={"dark-content"} backgroundColor='#151527' />
-                
+                <TouchableOpacity className='relative mt-5' onPress={() => router.back()}>
+                       <Ionicons name="arrow-back" size={30} color="#ff8353" />
+                    </TouchableOpacity>
                 <ScrollView>
+
+
                     <Animated.View entering={FadeInUp.delay(200).duration(1000).springify()}>
                         {/* --- YouTube Player --- */}
                         <View className="mt-8 rounded-xl overflow-hidden border-2 border-[#ff8353]">
                            <YoutubePlayer
-                                height={220}
+                                height={200}
                                 videoId={course.video}
-                                play={true} // Set to true to autoplay
+                                play ={true} 
+                                
                             />
                         </View>
                         
@@ -76,13 +82,23 @@ export default function id() {
                             </View>
                         </View>
                     </Animated.View>
-                </ScrollView>
-                        <TouchableOpacity
+                
+       
+
+       <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()} >
+         <PDFDownloader  />
+       </Animated.View>
+        </ScrollView>
+
+
+        <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
           onPress={() => router.push('/Chatbot')}
           className="relative  "
         >
           <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
+        </Animated.View>
             </LinearGradient>
         </SafeAreaView>
     );

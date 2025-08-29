@@ -12,6 +12,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from "@react-navigation/native";
 import { useRefresh } from '../../config/useRefresh'; // Ensure this path is correct
+import uploadCourseData from '../../config/DataUpload';
+import Animated, { FadeInRight } from 'react-native-reanimated';
 
 const Home = () => {
     const [slides, setSlides] = useState([]);
@@ -188,7 +190,7 @@ const Home = () => {
             <LinearGradient style={styles.horizontalCard} className='p-2' colors={['#3c5b93', '#b18561']} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}>
                 <Pressable onPress={() => router.push(`/ViewDetails/${item.id}`)}>
                     <View>
-                        <Image source={{ uri: item.image }} style={styles.horizontalImage} />
+                        <Image source={{ uri: item.image }}  style={styles.horizontalImage} />
                         <View style={styles.cardContent}>
                             <Text style={[styles.Btn_text, styles.cardTitle]}>{item.course_name}</Text>
                             <Text style={[styles.Btn_text, styles.cardSubtitle]}>{item.course_code}</Text>
@@ -269,10 +271,10 @@ const Home = () => {
                         />
                     }
                 >
-                    <View className='mt-5 border-2 border-dotted rounded-2xl border-y-white border-x-[#ff8353] p-2'>
-                        <Text style={styles.Hero_text_1} className='text-white text-5xl text-left'>Unlock Your Potential........</Text>
-                        <Text style={styles.Hero_text_1} className='text-[#ff8353] text-[40px] my-2'>Master New Skills.</Text>
-                        <Text style={styles.Hero_text} className='text-gray-400 text-xl'>Join thousands of learners on Unisol and access high-quality courses from top instructors, anytime, anywhere. Your journey to excellence starts here.</Text>
+                    <View className='mt-5 border-2 bg-[#ff8353] border-dotted rounded-2xl border-y-white border-x-[#ff8353] p-2'>
+                        <Text style={styles.Hero_text_1} className='text-white text-4xl text-left'>Unlock Your Potential....</Text>
+                        <Text style={styles.Hero_text_1} className='text-[#151527] text-2xl my-2'>Master New Skills.</Text>
+                        <Text style={styles.Hero_text} className='text-gray-700 text-l'>Join thousands of learners on Unisol and access high-quality courses from top instructors, anytime, anywhere. Your journey to excellence starts here.</Text>
                     </View>
 
                     <Text style={styles.sectionTitle} className='border-b-2 border-dotted w-full text-center my-6 pb-2 border-b-white text-white'>Top Selling Courses..</Text>
@@ -307,9 +309,14 @@ const Home = () => {
                         <Text style={styles.sectionTitle} className='border-2 py-2 rounded-xl w-full text-center border-white bg-[#151527] text-white'>Browse Our Courses...</Text>
                     </TouchableOpacity>
                 </ScrollView>
-                <TouchableOpacity onPress={() => router.push('/Chatbot')} className="absolute bottom-24 right-5 bg-[#151527] p-4 rounded-full">
-                    <Ionicons name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
-                </TouchableOpacity>
+                    <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
+        </Animated.View>
             </LinearGradient>
         </SafeAreaView>
     );
@@ -343,11 +350,11 @@ const styles = StyleSheet.create({
     Btn_text: { fontFamily: 'NataSans-SemiBold' },
     Btn_text_price: { fontFamily: 'NataSans-Bold' },
     sectionTitle: { fontFamily: 'NataSans-SemiBold', fontSize: 26 },
-    horizontalCard: { width: 340, height: 270, borderRadius: 10, marginRight: 16 },
+    horizontalCard: { width: 340, height: 250, borderRadius: 10, marginRight: 16 },
     cardContent: { marginTop: 8, borderTopWidth: 2, borderStyle: 'solid', borderColor: '#ff8353', paddingTop: 8 },
-    cardTitle: { color: 'white', fontSize: 17 },
-    cardSubtitle: { color: 'white', fontSize: 15,},
-    horizontalImage: { width: '100%', height: 150, borderRadius: 8, marginBottom: 8 },
+    cardTitle: { color: 'white', fontSize: 16 },
+    cardSubtitle: { color: 'white', fontSize: 14,},
+    horizontalImage: { width: '100%', height: 140, borderRadius: 8, marginBottom: 8 },
     modalBackdrop: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.6)' },
 });
 

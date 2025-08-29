@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FlatList, Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, ActivityIndicator } from 'react-native';
-import Animated, { FadeInLeft, FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInLeft, FadeInRight, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
@@ -134,12 +134,14 @@ const router = useRouter();
           renderItem={renderProductItem}
         />
       )}
-              <TouchableOpacity
-          onPress={() => router.push('Chatbot')}
+         <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
           className="relative  "
         >
-          <Ionicons className='absolute bottom-24 right-2 bg-[#ff8353] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#151527" />
+          <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
+        </Animated.View>
     </SafeAreaView>
   );
 };

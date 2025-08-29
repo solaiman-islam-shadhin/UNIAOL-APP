@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, StatusBar } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInRight, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import solaiman from '../assets/images/solaiman.jpeg'
@@ -68,12 +68,14 @@ export default function Developer() {
                         ))}
                     </ScrollView>
                 </View>
-        <TouchableOpacity
-          onPress={() => router.push('Chatbot')}
+         <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
           className="relative  "
         >
-          <Ionicons className='absolute  flex-1 top-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+          <Ionicons className='absolute top-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
+        </Animated.View>
             </LinearGradient>
         </SafeAreaView>
     );

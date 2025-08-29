@@ -6,7 +6,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from 'expo-router';
 import LottieView from 'lottie-react-native';
 import { BlurView } from 'expo-blur';
-import Animated, { FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInRight, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 // --- Firebase Imports ---
@@ -107,12 +107,14 @@ export default function Class() {
                         }
                     />
                 )}
-                 <TouchableOpacity
+                <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
           onPress={() => router.push('/Chatbot')}
-          className="relative flex-1 "
+          className="relative  "
         >
           <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
+        </Animated.View>
             </LinearGradient>
         </SafeAreaView>
     );

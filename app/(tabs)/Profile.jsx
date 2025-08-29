@@ -9,6 +9,7 @@ import { auth, db } from '../../config/FireBAseConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRefresh } from '../../config/useRefresh'; // Ensure the path to your custom hook is correct
+import Animated, { FadeInRight } from 'react-native-reanimated';
 
 export default function Profile() {
     const router = useRouter();
@@ -144,9 +145,14 @@ export default function Profile() {
                         </View>
                     </View>
                 </ScrollView>
-                <TouchableOpacity onPress={() => router.push('/Chatbot')} className="absolute bottom-24 right-5 bg-[#151527] p-4 rounded-full shadow-lg">
-                    <Ionicons name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
-                </TouchableOpacity>
+                    <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
+          <Ionicons className='absolute bottom-24 right-5 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
+        </TouchableOpacity>
+        </Animated.View>
             </LinearGradient>
         </SafeAreaView>
     );

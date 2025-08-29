@@ -1,7 +1,7 @@
 const CourseData = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/2161421780/photo/happy-schoolgirl-and-her-friends-raising-hands-on-a-class.jpg?s=2048x2048&w=is&k=20&c=F3ziWtlGjM935mRHKOfJrh3F1pFQJvGAH6DfM-h2noA=",
     faculty: "Dr. Anisul Haque",
     course_code: "CSE 113",
     course_name: "Functional English (CSE)",
@@ -14,7 +14,7 @@ const CourseData = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1581093581533-7991a1d1a125?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1663047392930-7c1c31d7b785?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGhhcm1hY3l8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Salma Yasmin",
     course_code: "PHR 101",
     course_name: "Inorganic Pharmacy I",
@@ -27,7 +27,7 @@ const CourseData = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/1899836013/photo/rear-view-of-a-girl-student-raising-her-hand-to-ask-on-classroom-at-school.jpg?s=2048x2048&w=is&k=20&c=ryINlsAw26_w6MvSZdYSuGRF0riPjRPA7pXaXT_Ogxk=",
     faculty: "Dr. Iqbal Mahmud",
     course_code: "EEE 111",
     course_name: "Electrical Circuits I",
@@ -40,7 +40,7 @@ const CourseData = [
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1616628188580-c25658f8e138?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2024/12/28/01/27/ai-generated-9295105_960_720.jpg",
     faculty: "Prof. Farida Begum",
     course_code: "TEX 111",
     course_name: "Introduction to Textile Engineering",
@@ -53,7 +53,7 @@ const CourseData = [
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2017/07/31/11/21/people-2557399_960_720.jpg",
     faculty: "Dr. Karim Mostafa",
     course_code: "CSE 111",
     course_name: "Introduction to Programming Language",
@@ -66,7 +66,7 @@ const CourseData = [
   },
   {
     id: 6,
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGhhcm1hY3l8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Nazia Ahmed",
     course_code: "PHR 105",
     course_name: "Physiology I",
@@ -79,7 +79,7 @@ const CourseData = [
   },
   {
     id: 7,
-    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.ckUJmAK_btg4sREvg55OUgHaEc?w=267&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Dr. Hasan Jamil",
     course_code: "PHY 101",
     course_name: "Physics I",
@@ -92,7 +92,7 @@ const CourseData = [
   },
   {
     id: 8,
-    image: "https://images.unsplash.com/photo-1581092448342-54212b18a6e6?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.Nw6mmNLOmVUfECDjKJ6V2wHaEz?w=360&h=192&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Prof. Rina Akter",
     course_code: "TEX 211",
     course_name: "Yarn Manufacturing Technology I",
@@ -105,7 +105,7 @@ const CourseData = [
   },
   {
     id: 9,
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Asif Iqbal",
     course_code: "CSE 211",
     course_name: "Data Structures",
@@ -118,7 +118,7 @@ const CourseData = [
   },
   {
     id: 10,
-    image: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Samina Chowdhury",
     course_code: "PHR 109",
     course_name: "Pharmaceutics I (Physical Pharmacy)",
@@ -131,7 +131,7 @@ const CourseData = [
   },
   {
     id: 11,
-    image: "https://images.unsplash.com/photo-1581092916345-6a6c3a1b0be3?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1661909267383-58991abdca51?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Badrul Alam",
     course_code: "EEE 113",
     course_name: "Electronic Devices I",
@@ -144,7 +144,7 @@ const CourseData = [
   },
   {
     id: 12,
-    image: "https://images.unsplash.com/photo-1621992129042-0238b2a8f1e3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1659301254614-8d6a9d46f26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dGVhY2hpbmd8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Tahmina Rahman",
     course_code: "TEX 221",
     course_name: "Fabric Manufacturing Technology I",
@@ -157,7 +157,7 @@ const CourseData = [
   },
   {
     id: 13,
-    image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Shakil Ahmed",
     course_code: "CSE 313",
     course_name: "Algorithms",
@@ -170,7 +170,7 @@ const CourseData = [
   },
   {
     id: 14,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1580281657529-557a6abb6387?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Laila Islam",
     course_code: "PHR 207",
     course_name: "Pharmaceutical Microbiology I",
@@ -183,7 +183,7 @@ const CourseData = [
   },
   {
     id: 15,
-    image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1555436169-20e93ea9a7ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Monirul Islam",
     course_code: "EEE 211",
     course_name: "Digital Logic Design",
@@ -196,7 +196,7 @@ const CourseData = [
   },
   {
     id: 16,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1651608672593-4537a0757085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Prof. Ishrat Jahan",
     course_code: "TEX 311",
     course_name: "Wet Processing Technology I",
@@ -209,7 +209,7 @@ const CourseData = [
   },
   {
     id: 17,
-    image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1629360021730-3d258452c425?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Saifullah Khan",
     course_code: "CSE 223",
     course_name: "Database Management Systems",
@@ -222,7 +222,7 @@ const CourseData = [
   },
   {
     id: 18,
-    image: "https://images.unsplash.com/photo-1600880734091-c2b836a7a2a8?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1661776255948-7a76baa9d7b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Ayesha Siddika",
     course_code: "PHR 103",
     course_name: "Organic Pharmacy I",
@@ -235,7 +235,7 @@ const CourseData = [
   },
   {
     id: 19,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1724256278294-02f9557d4e82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA2fHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Nurul Amin",
     course_code: "EEE 221",
     course_name: "Electrical Machines I",
@@ -248,7 +248,7 @@ const CourseData = [
   },
   {
     id: 20,
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681248156448-5013eb351ea3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEzfHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Prof. Tanzina Islam",
     course_code: "TEX 331",
     course_name: "Apparel Manufacturing Technology I",
@@ -261,7 +261,7 @@ const CourseData = [
   },
   {
     id: 21,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681248156480-78a1b2fdfb47?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTIxfHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Imran Khan",
     course_code: "CSE 323",
     course_name: "Operating Systems",
@@ -274,7 +274,7 @@ const CourseData = [
   },
   {
     id: 22,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1580281658626-ee379f3cce93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Farzana Rahman",
     course_code: "PHR 205",
     course_name: "Medicinal Chemistry I",
@@ -287,7 +287,7 @@ const CourseData = [
   },
   {
     id: 23,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1671070290447-811f4073d00d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQ1fHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Abdullah Al Mamun",
     course_code: "EEE 223",
     course_name: "Signals and Linear Systems",
@@ -300,7 +300,7 @@ const CourseData = [
   },
   {
     id: 24,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1679547202646-331fe6ce8a40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGVjdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Prof. Sumaiya Ahmed",
     course_code: "TEX 241",
     course_name: "Textile Testing & Quality Control I",
@@ -313,7 +313,7 @@ const CourseData = [
   },
   {
     id: 25,
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D",
     faculty: "Dr. Tariqul Islam",
     course_code: "CSE 413",
     course_name: "Web Programming",
@@ -326,7 +326,7 @@ const CourseData = [
   },
   {
     id: 26,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681995746040-a5f679a3568a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Rokeya Begum",
     course_code: "PHR 209",
     course_name: "Pharmacognosy I",
@@ -339,7 +339,7 @@ const CourseData = [
   },
   {
     id: 27,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D",
     faculty: "Dr. Jamal Uddin Ahmed",
     course_code: "EEE 311",
     course_name: "Electromagnetic Fields and Waves",
@@ -352,7 +352,7 @@ const CourseData = [
   },
   {
     id: 28,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1619296330981-b882d7e93425?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHN0dWR5aW5nfGVufDB8fDB8fHww",
     faculty: "Prof. Nasrin Akter",
     course_code: "CHE 113",
     course_name: "Polymer Science & Engineering",
@@ -365,7 +365,7 @@ const CourseData = [
   },
   {
     id: 29,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/2161421780/photo/happy-schoolgirl-and-her-friends-raising-hands-on-a-class.jpg?s=2048x2048&w=is&k=20&c=F3ziWtlGjM935mRHKOfJrh3F1pFQJvGAH6DfM-h2noA=",
     faculty: "Dr. Mostafizur Rahman",
     course_code: "CSE 421",
     course_name: "Artificial Intelligence",
@@ -378,7 +378,7 @@ const CourseData = [
   },
   {
     id: 30,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1656331797721-b593b8f00297?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODR8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Taslima Khanam",
     course_code: "PHR 201",
     course_name: "Pharmacology I",
@@ -391,7 +391,7 @@ const CourseData = [
   },
   {
     id: 31,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/1899836013/photo/rear-view-of-a-girl-student-raising-her-hand-to-ask-on-classroom-at-school.jpg?s=2048x2048&w=is&k=20&c=ryINlsAw26_w6MvSZdYSuGRF0riPjRPA7pXaXT_Ogxk=",
     faculty: "Dr. Golam Sarwar",
     course_code: "EEE 321",
     course_name: "Power System Analysis I",
@@ -404,7 +404,7 @@ const CourseData = [
   },
   {
     id: 32,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2024/12/28/01/27/ai-generated-9295105_960_720.jpg",
     faculty: "Prof. Rehana Parvin",
     course_code: "TEX 121",
     course_name: "Textile Raw Materials I (Natural Fibers)",
@@ -417,7 +417,7 @@ const CourseData = [
   },
   {
     id: 33,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2017/07/31/11/21/people-2557399_960_720.jpg",
     faculty: "Dr. Abul Kalam Azad",
     course_code: "CSE 315",
     course_name: "Data Communication and Computer Networks",
@@ -430,7 +430,7 @@ const CourseData = [
   },
   {
     id: 34,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1663047392930-7c1c31d7b785?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGhhcm1hY3l8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Hosne Ara Begum",
     course_code: "PHR 203",
     course_name: "Pharmaceutical Analysis I",
@@ -443,7 +443,7 @@ const CourseData = [
   },
   {
     id: 35,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.ckUJmAK_btg4sREvg55OUgHaEc?w=267&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Dr. Enamul Haque",
     course_code: "EEE 313",
     course_name: "Communication Theory",
@@ -456,7 +456,7 @@ const CourseData = [
   },
   {
     id: 36,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.Nw6mmNLOmVUfECDjKJ6V2wHaEz?w=360&h=192&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Prof. Shahida Akter",
     course_code: "ME 160",
     course_name: "Engineering Drawing",
@@ -469,7 +469,7 @@ const CourseData = [
   },
   {
     id: 37,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Mizanur Rahman",
     course_code: "CSE 215",
     course_name: "Software Engineering",
@@ -482,7 +482,7 @@ const CourseData = [
   },
   {
     id: 38,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGhhcm1hY3l8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Khaleda Khanam",
     course_code: "PHR 110",
     course_name: "Physical Pharmacy I",
@@ -495,7 +495,7 @@ const CourseData = [
   },
   {
     id: 39,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1661909267383-58991abdca51?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Abdul Aziz",
     course_code: "EEE 323",
     course_name: "Microprocessor and Interfacing",
@@ -508,7 +508,7 @@ const CourseData = [
   },
   {
     id: 40,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1659301254614-8d6a9d46f26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dGVhY2hpbmd8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Selina Akter",
     course_code: "EEE 163",
     course_name: "Basic Electrical & Electronic Engineering",
@@ -521,7 +521,7 @@ const CourseData = [
   },
   {
     id: 41,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Nazmul Hossain",
     course_code: "CSE 225",
     course_name: "Computer Architecture",
@@ -534,7 +534,7 @@ const CourseData = [
   },
   {
     id: 42,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Mahmuda Khatun",
     course_code: "PHR 106",
     course_name: "Anatomy",
@@ -547,7 +547,7 @@ const CourseData = [
   },
   {
     id: 43,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1555436169-20e93ea9a7ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Jahangir Alam",
     course_code: "EEE 411",
     course_name: "Industrial and Power Electronics",
@@ -560,7 +560,7 @@ const CourseData = [
   },
   {
     id: 44,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1651608672593-4537a0757085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Prof. Fatema Zohra",
     course_code: "ME 161",
     course_name: "Elements of Mechanical Engineering",
@@ -573,7 +573,7 @@ const CourseData = [
   },
   {
     id: 45,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1629360021730-3d258452c425?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Shafiqul Islam",
     course_code: "CSE 411",
     course_name: "Compiler Design",
@@ -586,7 +586,7 @@ const CourseData = [
   },
   {
     id: 46,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1580281657529-557a6abb6387?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Sultana Parvin",
     course_code: "PHR 108",
     course_name: "Biochemistry & Molecular Biology",
@@ -599,7 +599,7 @@ const CourseData = [
   },
   {
     id: 47,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1724256278294-02f9557d4e82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA2fHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Atiqur Rahman",
     course_code: "EEE 421",
     course_name: "Control Systems",
@@ -612,7 +612,7 @@ const CourseData = [
   },
   {
     id: 48,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681248156448-5013eb351ea3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEzfHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Prof. Israt Jahan",
     course_code: "CSE 161",
     course_name: "Computer Fundamentals & Programming",
@@ -625,7 +625,7 @@ const CourseData = [
   },
   {
     id: 49,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681248156480-78a1b2fdfb47?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTIxfHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Ashraful Alam",
     course_code: "CSE 431",
     course_name: "Digital Signal Processing",
@@ -638,7 +638,7 @@ const CourseData = [
   },
   {
     id: 50,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1661776255948-7a76baa9d7b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Bilkis Ara Begum",
     course_code: "PHR 401",
     course_name: "Pharmaceutical Technology I",
@@ -651,7 +651,7 @@ const CourseData = [
   },
   {
     id: 51,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1671070290447-811f4073d00d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQ1fHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Khairul Kabir",
     course_code: "EEE 423",
     course_name: "Power System Protection",
@@ -664,7 +664,7 @@ const CourseData = [
   },
   {
     id: 52,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1679547202646-331fe6ce8a40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGVjdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Prof. Maksuda Begum",
     course_code: "PHY 113",
     course_name: "Textile Physics I",
@@ -677,7 +677,7 @@ const CourseData = [
   },
   {
     id: 53,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D",
     faculty: "Dr. Fazlul Karim",
     course_code: "CSE 425",
     course_name: "Cryptography and Network Security",
@@ -690,7 +690,7 @@ const CourseData = [
   },
   {
     id: 54,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1580281658626-ee379f3cce93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Shamsun Nahar",
     course_code: "PHR 405",
     course_name: "Hospital Pharmacy",
@@ -703,7 +703,7 @@ const CourseData = [
   },
   {
     id: 55,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D",
     faculty: "Dr. Anwar Hossain",
     course_code: "EEE 413",
     course_name: "Telecommunication Engineering",
@@ -716,7 +716,7 @@ const CourseData = [
   },
   {
     id: 56,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1619296330981-b882d7e93425?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHN0dWR5aW5nfGVufDB8fDB8fHww",
     faculty: "Prof. Afroza Begum",
     course_code: "TEX 213",
     course_name: "Yarn Manufacturing Technology II",
@@ -729,7 +729,7 @@ const CourseData = [
   },
   {
     id: 57,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/2161421780/photo/happy-schoolgirl-and-her-friends-raising-hands-on-a-class.jpg?s=2048x2048&w=is&k=20&c=F3ziWtlGjM935mRHKOfJrh3F1pFQJvGAH6DfM-h2noA=",
     faculty: "Dr. Zahid Hasan",
     course_code: "CSE 435",
     course_name: "Data Warehousing & Data Mining",
@@ -742,7 +742,7 @@ const CourseData = [
   },
   {
     id: 58,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681995746040-a5f679a3568a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Farida Yasmin",
     course_code: "PHR 211",
     course_name: "Inorganic Pharmacy II",
@@ -755,7 +755,7 @@ const CourseData = [
   },
   {
     id: 59,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/1899836013/photo/rear-view-of-a-girl-student-raising-her-hand-to-ask-on-classroom-at-school.jpg?s=2048x2048&w=is&k=20&c=ryINlsAw26_w6MvSZdYSuGRF0riPjRPA7pXaXT_Ogxk=",
     faculty: "Dr. Aminul Islam",
     course_code: "EEE 415",
     course_name: "VLSI I",
@@ -768,7 +768,7 @@ const CourseData = [
   },
   {
     id: 60,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2024/12/28/01/27/ai-generated-9295105_960_720.jpg",
     faculty: "Prof. Nazma Akter",
     course_code: "TEX 223",
     course_name: "Fabric Manufacturing Technology II",
@@ -781,7 +781,7 @@ const CourseData = [
   },
   {
     id: 61,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2017/07/31/11/21/people-2557399_960_720.jpg",
     faculty: "Dr. Sohel Rana",
     course_code: "CSE 433",
     course_name: "Digital Image Processing",
@@ -794,7 +794,7 @@ const CourseData = [
   },
   {
     id: 62,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1656331797721-b593b8f00297?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODR8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Monira Begum",
     course_code: "PHR 107",
     course_name: "Physiology II",
@@ -807,7 +807,7 @@ const CourseData = [
   },
   {
     id: 63,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.ckUJmAK_btg4sREvg55OUgHaEc?w=267&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Dr. Harun-or-Rashid",
     course_code: "EEE 325",
     course_name: "Power Plant Engineering",
@@ -820,7 +820,7 @@ const CourseData = [
   },
   {
     id: 64,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.Nw6mmNLOmVUfECDjKJ6V2wHaEz?w=360&h=192&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Prof. Shirin Sultana",
     course_code: "TEX 313",
     course_name: "Wet Processing Technology II",
@@ -833,7 +833,7 @@ const CourseData = [
   },
   {
     id: 65,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Kamrul Hasan",
     course_code: "MATH 211",
     course_name: "Discrete Mathematics",
@@ -846,7 +846,7 @@ const CourseData = [
   },
   {
     id: 66,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1663047392930-7c1c31d7b785?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGhhcm1hY3l8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Zakia Sultana",
     course_code: "PHR 213",
     course_name: "Organic Pharmacy II",
@@ -859,7 +859,7 @@ const CourseData = [
   },
   {
     id: 67,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1661909267383-58991abdca51?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Firoz Ahmed",
     course_code: "EEE 225",
     course_name: "Solid State Devices",
@@ -872,7 +872,7 @@ const CourseData = [
   },
   {
     id: 68,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1659301254614-8d6a9d46f26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dGVhY2hpbmd8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Rahela Khatun",
     course_code: "TEX 333",
     course_name: "Apparel Manufacturing Technology II",
@@ -885,7 +885,7 @@ const CourseData = [
   },
   {
     id: 69,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Taufiqur Rahman",
     course_code: "MATH 221",
     course_name: "Numerical Methods",
@@ -898,7 +898,7 @@ const CourseData = [
   },
   {
     id: 70,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGhhcm1hY3l8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Sharifa Begum",
     course_code: "PHR 305",
     course_name: "Medicinal Chemistry II",
@@ -911,7 +911,7 @@ const CourseData = [
   },
   {
     id: 71,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1555436169-20e93ea9a7ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Mosharraf Hossain",
     course_code: "EEE 112",
     course_name: "Electrical Circuits II",
@@ -924,7 +924,7 @@ const CourseData = [
   },
   {
     id: 72,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1651608672593-4537a0757085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Prof. Dilruba Akter",
     course_code: "TEX 243",
     course_name: "Textile Testing & Quality Control II",
@@ -937,7 +937,7 @@ const CourseData = [
   },
   {
     id: 73,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1629360021730-3d258452c425?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Sirajul Islam",
     course_code: "CSE 112",
     course_name: "Object-Oriented Programming",
@@ -950,7 +950,7 @@ const CourseData = [
   },
   {
     id: 74,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Jahanara Begum",
     course_code: "PHR 301",
     course_name: "Pharmacology II",
@@ -963,7 +963,7 @@ const CourseData = [
   },
   {
     id: 75,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1724256278294-02f9557d4e82?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA2fHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Abdus Salam",
     course_code: "EEE 213",
     course_name: "Electronic Devices II",
@@ -976,7 +976,7 @@ const CourseData = [
   },
   {
     id: 76,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681248156448-5013eb351ea3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEzfHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Prof. Parveen Sultana",
     course_code: "TEX 411",
     course_name: "Special Yarn & Fabric Production",
@@ -989,7 +989,7 @@ const CourseData = [
   },
   {
     id: 77,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681248156480-78a1b2fdfb47?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTIxfHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Anisur Rahman",
     course_code: "CSE 221",
     course_name: "System Analysis and Design",
@@ -1002,7 +1002,7 @@ const CourseData = [
   },
   {
     id: 78,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1580281657529-557a6abb6387?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Roushan Ara Begum",
     course_code: "PHR 309",
     course_name: "Pharmacognosy II",
@@ -1015,7 +1015,7 @@ const CourseData = [
   },
   {
     id: 79,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1671070290447-811f4073d00d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQ1fHx0ZWFjaGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Dr. Rezaul Karim",
     course_code: "EEE 315",
     course_name: "Electrical Machines II",
@@ -1028,7 +1028,7 @@ const CourseData = [
   },
   {
     id: 80,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1679547202646-331fe6ce8a40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGVjdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
     faculty: "Prof. Yasmin Akter",
     course_code: "TEX 421",
     course_name: "Technical Textiles",
@@ -1041,7 +1041,7 @@ const CourseData = [
   },
   {
     id: 81,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D",
     faculty: "Dr. Mahbubur Rahman",
     course_code: "CSE 311",
     course_name: "Theory of Computation",
@@ -1054,7 +1054,7 @@ const CourseData = [
   },
   {
     id: 82,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1661776255948-7a76baa9d7b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Nasima Begum",
     course_code: "PHR 210",
     course_name: "Physical Pharmacy II",
@@ -1067,7 +1067,7 @@ const CourseData = [
   },
   {
     id: 83,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHVuaXZlcnNpdHl8ZW58MHx8MHx8fDA%3D",
     faculty: "Dr. Shahinur Rahman",
     course_code: "EEE 215",
     course_name: "Digital Electronics and Pulse Techniques",
@@ -1080,7 +1080,7 @@ const CourseData = [
   },
   {
     id: 84,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1619296330981-b882d7e93425?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHN0dWR5aW5nfGVufDB8fDB8fHww",
     faculty: "Prof. Salina Parveen",
     course_code: "TEX 441",
     course_name: "Environmental Management in Textile Industry",
@@ -1093,7 +1093,7 @@ const CourseData = [
   },
   {
     id: 85,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/2161421780/photo/happy-schoolgirl-and-her-friends-raising-hands-on-a-class.jpg?s=2048x2048&w=is&k=20&c=F3ziWtlGjM935mRHKOfJrh3F1pFQJvGAH6DfM-h2noA=",
     faculty: "Dr. Al-Amin",
     course_code: "CSE 321",
     course_name: "Microprocessors and Assembly Language",
@@ -1106,7 +1106,7 @@ const CourseData = [
   },
   {
     id: 86,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1580281658626-ee379f3cce93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Shahana Begum",
     course_code: "PHR 307",
     course_name: "Pharmaceutical Microbiology II",
@@ -1119,7 +1119,7 @@ const CourseData = [
   },
   {
     id: 87,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://media.istockphoto.com/id/1899836013/photo/rear-view-of-a-girl-student-raising-her-hand-to-ask-on-classroom-at-school.jpg?s=2048x2048&w=is&k=20&c=ryINlsAw26_w6MvSZdYSuGRF0riPjRPA7pXaXT_Ogxk=",
     faculty: "Dr. Mainul Hossain",
     course_code: "EEE 222",
     course_name: "Energy Conversion I",
@@ -1132,7 +1132,7 @@ const CourseData = [
   },
   {
     id: 88,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2024/12/28/01/27/ai-generated-9295105_960_720.jpg",
     faculty: "Prof. Tahmina Akter",
     course_code: "IPE 311",
     course_name: "Production Planning & Control in Textiles",
@@ -1145,7 +1145,7 @@ const CourseData = [
   },
   {
     id: 89,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://cdn.pixabay.com/photo/2017/07/31/11/21/people-2557399_960_720.jpg",
     faculty: "Dr. S.M. Abdullah",
     course_code: "CSE 415",
     course_name: "Simulation & Modeling",
@@ -1158,7 +1158,7 @@ const CourseData = [
   },
   {
     id: 90,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1681995746040-a5f679a3568a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Nazneen Sultana",
     course_code: "PHR 411",
     course_name: "Cosmetology",
@@ -1171,7 +1171,7 @@ const CourseData = [
   },
   {
     id: 91,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.ckUJmAK_btg4sREvg55OUgHaEc?w=267&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Dr. A.K.M. Fazlul Haque",
     course_code: "EEE 224",
     course_name: "Signals and Linear Systems Lab",
@@ -1184,7 +1184,7 @@ const CourseData = [
   },
   {
     id: 92,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://th.bing.com/th/id/OIP.Nw6mmNLOmVUfECDjKJ6V2wHaEz?w=360&h=192&c=7&r=0&o=7&pid=1.7&rm=3",
     faculty: "Prof. Ferdousi Begum",
     course_code: "TEX 443",
     course_name: "Textile Machine Maintenance",
@@ -1197,7 +1197,7 @@ const CourseData = [
   },
   {
     id: 93,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Forhad Hossain",
     course_code: "CSE 423",
     course_name: "VLSI Design",
@@ -1210,7 +1210,7 @@ const CourseData = [
   },
   {
     id: 94,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1656331797721-b593b8f00297?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODR8fHBoYXJtYWN5fGVufDB8fDB8fHww",
     faculty: "Prof. Kamrun Nahar",
     course_code: "PHR 407",
     course_name: "Pharmaceutical Marketing & Management",
@@ -1223,7 +1223,7 @@ const CourseData = [
   },
   {
     id: 95,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1661909267383-58991abdca51?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww",
     faculty: "Dr. Delwar Hossain",
     course_code: "ECON 261",
     course_name: "Principles of Economics",
@@ -1236,7 +1236,7 @@ const CourseData = [
   },
   {
     id: 96,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1659301254614-8d6a9d46f26a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dGVhY2hpbmd8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Shamima Nasrin",
     course_code: "TEX 315",
     course_name: "Coloration of Textiles",
@@ -1249,7 +1249,7 @@ const CourseData = [
   },
   {
     id: 97,
-    image: "https://images.unsplash.com/photo-1579820010410-c10418a89993?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Moniruzzaman",
     course_code: "CSE 312",
     course_name: "Computer Graphics",
@@ -1262,7 +1262,7 @@ const CourseData = [
   },
   {
     id: 98,
-    image: "https://images.unsplash.com/photo-1579154341079-22d5155ef82f?w=600&h=400&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1663047392930-7c1c31d7b785?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGhhcm1hY3l8ZW58MHx8MHx8fDA%3D",
     faculty: "Prof. Nurun Nahar Begum",
     course_code: "PHR 403",
     course_name: "Pharmaceutical Engineering",
@@ -1275,7 +1275,7 @@ const CourseData = [
   },
   {
     id: 99,
-    image: "https://images.unsplash.com/photo-1554224155-1696413565d3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1555436169-20e93ea9a7ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Dr. Mokbul Hossain",
     course_code: "ACCT 261",
     course_name: "Principles of Accounting",
@@ -1288,7 +1288,7 @@ const CourseData = [
   },
   {
     id: 100,
-    image: "https://images.unsplash.com/photo-1558227434-3e2a2a01f0a8?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1651608672593-4537a0757085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fHRlYWNoaW5nfGVufDB8fDB8fHww",
     faculty: "Prof. Shahana Parvin",
     course_code: "MGT 311",
     course_name: "Industrial Management",

@@ -7,6 +7,7 @@ import { db } from '../config/FireBAseConfig';
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import Animated, { FadeInRight } from 'react-native-reanimated';
 // Card Component (copied from Home screen for reuse)
 const VerticalScroll = ({ item }) => {
   const router = useRouter();
@@ -114,9 +115,14 @@ const BrowseCourses = () => {
             <Text style={styles.noCoursesText}>No courses available in this department.</Text>
           </View>
         )}
-         <TouchableOpacity onPress={() => router.push('/Chatbot')} className="relative">
+             <Animated.View entering={FadeInRight.delay(400).duration(1000).springify()}>
+             <TouchableOpacity
+          onPress={() => router.push('/Chatbot')}
+          className="relative  "
+        >
           <Ionicons className='absolute bottom-24 right-2 bg-[#151527] p-4 rounded-full shadow-lg' name="chatbubble-ellipses-outline" size={30} color="#ff8353" />
         </TouchableOpacity>
+        </Animated.View>
       </LinearGradient>
     </SafeAreaView>
   )
