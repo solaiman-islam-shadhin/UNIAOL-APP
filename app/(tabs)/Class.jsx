@@ -56,7 +56,7 @@ export default function Class() {
                         <Text style={styles.itemName} className="text-white">{item.course_name}</Text>
                         <Text style={styles.itemFaculty} className="text-white">{item.faculty}</Text>
                     </View>
-                    <View className="w-full bg-[#16a34a] py-3 mt-3 rounded-xl">
+                    <View className="w-full bg-[#ff8353] py-3 mt-3 rounded-xl">
                         <Text className="text-center font-bold text-white text-lg">View Course</Text>
                     </View>
                 </View>

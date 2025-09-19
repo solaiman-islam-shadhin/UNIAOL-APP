@@ -229,6 +229,7 @@ const Chatbot = () => {
                    - Contact Us -> "/ContactUs"
                    -Browse Courses -> "/BrowseCourses"
                    -Update Profile -> "/UpdateProfile"
+                   -Support Session -> "/SupportSession"
                    - **Specific Course Pages:**
                    - To view details before buying: format the route as "/ViewDetails/[id]".
                    - To watch or open a course: your ONLY action is to navigate them to the main class page using this exact route: \`{"action": "navigate", "route": "/(tabs)/Class"}\`.

@@ -156,7 +156,7 @@ export default function id() {
                             {/* --- Conditional Button Rendering --- */}
                             {currentUser ? (
                                 isPurchased ? (
-                                    <TouchableOpacity onPress={handleWatchNow} className="w-full bg-[#16a34a] py-4 mt-4 rounded-xl">
+                                    <TouchableOpacity onPress={handleWatchNow} className="w-full  bg-[#ff8353] py-4 mt-4 rounded-xl">
                                         <Text className="text-center font-bold text-white text-lg">Watch Now</Text>
                                     </TouchableOpacity>
                                 ) : (

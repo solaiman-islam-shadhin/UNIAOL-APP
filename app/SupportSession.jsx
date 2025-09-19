@@ -52,8 +52,8 @@ export default function SupportSession() {
             
             setPurchasedCourses(courses);
         } catch (error) {
-            console.error("Failed to fetch purchased courses:", error);
-            Alert.alert("Error", "Could not fetch your course list.");
+       
+            Alert.alert(error, "Could not fetch your course list.");
         } finally {
             setIsLoading(false);
         }
@@ -81,7 +81,7 @@ export default function SupportSession() {
     const renderSchedule = () => {
         const currentDay = currentDateTime.getDay();
         const currentHour = currentDateTime.getHours();
-        const isDayActive = currentDay >= 0 && currentDay <= 6; // Sunday to Thursday
+        const isDayActive = currentDay >= 0 && currentDay <= 4; // Sunday to Thursday
         const isTimeActive = currentHour >= 9 && currentHour < 22; // 9 AM to 10 PM
         const isActive = isDayActive && isTimeActive;
         const meetLink = SUPPORT_LINKS[selectedDept];
